@@ -1,0 +1,27 @@
+{
+    "crossref": {
+        "enabled": true
+    },
+    "openalex": {
+        "email": "burakcan.kara@amasya.edu.tr",
+        "enabled": true
+    },
+    "datacite": {
+        "enabled": true
+    },
+    "europepmc": {
+        "enabled": true
+    },
+    "scopus": {
+        "api_key": "",
+        "enabled": false
+    },
+    "semantic_scholar": {
+        "api_key": "",
+        "enabled": true
+    },
+    "unpaywall": {
+        "email": "burakcan.kara@amasya.edu.tr",
+        "enabled": true
+    }
+}
