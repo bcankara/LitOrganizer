@@ -67,12 +67,31 @@ LitOrganizer is a powerful tool designed for researchers, academics, and student
 
 ## 🚀 Installation
 
-### Requirements
-- Python 3.8 or later
-- Required Python packages (see `requirements.txt`)
-- For OCR functionality: [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+### Docker (Recommended)
+The easiest way to use LitOrganizer is through Docker:
 
-### Installation Steps
+```bash
+# Pull the image from Docker Hub
+docker pull bcankara/litorganizer:latest
+
+# Run the container with GUI support
+# For Windows:
+docker run -it --rm -e DISPLAY=host.docker.internal:0 -v %cd%/pdfs:/app/pdf bcankara/litorganizer
+
+# For Linux:
+docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+```
+
+**Requirements for Docker:**
+- [Docker](https://www.docker.com/get-started) installed on your system
+- X11 server for GUI:
+  - Windows: [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [Xming](https://sourceforge.net/projects/xming/)
+  - Linux: Built-in X11 server
+  - macOS: [XQuartz](https://www.xquartz.org/)
+
+For more information about running with Docker, visit our [Docker Hub page](https://hub.docker.com/r/bcankara/litorganizer).
+
+### Manual Installation
 
 1. Clone or download this repository:
    ```bash
