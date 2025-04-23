@@ -1,7 +1,7 @@
 <div align="center">
   <img src="resources/logo.png" alt="LitOrganizer Logo" width="200">
   <br>
-  <h3>Organize your academic literature efficiently</h3>
+  <h3>Organize Your Academic Literature Efficiently</h3>
   
   [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
   [![PyQt5](https://img.shields.io/badge/PyQt5-5.15.9-green.svg)](https://pypi.org/project/PyQt5/)
