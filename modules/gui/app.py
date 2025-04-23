@@ -3431,23 +3431,84 @@ class MainWindow(QMainWindow):
         
         # Update error breakdown
         self.error_breakdown_list.clear()
-        
+        log_text = self.log_text.toPlainText() # Get the full log text
+
         if problematic > 0:
-            # Parse error types from log (simplified)
-            no_doi_count = len(re.findall(r"No DOI found in", log_text))
-            no_metadata_count = len(re.findall(r"No metadata found for DOI", log_text))
-            other_errors = problematic - no_doi_count - no_metadata_count
-            
-            if no_doi_count > 0:
-                self.error_breakdown_list.addItem(f"Missing DOI: {no_doi_count} files ({round(no_doi_count/problematic*100, 1)}%)")
-            if no_metadata_count > 0:
-                self.error_breakdown_list.addItem(f"No metadata for DOI: {no_metadata_count} files ({round(no_metadata_count/problematic*100, 1)}%)")
+            # --- Define regex patterns for specific error types ---
+            # Note: These patterns should match the specific log messages added in pdf_renamer.py
+            # We use r"..." for raw strings to handle backslashes in patterns if needed.
+            # Using re.IGNORECASE for flexibility, although error logs are likely consistent.
+
+            # Core known issues
+            no_doi_pattern = r"No DOI found in"
+            no_metadata_pattern = r"Insufficient or no metadata found for DOI" # Updated pattern
+
+            # New specific categories based on refined logging
+            pdf_read_pattern = r"PDF Processing Error \(read\)" # Escaped parentheses
+            pdf_encrypt_pattern = r"PDF Processing Error \(encrypted\)" # Escaped parentheses
+            doi_extract_pattern = r"Error extracting DOI from"
+            api_error_pattern = r"API Error \(network/http\)" # Escaped parentheses
+            metadata_fetch_pattern = r"Error fetching metadata for DOI" # General metadata fetch error
+            fs_error_pattern = r"File System Error \((mkdir|copy|unlink|backup|rename/move|categorize move)\)" # Escaped parentheses
+            rename_move_error_pattern = r"Error renaming/moving file" # Catch-all for rename/move if FS specific didn't catch
+            categorize_error_pattern = r"Error during file categorization attempt|Error calling categorize_file" # Catches categorization errors
+            unexpected_error_pattern = r"Unexpected Error processing file"
+
+
+            # --- Count occurrences ---
+            no_doi_count = len(re.findall(no_doi_pattern, log_text, re.IGNORECASE))
+            no_metadata_count = len(re.findall(no_metadata_pattern, log_text, re.IGNORECASE))
+            pdf_read_count = len(re.findall(pdf_read_pattern, log_text, re.IGNORECASE))
+            pdf_encrypt_count = len(re.findall(pdf_encrypt_pattern, log_text, re.IGNORECASE))
+            doi_extract_count = len(re.findall(doi_extract_pattern, log_text, re.IGNORECASE))
+            api_error_count = len(re.findall(api_error_pattern, log_text, re.IGNORECASE))
+            metadata_fetch_count = len(re.findall(metadata_fetch_pattern, log_text, re.IGNORECASE))
+            fs_error_count = len(re.findall(fs_error_pattern, log_text, re.IGNORECASE))
+            rename_move_count = len(re.findall(rename_move_error_pattern, log_text, re.IGNORECASE))
+            categorize_error_count = len(re.findall(categorize_error_pattern, log_text, re.IGNORECASE))
+            unexpected_error_count = len(re.findall(unexpected_error_pattern, log_text, re.IGNORECASE))
+
+            # Calculate 'Other' errors - start with total problematic and subtract specifics
+            # Be careful not to double-count (e.g., a specific FS error might also contain "Error renaming/moving")
+            # Let's sum up all specific counts found
+            counted_specific_errors = (
+                no_doi_count + no_metadata_count + pdf_read_count + pdf_encrypt_count +
+                doi_extract_count + api_error_count + metadata_fetch_count + fs_error_count +
+                rename_move_count + categorize_error_count + unexpected_error_count
+            )
+
+            # Other errors are those problematic files NOT accounted for by specific patterns
+            # It might be slightly inaccurate if logs are complex, but better than before.
+            other_errors = max(0, problematic - counted_specific_errors) # Ensure non-negative
+
+
+            # --- Add items to the list ---
+            def add_error_item(label, count):
+                if count > 0:
+                    percentage = round(count / problematic * 100, 1)
+                    self.error_breakdown_list.addItem(f"{label}: {count} files ({percentage}%)")
+
+            add_error_item("Missing DOI", no_doi_count)
+            add_error_item("Insufficient/No Metadata", no_metadata_count) # Updated label
+            add_error_item("PDF Read Error", pdf_read_count)
+            add_error_item("PDF Encrypted", pdf_encrypt_count)
+            add_error_item("DOI Extraction Error", doi_extract_count)
+            add_error_item("API Network/HTTP Error", api_error_count)
+            add_error_item("Metadata Fetch Error", metadata_fetch_count)
+            add_error_item("File System Error", fs_error_count)
+            add_error_item("Rename/Move Error", rename_move_count) # May overlap with FS, shows general rename fail
+            add_error_item("Categorization Error", categorize_error_count)
+            add_error_item("Unexpected Processing Error", unexpected_error_count)
+
+            # Add the remaining 'Other' errors
             if other_errors > 0:
-                self.error_breakdown_list.addItem(f"Other errors: {other_errors} files ({round(other_errors/problematic*100, 1)}%)")
+                 add_error_item("Other (Unclassified)", other_errors)
+
         else:
-            self.error_breakdown_list.addItem("No errors encountered")
-        
-        # Update publication statistics
+            # If no problematic files, show success message
+            self.error_breakdown_list.addItem("✅ No errors encountered during processing.")
+
+        # --- Update publication statistics ---
         # Year distribution
         self.year_distribution_list.clear()
         

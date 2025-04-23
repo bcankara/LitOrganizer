@@ -12,8 +12,10 @@ import logging
 from pathlib import Path
 from typing import Dict, List, Optional, Union, Any
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import requests
 
 from modules.utils.file_utils import ensure_dir, sanitize_filename
+from modules.utils import pdf_metadata_extractor as pdf_extractor
 from modules.utils.pdf_metadata_extractor import (
     extract_doi,
     get_metadata_from_crossref,
@@ -159,203 +161,216 @@ class PDFProcessor:
             file_path (Path): Path to the PDF file
             
         Returns:
-            bool: True if processing is successful, False otherwise
+            bool: True if processing and renaming/categorization is successful, False otherwise
         """
         logger = self.logger or logging.getLogger('litorganizer.processor')
         filename = file_path.name
-        output_path = None
+        output_path = None # Stores the final path after rename/categorization
+        doi = None
+        metadata = None
         metadata_source = "Unknown"
         
         try:
             logger.info(f"Processing file: {filename}")
             
             # Step 1: Extract DOI from PDF
-            doi = extract_doi(file_path, self.use_ocr)
+            try:
+                doi = extract_doi(file_path, self.use_ocr)
+            except pdf_extractor.PDFReadError as e_pdf_read:
+                logger.error(f"PDF Processing Error (read): Failed to process {filename}: {e_pdf_read}")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "PDF_Read_Error")
+                return False
+            except pdf_extractor.PDFEncryptedError as e_pdf_encrypt:
+                logger.error(f"PDF Processing Error (encrypted): File {filename} is encrypted: {e_pdf_encrypt}")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "PDF_Encrypted_Error")
+                return False
+            except Exception as e_doi_extract: # Catch other potential DOI extraction errors
+                logger.error(f"Error extracting DOI from {filename}: {e_doi_extract}", exc_info=True)
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, f"DOI_Extract_Error_{type(e_doi_extract).__name__}")
+                return False
             
             if not doi:
-                logger.warning(f"No DOI found in {filename}, moving to Unnamed Article directory")
-                
-                # Move to Unnamed Article directory if enabled
-                if self.move_problematic and self.problematic_dir:
-                    self.problematic_dir.mkdir(exist_ok=True)
-                    target_path = self.problematic_dir / filename
-                    try:
-                        shutil.copy2(file_path, target_path)
-                        logger.info(f"Moved file without DOI to Unnamed Article folder: {target_path}")
-                        
-                        # Remove original file
-                        file_path.unlink()
-                        logger.debug(f"Removed original file {filename}")
-                    except Exception as e:
-                        logger.error(f"Failed to move file to Unnamed Article folder: {e}")
-                
-                # Return False to indicate unsuccessful renaming
+                logger.warning(f"No DOI found in {filename}. Moving to Unnamed.")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "Missing_DOI")
                 return False
             
-            # DOI found, try to fetch metadata
+            # DOI found
             logger.info(f"Found DOI: {doi}")
             
-            # Step 2: Get metadata using our multiple API strategy
-            metadata = get_metadata_from_multiple_sources(doi)
-            
-            if metadata:
-                metadata_source = metadata.get('source', 'Unknown API')
-                logger.info(f"Found metadata using {metadata_source} for {filename}")
-            else:
-                logger.warning(f"No metadata found for DOI: {doi} from any API")
-                
-                # If no metadata found, move to Unnamed Article
-                if self.move_problematic and self.problematic_dir:
-                    self.problematic_dir.mkdir(exist_ok=True)
-                    target_path = self.problematic_dir / filename
-                    try:
-                        shutil.copy2(file_path, target_path)
-                        logger.info(f"Moved file with no metadata to Unnamed Article folder: {target_path}")
-                        
-                        # Remove original file
-                        file_path.unlink()
-                        logger.debug(f"Removed original file {filename}")
-                    except Exception as e:
-                        logger.error(f"Failed to move file to Unnamed Article folder: {e}")
-                
-                # Return False to indicate unsuccessful renaming
+            # Step 2: Get metadata using multiple API strategy
+            try:
+                metadata = get_metadata_from_multiple_sources(doi)
+                if metadata:
+                    metadata_source = metadata.get('source', 'Unknown API')
+            except requests.exceptions.RequestException as e_api:
+                logger.error(f"API Error (network/http): Failed to fetch metadata for DOI {doi}: {e_api}")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "API_Error")
+                return False
+            except Exception as e_meta_fetch: # Catch other potential errors during metadata fetching
+                logger.error(f"Error fetching metadata for DOI {doi}: {e_meta_fetch}", exc_info=True)
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "Metadata_Fetch_Error")
                 return False
             
-            # If we have metadata, proceed with renaming and categorization
-            if metadata and has_sufficient_metadata(metadata):
-                # Check quality of metadata
-                if metadata.get('metadata_quality', 'complete') == 'partial':
-                    logger.warning(f"Retrieved partial metadata from {metadata.get('source', 'Unknown')}")
-                    
-                # Format citation and create new filename
-                citation = self.format_citation(metadata)
-                new_filename = self.format_filename(citation, metadata.get('title', ''))
+            # Step 3: Check if metadata is sufficient
+            if not metadata or not has_sufficient_metadata(metadata):
+                logger.warning(f"Insufficient or no metadata found for DOI: {doi} (Source: {metadata_source}). Moving to Unnamed.")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "Insufficient_Metadata")
+                return False
+            
+            logger.debug(f"Sufficient metadata found for {filename} via {metadata_source}")
+            
+            # Step 4: Format citation and filename
+            citation = self.format_citation(metadata)
+            title = metadata.get('title', 'Untitled')
+            new_filename_base = self.format_filename(citation, title)
+            new_filename = new_filename_base + file_path.suffix
                 
-                # Create backup if enabled
-                if self.create_backups:
-                    backup_dir = ensure_dir(self.backup_dir)
-                    backup_path = backup_dir / filename
-                    try:
-                        shutil.copy2(file_path, backup_path)
-                        logger.debug(f"Created backup at {backup_path}")
-                    except Exception as e:
-                        logger.error(f"Failed to create backup: {e}")
-                
-                # Store citation for references file - store with APA7 reference and add category information
-                full_reference = create_apa7_reference(metadata)
-                
-                # Kategorileri belirle
-                subject = metadata.get('category', 'uncategorized')
-                journal = metadata.get('journal', 'uncategorized')
-                author = metadata.get('authors', ['Unknown'])[0] if metadata.get('authors') else 'uncategorized'
-                year = metadata.get('year', 'uncategorized') 
-                
-                self.references.append({
-                    'author': author,
-                    'filename': new_filename,
-                    'citation': citation,
-                    'reference': full_reference,
-                    'subject': subject,
-                    'journal': journal,
-                    'year': year,
-                    'doi': metadata.get('doi', '')  # DOI bilgisini de referans objesine ekle
-                })
-                
-                # Move the file to Named Article folder (instead of copying)
-                named_dir = ensure_dir(self.named_article_dir)
-                named_path = named_dir / new_filename
+            # Step 5: Create backup if enabled
+            if self.create_backups and self.backup_dir:
                 try:
-                    # Copy the file directly to Named Article folder
-                    shutil.copy2(file_path, named_path)
-                    logger.info(f"Moved file to Named Article folder with new name: {named_path}")
-                    
-                    # Remove original file
-                    try:
-                        file_path.unlink()
-                        logger.debug(f"Removed original file {filename}")
-                    except Exception as e:
-                        logger.error(f"Failed to remove original file: {e}")
-                    
-                except Exception as e:
-                    logger.error(f"Failed to move to Named Article folder: {e}")
-                    return False
-                
-                # Use Named Article folder path for categorization
-                if any(self.categorize_options.values()):
-                    self.categorize_file(named_path, metadata, new_filename)
-                
-                return True
+                    backup_path = self.backup_dir / file_path.name
+                    ensure_dir(self.backup_dir)
+                    if backup_path.exists():
+                        logger.warning(f"Backup file already exists, overwriting: {backup_path}")
+                        shutil.copy2(file_path, backup_path)
+                    logger.info(f"Created backup: {backup_path}")
+                except (OSError, IOError, PermissionError) as e_backup:
+                     logger.error(f"File System Error (backup): Failed to create backup for {file_path.name}: {e_backup}")
+                     # Continue processing even if backup fails
+                except Exception as e_backup_generic:
+                     logger.error(f"Error creating backup for {file_path.name}: {e_backup_generic}")
+                     # Continue processing
             
+            # Step 6 & 7: Rename / Categorize / Move
+            # Önce dosyayı Named Article klasörüne taşıyalım
+            target_dir_named = self.named_article_dir
+            output_path_named = target_dir_named / new_filename # new_filename burada tam dosya adı (uzantılı)
+            final_output_path = None # Başlangıçta None
+
+            try:
+                ensure_dir(target_dir_named)
+            except OSError as e_mkdir:
+                logger.error(f"File System Error (mkdir Named): Failed to create target directory {target_dir_named}: {e_mkdir}")
+                if self.move_problematic:
+                    self._move_to_problematic(file_path, "Mkdir_Error_Named")
+                return False # Ana işlem başarısız oldu
+
+            try:
+                # Dosya adı çakışmalarını kontrol et ve yönet
+                counter = 1
+                temp_output_path = output_path_named
+                while temp_output_path.exists():
+                    logger.warning(f"Target file exists in Named Article: {temp_output_path}. Appending counter.")
+                    # new_filename_base: format_filename'den dönen uzantısız isim
+                    temp_output_path = target_dir_named / f"{new_filename_base}_{counter}{file_path.suffix}"
+                    counter += 1
+                output_path_named = temp_output_path # Çakışma yoksa orijinal isim, varsa sayaçlı isim
+
+                # Orijinal dosyayı Named Article klasörüne taşı (yeniden adlandırarak)
+                shutil.move(str(file_path), str(output_path_named))
+                logger.info(f"Successfully moved original file to Named Article: {output_path_named}")
+                final_output_path = output_path_named # Başarılı taşıma sonrası yolu kaydet
+
+            except (OSError, IOError, PermissionError) as e_rename:
+                logger.error(f"File System Error (move to Named): Failed to move {file_path.name} to {output_path_named}: {e_rename}")
+                if self.move_problematic:
+                     # Orijinal dosya hala yerinde olmalı, onu problematic'e taşı
+                     self._move_to_problematic(file_path, "Move_Named_Error")
+                return False # Ana işlem başarısız oldu
+            except Exception as e_rename_generic:
+                 logger.error(f"Error moving file {file_path.name} to {output_path_named}: {e_rename_generic}", exc_info=True)
+                 if self.move_problematic:
+                      self._move_to_problematic(file_path, "Move_Named_Generic_Error")
+                 return False # Ana işlem başarısız oldu
+
+
+            # Step 7.5: Kategorizasyon (Dosya Named Article'a taşındıktan SONRA)
+            if final_output_path and any(self.categorize_options.values()):
+                logger.debug(f"Attempting categorization for {final_output_path.name}...")
+                # categorize_file'a Named Article'daki dosyanın yolunu ve hedef dosya adını ver
+                # new_filename_base: format_filename'dan dönen uzantısız isim
+                # final_output_path.name: Named Article'daki tam dosya adı (uzantılı)
+                categorization_successful = self.categorize_file(final_output_path, metadata, final_output_path.name)
+                if categorization_successful:
+                    logger.info(f"Categorization process completed for {final_output_path.name} (at least one category created).")
             else:
-                logger.warning(f"Insufficient metadata for {filename}, moving to Unnamed Article directory")
+                    logger.warning(f"Categorization process completed for {final_output_path.name}, but no categories were successfully created (or file existed).")
+
+
+            # Step 8: Add reference if needed (only if move to Named Article was successful)
+            if final_output_path and self.create_references:
+                # Referans ekleme kodu - Named Article'daki yolu ve ismi kullanacak şekilde güncellendi
+                try:
+                    reference_entry = create_apa7_reference(metadata)
+                    self.references.append({
+                        'reference': reference_entry,
+                        'filename': final_output_path.name, # Named Article'daki ismi kullan
+                        'doi': doi,
+                        'author': metadata.get('authors', [{}])[0].get('family', ''),
+                        'journal': metadata.get('journal', ''),
+                        'year': metadata.get('year', ''),
+                        'subject': metadata.get('subjects', [''])[0] if metadata.get('subjects') else ''
+                    })
+                except Exception as e_ref:
+                     logger.error(f"Error generating reference for {final_output_path.name}: {e_ref}", exc_info=True)
                 
-                # Move to Unnamed Article directory if enabled
-                if self.move_problematic and self.problematic_dir:
-                    self.problematic_dir.mkdir(exist_ok=True)
-                    target_path = self.problematic_dir / filename
-                    try:
-                        shutil.copy2(file_path, target_path)
-                        logger.info(f"Moved problematic file to {target_path}")
-                        
-                        # Remove original file
-                        file_path.unlink()
-                        logger.debug(f"Removed original file {filename}")
-                    except Exception as e:
-                        logger.error(f"Failed to move problematic file: {e}")
-                
-                return False
+
+            # Return True if move to Named Article was successful
+            return final_output_path is not None
         
-        except Exception as e:
-            logger.error(f"Error processing {filename}: {e}")
+        except Exception as e_main: # General catch-all
+            logger.error(f"Unexpected Error processing file {filename}: {e_main}", exc_info=True)
+            if self.move_problematic:
+                self._move_to_problematic(file_path, f"Unexpected_{type(e_main).__name__}")
             return False
     
     def format_citation(self, metadata: Dict[str, Any]) -> str:
         """
-        Format citation for the filename according to APA7 style.
+        Formats the citation string based on metadata.
         
         Args:
             metadata (Dict[str, Any]): Metadata dictionary
         
         Returns:
-            str: Citation string
+            str: Formatted citation string (e.g., APA7)
         """
-        # Extract first author surname
-        author = "Unknown"
-        if metadata.get('authors') and len(metadata['authors']) > 0:
-            author = metadata['authors'][0]  # We already have only surnames
-        
-        # Get year
-        year = metadata.get('year', 'n.d.')
-        if not year or year == "":
-            year = "n.d."
-        
-        # Format as Author_Year (adding underscore between author and year)
-        citation = f"{author}_{year}"
+        citation = create_apa7_citation(metadata)
         return citation
     
     def format_filename(self, citation: str, title: str) -> str:
         """
-        Format filename according to APA7 style and make it valid for filesystem.
+        Creates a sanitized filename from citation and title.
         
         Args:
-            citation (str): Citation string (Author_Year)
-            title (str): Title of the document
+            citation (str): Formatted citation string
+            title (str): Article title
             
         Returns:
-            str: Formatted filename
+            str: Sanitized filename string (excluding extension)
         """
-        # Clean up title
-        title = sanitize_filename(title)
+        # Basic format: Citation - Title
+        # Ensure title is also somewhat limited in length if needed
+        max_title_len = 80 
+        short_title = title[:max_title_len] + '...' if len(title) > max_title_len else title
         
-        # Limit title length to 25 characters
-        if len(title) > 25:
-            title = title[:25]
+        base_filename = f"{citation} - {short_title}"
         
-        # Format as APA7 (AuthorYear_Title.pdf)
-        filename = f"{citation}-{title}.pdf"
+        # Sanitize the entire string
+        sanitized_filename = sanitize_filename(base_filename)
         
-        # Make sure filename is valid
-        return sanitize_filename(filename)
+        # Optional: Further length check on the final sanitized name
+        max_total_len = 150 # Example limit
+        if len(sanitized_filename) > max_total_len:
+            sanitized_filename = sanitized_filename[:max_total_len]
+
+        return sanitized_filename
     
     def write_references_file(self) -> None:
         """
@@ -497,131 +512,113 @@ class PDFProcessor:
             self.logger.info(f"References saved to text file: {text_path}")
         except Exception as e:
             self.logger.error(f"Error creating reference files in {directory}: {e}")
-    
-    def categorize_file(self, file_path: Path, metadata: Dict[str, Any], new_filename: str = None) -> None:
+
+    def categorize_file(self, source_file_path: Path, metadata: Dict[str, Any], target_filename: str) -> bool:
         """
-        Categorize a file by moving it to appropriate subdirectories based on metadata.
+        Categorizes the file by copying it to appropriate subdirectories based on metadata.
         
         Args:
-            file_path (Path): Path to the renamed file
-            metadata (Dict[str, Any]): Metadata for the file
-            new_filename (str, optional): New filename if renamed. Defaults to None.
+            source_file_path (Path): Path to the file to be copied (typically in Named Article).
+            metadata (Dict[str, Any]): Extracted metadata for the file.
+            target_filename (str): The desired filename (including extension) in the category folder.
+
+        Returns:
+            bool: True if at least one categorization copy was successful, False otherwise.
         """
-        try:
-            # Dosya adını belirleme - eğer yeni isim verildiyse onu kullan, yoksa mevcut dosya adını kullan
-            filename = new_filename if new_filename else file_path.name
-            
-            # Base directory for categories
-            base_dir = ensure_dir(self.categorized_dir)
-            
-            # Kategorilendirme işleminden önce metadata alanlarını kontrol et ve logla
-            self.logger.info(f"Categorizing file with metadata: journal='{metadata.get('journal')}', "
-                             f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
-            
-            # Metadata kaynaklarını detaylı logla
-            self.logger.debug(f"Metadata source: {metadata.get('source', 'Unknown')}")
-            self.logger.debug(f"Metadata keys: {', '.join(metadata.keys())}")
-            
-            # Kategori kontrolü - sadece gerçek kategori bilgisi varsa kategorileme yap
-            category = metadata.get('category', '')
-            
-            # Kategoriye göre işleme
-            if category and category.strip() != "":
-                self.logger.info(f"Category information found: {category}")
-            else:
-                self.logger.warning(f"No category/subject information found for {filename}")
-            
-            # Categorize by journal
-            if self.categorize_options.get('by_journal', False):
-                journal = metadata.get('journal')
+        if not self.categorize_options or not any(self.categorize_options.values()):
+            self.logger.debug("No categorization options enabled, skipping categorization.")
+            return False
+
+        base_categorized_dir = self.categorized_dir
+        any_copy_succeeded = False
+
+        category_map = {
+            "by_year": metadata.get("year"),
+            "by_journal": metadata.get("journal"),
+            "by_author": (metadata.get("authors")[0].get("family") or metadata.get("authors")[0].get("name")) if isinstance(metadata.get("authors"), list) and metadata["authors"] else None,
+            "by_subject": (metadata["subjects"][0].get("name") if isinstance(metadata["subjects"][0], dict) else metadata["subjects"][0]) if isinstance(metadata.get("subjects"), list) and metadata["subjects"] else None
+        }
+
+        for category_key, category_value in category_map.items():
+            if self.categorize_options.get(category_key, False) and category_value:
+                category_folder_name = sanitize_filename(str(category_value))
+                if not category_folder_name: # Skip if sanitized name is empty
+                    self.logger.warning(f"Skipping categorization for key '{category_key}' due to empty value after sanitization: {category_value}")
+                    continue
+
+                target_dir = base_categorized_dir / category_key / category_folder_name
+                final_target_path = target_dir / target_filename
+
+                try:
+                    ensure_dir(target_dir)
                 
-                if journal and journal.strip() != "":
-                    # Sanitize the journal name for folder name
-                    journal_folder = sanitize_filename(journal)
-                    # Create journal folder
-                    journal_dir = ensure_dir(base_dir / "by_journal" / journal_folder)
-                    # Copy to journal folder
-                    target_path = journal_dir / filename
-                    shutil.copy2(file_path, target_path)
-                    self.logger.info(f"Categorized {filename} by journal: {journal}")
-                else:
-                    # If journal metadata not available, put in uncategorized folder
-                    uncategorized_dir = ensure_dir(base_dir / "by_journal" / "uncategorized")
-                    target_path = uncategorized_dir / filename
-                    shutil.copy2(file_path, target_path)
-                    self.logger.info(f"Added {filename} to uncategorized journals")
-            
-            # Categorize by author (first author)
-            if self.categorize_options.get('by_author', False):
-                if metadata.get('authors') and metadata['authors']:
-                    author = metadata['authors'][0]
-                    if author and author.strip() != "":
-                        # Use author surname for folder
-                        author_folder = sanitize_filename(author)
-                        # Create author folder
-                        author_dir = ensure_dir(base_dir / "by_author" / author_folder)
-                        # Copy to author folder
-                        target_path = author_dir / filename
-                        shutil.copy2(file_path, target_path)
-                        self.logger.info(f"Categorized {filename} by author: {author}")
-                    else:
-                        # If author metadata not useful, put in uncategorized folder
-                        uncategorized_dir = ensure_dir(base_dir / "by_author" / "uncategorized")
-                        target_path = uncategorized_dir / filename
-                        shutil.copy2(file_path, target_path)
-                        self.logger.info(f"Added {filename} to uncategorized authors")
-                else:
-                    # If no author metadata, put in uncategorized folder
-                    uncategorized_dir = ensure_dir(base_dir / "by_author" / "uncategorized")
-                    target_path = uncategorized_dir / filename
-                    shutil.copy2(file_path, target_path)
-                    self.logger.info(f"Added {filename} to uncategorized authors")
-            
-            # Categorize by year
-            if self.categorize_options.get('by_year', False):
-                year = metadata.get('year')
-                if year and year.strip() != "":
-                    # Create year folder
-                    year_dir = ensure_dir(base_dir / "by_year" / str(year))
-                    # Copy to year folder
-                    target_path = year_dir / filename
-                    shutil.copy2(file_path, target_path)
-                    self.logger.info(f"Categorized {filename} by year: {year}")
-                else:
-                    # If year metadata not available, put in uncategorized folder
-                    uncategorized_dir = ensure_dir(base_dir / "by_year" / "uncategorized")
-                    target_path = uncategorized_dir / filename
-                    shutil.copy2(file_path, target_path)
-                    self.logger.info(f"Added {filename} to uncategorized years")
-            
-            # Categorize by subject (using 'category' field) 
-            if self.categorize_options.get('by_subject', False):
-                # Doğrudan category alanını kullan
-                category = metadata.get('category')
-                
-                if category and category.strip() != "":
-                    # Sanitize subject for folder name
-                    subject_folder = sanitize_filename(category)
-                    # Log subject folder
-                    self.logger.info(f"Creating subject folder: '{subject_folder}'")
-                    # Create subject folder
-                    subject_dir = ensure_dir(base_dir / "by_subject" / subject_folder)
-                    # Copy to subject folder
-                    target_path = subject_dir / filename
-                    try:
-                        shutil.copy2(file_path, target_path)
-                        self.logger.info(f"Categorized {filename} by subject: {category}")
-                    except Exception as e:
-                        self.logger.error(f"Failed to categorize by subject: {e}")
-                else:
-                    # Kategori bilgisi yoksa, doğrudan "uncategorized" klasörüne gönder
-                    uncategorized_dir = ensure_dir(base_dir / "by_subject" / "uncategorized")
-                    target_path = uncategorized_dir / filename
-                    try:
-                        shutil.copy2(file_path, target_path)
-                        self.logger.info(f"Added {filename} to uncategorized subjects")
-                    except Exception as e:
-                        self.logger.error(f"Failed to add to uncategorized subjects: {e}")
-            
-        except Exception as e:
-            self.logger.error(f"Error categorizing {file_path.name}: {str(e)}") 
+                    if final_target_path.exists():
+                        self.logger.warning(f"Categorized file already exists: {final_target_path}, skipping copy for '{category_key}'.")
+                        # Even if it exists, we consider it a "successful" categorization for this key
+                        any_copy_succeeded = True
+                        continue # Skip the copy but proceed to next category
+
+                    # Perform the copy
+                    shutil.copy2(str(source_file_path), str(final_target_path))
+                    self.logger.info(f"Successfully categorized (copied) to '{category_key}': {final_target_path}")
+                    any_copy_succeeded = True
+
+                except (OSError, IOError, PermissionError) as e_copy:
+                    self.logger.error(f"File System Error (categorize copy for {category_key}): Failed to copy {source_file_path.name} to {final_target_path}: {e_copy}")
+                except Exception as e_generic:
+                    self.logger.error(f"Error during categorization copy for {category_key} ({source_file_path.name} to {final_target_path}): {e_generic}", exc_info=True)
+            elif self.categorize_options.get(category_key, False):
+                 self.logger.debug(f"Skipping categorization for key '{category_key}': No valid value found in metadata ({category_value}).")
+
+
+        return any_copy_succeeded
+
+    def _move_to_problematic(self, file_path: Path, reason_tag: str) -> None:
+         """ Helper function to move a file to the problematic directory. """
+         if not self.move_problematic or not self.problematic_dir:
+             return # Moving problematic files is disabled
+
+         try:
+             ensure_dir(self.problematic_dir)
+             target_path = self.problematic_dir / f"ERROR_{reason_tag}_{file_path.name}"
+             
+             if not target_path.exists():
+                 shutil.copy2(file_path, target_path) # Copy first
+                 self.logger.info(f"Moved file with {reason_tag} to Unnamed Article: {target_path}")
+                 try:
+                     file_path.unlink() # Then delete original
+                     self.logger.debug(f"Removed original file {file_path.name} after moving due to {reason_tag}.")
+                 except Exception as e_unlink:
+                     self.logger.error(f"File System Error (unlink): Failed to remove original {file_path} after moving for {reason_tag}: {e_unlink}")
+             else:
+                 self.logger.warning(f"File {file_path.name} already exists in problematic dir as {target_path} (reason: {reason_tag}), skipping move.")
+         except (OSError, IOError, PermissionError) as e_move:
+             self.logger.error(f"File System Error (move): Failed to move problematic file {file_path.name} for {reason_tag}: {e_move}")
+         except Exception as e_generic:
+             self.logger.error(f"Error moving problematic file {file_path.name} for {reason_tag}: {e_generic}")
+
+
+# Example usage (for testing or command-line interface)
+# if __name__ == '__main__':
+#     # Setup basic logging for testing
+#     log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+#     logging.basicConfig(level=logging.DEBUG, format=log_format)
+#     logger = logging.getLogger('litorganizer.test')
+    
+#     # Configure processor
+#     processor = PDFProcessor(
+#         directory='../tests/test_pdfs', 
+#         use_ocr=False, 
+#         create_references=True,
+#         create_backups=True,
+#         move_problematic=True,
+#         categorize_options={"year": True, "journal": True, "author": False, "subject": False},
+#         logger=logger
+#     )
+    
+#     # Run processing
+#     success = processor.process_files()
+#     if success:
+#         logger.info("PDF processing completed successfully.")
+#     else:
+#         logger.error("PDF processing failed.") 

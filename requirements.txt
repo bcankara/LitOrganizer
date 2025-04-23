@@ -1,7 +1,7 @@
 # LitOrganizer Dependencies
-# Core requirements for PDF processing, metadata extraction, and GUI
+# Core requirements for PDF processing and metadata extraction
 
-# GUI Framework
+# GUI
 PyQt5==5.15.9         # For the graphical user interface
 
 # PDF Processing
@@ -9,7 +9,7 @@ PyMuPDF==1.23.9       # Fast PDF text extraction (fitz)
 pdfplumber==0.10.3    # Advanced PDF text extraction with layout awareness
 pdf2image==1.16.3     # Convert PDF pages to images (for OCR)
 
-# OCR Support
+# OCR Support (Optional)
 pytesseract==0.3.10   # Optical Character Recognition interface to Tesseract
 Pillow==10.2.0        # Python Imaging Library for image processing
 
@@ -23,9 +23,4 @@ requests==2.31.0      # HTTP requests for DOI metadata retrieval
 
 # Utilities
 python-dateutil==2.9.0 # Date parsing for citation formatting
-tqdm==4.66.2          # Progress bars for command-line operations
-
-# Installation Notes:
-# 1. For OCR functionality, Tesseract OCR must be installed separately
-# 2. Windows users may need Microsoft Visual C++ Build Tools for some packages
-# 3. macOS users may need to install poppler for pdf2image: brew install poppler 
+tqdm==4.66.2          # Progress bars for command-line operations 
