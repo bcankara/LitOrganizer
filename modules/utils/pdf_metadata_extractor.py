@@ -311,26 +311,38 @@ def get_metadata_from_openalex(doi: str) -> Optional[Dict[str, Any]]:
             if "title" in data:
                 metadata["title"] = data["title"]
             
-            # Authors - we only take surnames
+            # Authors - We need family and given names if possible
             if "authorships" in data:
-                authors = []
+                authors_list = []
                 for authorship in data["authorships"]:
                     if "author" in authorship and "display_name" in authorship["author"]:
-                        # Extract surname by taking the last word
                         author_name = authorship["author"]["display_name"]
-                        last_name = author_name.split()[-1]
-                        authors.append(last_name)
-                metadata["authors"] = authors
+                        # Simple split, assuming last word is family name
+                        name_parts = author_name.split()
+                        family_name = name_parts[-1] if len(name_parts) > 0 else author_name
+                        given_name = " ".join(name_parts[:-1]) if len(name_parts) > 1 else ""
+                        authors_list.append({"family": family_name, "given": given_name, "name": author_name}) # Store full name too
+                metadata["authors"] = authors_list # Store list of dicts
             
             # Year
-            if "publication_date" in data:
-                year = data["publication_date"].split("-")[0]
+            if "publication_date" in data and data["publication_date"]:
+                # Ensure publication_date is not None before splitting
+                year = str(data["publication_date"]).split("-")[0]
                 metadata["year"] = year
+            elif "publication_year" in data: # Fallback to publication_year
+                 metadata["year"] = str(data["publication_year"])
             
             # Journal
-            if "primary_location" in data and "source" in data["primary_location"] and "display_name" in data["primary_location"]["source"]:
-                metadata["journal"] = data["primary_location"]["source"]["display_name"]
+            # Check multiple possible locations for journal/source info
+            journal_name = None
+            if data.get("primary_location") and data["primary_location"].get("source") and data["primary_location"]["source"].get("display_name"):
+                journal_name = data["primary_location"]["source"]["display_name"]
+            elif data.get("host_venue") and data["host_venue"].get("display_name"):
+                 journal_name = data["host_venue"].get("display_name")
             
+            if journal_name:
+                metadata["journal"] = journal_name
+
             # Volume, issue, pages
             if "biblio" in data:
                 biblio = data["biblio"]
@@ -341,51 +353,56 @@ def get_metadata_from_openalex(doi: str) -> Optional[Dict[str, Any]]:
                 if "first_page" in biblio and "last_page" in biblio:
                     metadata["pages"] = f"{biblio['first_page']}-{biblio['last_page']}"
             
-            # CATEGORY EXTRACTION STRATEGY (BY PRIORITY)
-            category_set = False
+            # CATEGORY/SUBJECT EXTRACTION STRATEGY (BY PRIORITY)
+            # Store results in 'subjects' as a list for consistency
+            subjects_list = []
+            category_source = "None"
             
-            # 1. Use highest-scored concept from CONCEPTS field as category
-            if "concepts" in data and data["concepts"] and len(data["concepts"]) > 0:
-                # Sort concepts by confidence score
+            # 1. Use concepts field
+            if data.get("concepts"):
                 sorted_concepts = sorted(data["concepts"], key=lambda x: x.get("score", 0), reverse=True)
-                
-                # Select the highest-scored concept
-                best_concept = sorted_concepts[0]
-                if best_concept.get("score", 0) > 0.4:  # If the concept is reliable enough
-                    concept_name = best_concept.get("display_name", "")
-                    
-                    if concept_name and concept_name.strip() != "":
-                        metadata["category"] = concept_name
-                        category_set = True
-                        logger.info(f"Category from best concept: {concept_name} (score: {best_concept.get('score')})")
+                # Take top concepts above a threshold
+                for concept in sorted_concepts:
+                     if concept.get("score", 0) > 0.4 and concept.get("display_name"):
+                         subjects_list.append(concept["display_name"])
+                         # Limit the number of subjects if desired, e.g., top 3
+                         # if len(subjects_list) >= 3: break 
+                if subjects_list:
+                    category_source = "Concepts"
+                    logger.info(f"Subjects from OpenAlex Concepts: {subjects_list}")
+
+            # 2. Use primary_topic if no concepts found
+            if not subjects_list and data.get("primary_topic") and data["primary_topic"].get("display_name"):
+                topic_name = data["primary_topic"]["display_name"]
+                if topic_name:
+                    subjects_list.append(topic_name)
+                    category_source = "Primary Topic"
+                    logger.info(f"Subject from OpenAlex Primary Topic: {topic_name}")
             
-            # 2. Use PRIMARY_TOPIC information (if category couldn't be determined from concepts)
-            if not category_set and "primary_topic" in data and "display_name" in data["primary_topic"]:
-                topic_name = data["primary_topic"].get("display_name", "")
-                if topic_name and topic_name.strip() != "":
-                    metadata["category"] = topic_name
-                    category_set = True
-                    logger.info(f"Category from primary_topic: {topic_name}")
+            # 3. Use domain if still no subject found
+            # (Consider if domain is too broad - maybe skip?)
+            # if not subjects_list and data.get(...domain...):
+            #     domain_name = ...
+            #     subjects_list.append(domain_name)
+            #     category_source = "Domain"
+            #     logger.info(f"Subject from OpenAlex Domain: {domain_name}")
+
+            # Assign the list to the 'subjects' key
+            metadata["subjects"] = subjects_list
             
-            # 3. Use DOMAIN information (if category couldn't be determined from primary_topic)
-            if not category_set and "primary_topic" in data and "domain" in data["primary_topic"] and "display_name" in data["primary_topic"]["domain"]:
-                domain_name = data["primary_topic"]["domain"].get("display_name", "")
-                if domain_name and domain_name.strip() != "":
-                    metadata["category"] = domain_name
-                    category_set = True
-                    logger.info(f"Category from domain: {domain_name}")
+            if not subjects_list:
+                logger.warning("No category/subject could be determined from OpenAlex data")
             
-            # Kategori belirlendiyse bunu logla
-            if category_set:
-                logger.info(f"Final OpenAlex category: '{metadata['category']}'")
-            else:
-                logger.warning("No category could be determined from OpenAlex data")
-            
-            logger.debug(f"Successfully retrieved metadata from OpenAlex")
+            # Clean up the old 'category' key if it exists from initialization
+            if "category" in metadata:
+                 del metadata["category"]
+                 
+            # Log the final constructed metadata for debugging
+            logger.debug(f"Parsed OpenAlex metadata: {metadata}")
             return metadata
-        else:
-            logger.warning(f"Failed to retrieve data from OpenAlex. Status code: {response.status_code}")
-            return None
+        elif response.status_code == 404:
+             logger.warning(f"DOI {doi} not found in OpenAlex (404).")
+             return None
     
     except Exception as e:
         logger.error(f"Error querying OpenAlex API: {e}")

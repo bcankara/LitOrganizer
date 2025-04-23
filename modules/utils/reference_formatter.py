@@ -6,7 +6,7 @@ for academic papers and articles.
 """
 
 import re
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 
 def create_apa7_citation(metadata: Dict) -> str:
@@ -94,12 +94,13 @@ def create_apa7_reference(metadata: Dict) -> str:
     return reference
 
 
-def format_authors_for_reference(authors: List[str]) -> str:
+def format_authors_for_reference(authors: List[Union[Dict, str]]) -> str:
     """
     Format a list of authors for an APA7 reference.
+    Handles lists containing strings or dictionaries.
     
     Args:
-        authors (List[str]): List of author names
+        authors (List[Union[Dict, str]]): List of author data (strings or dicts)
         
     Returns:
         str: Formatted author string for APA7 reference
@@ -107,89 +108,150 @@ def format_authors_for_reference(authors: List[str]) -> str:
     if not authors or not isinstance(authors, list):
         return "Unknown"
     
-    # Clean up author list
-    authors = [author for author in authors if author and author != "Unknown Author"]
+    # Filter out invalid entries
+    valid_authors = [author for author in authors if author and author != "Unknown Author"]
     
-    if not authors:
+    if not valid_authors:
         return "Unknown"
     
-    if len(authors) == 1:
+    if len(valid_authors) == 1:
         # Format: Last, F. I.
-        return format_author_name(authors[0])
+        return format_author_name(valid_authors[0])
     
-    if len(authors) < 8:
+    if len(valid_authors) < 8:
         # For 2-7 authors, list all, separated by commas with ampersand before last
-        formatted_authors = [format_author_name(author) for author in authors]
+        formatted_authors = [format_author_name(author) for author in valid_authors]
+        # Ensure no empty strings before joining
+        formatted_authors = [fa for fa in formatted_authors if fa]
+        if not formatted_authors: return "Unknown"
+        if len(formatted_authors) == 1: return formatted_authors[0]
         return ", ".join(formatted_authors[:-1]) + ", & " + formatted_authors[-1]
     else:
         # For 8+ authors, list first 6, then ellipsis, then last author
-        formatted_authors = [format_author_name(author) for author in authors[:6]]
+        formatted_authors = [format_author_name(author) for author in valid_authors[:6]]
+        last_author_formatted = format_author_name(valid_authors[-1])
+        # Ensure no empty strings before joining
+        formatted_authors = [fa for fa in formatted_authors if fa]
+        if not formatted_authors: return "Unknown"
+        
         formatted_authors.append("...")
-        formatted_authors.append(format_author_name(authors[-1]))
+        if last_author_formatted:
+             formatted_authors.append(last_author_formatted)
+        else: # Handle case where last author formatting failed
+             formatted_authors.append("Unknown")
+             
         return ", ".join(formatted_authors)
 
 
-def format_author_name(author: str) -> str:
+def format_author_name(author_data: Union[Dict, str]) -> str:
     """
-    Format a single author name for APA7 reference.
+    Format a single author name (from dict or string) for APA7 reference.
     
     Args:
-        author (str): Author name as a string
+        author_data (Union[Dict, str]): Author data (dict with 'family', 'given' or string)
         
     Returns:
-        str: Formatted author name
+        str: Formatted author name (e.g., Smith, J. D.)
     """
-    # Check if the name already contains a comma (Last, First format)
-    if "," in author:
-        parts = author.split(",", 1)
-        last_name = parts[0].strip()
-        first_names = parts[1].strip()
+    if isinstance(author_data, dict):
+        last_name = author_data.get('family', '').strip()
+        given_name = author_data.get('given', '').strip()
         
-        # Format initials
+        if not last_name:
+            # If family name is missing, use the full name if available, or fallback
+            full_name = author_data.get('name', '').strip()
+            if full_name: return full_name # Return full name if family name missing
+            return "Unknown"
+            
         initials = ""
-        for name in first_names.split():
-            if name:
-                initials += name[0].upper() + "."
+        if given_name:
+            # Create initials from given names
+            for name_part in given_name.split():
+                if name_part:
+                    initials += name_part[0].upper() + ". " # Add space after dot
+            initials = initials.strip()
         
-        return f"{last_name}, {initials}"
-    
-    # If no comma, assume First Last format
-    parts = author.strip().split()
-    if len(parts) == 1:
-        return parts[0]  # Only one name
-    
-    # Last name is the last part
-    last_name = parts[-1]
-    
-    # Initials from other parts
-    initials = ""
-    for name in parts[:-1]:
-        if name:
-            initials += name[0].upper() + "."
-    
-    return f"{last_name}, {initials}"
+        return f"{last_name}, {initials}" if initials else last_name
+        
+    elif isinstance(author_data, str):
+        # Handle simple string input (legacy or fallback)
+        author_str = author_data.strip()
+        if not author_str or author_str == "Unknown Author":
+            return "Unknown"
+            
+        # Check if the name already contains a comma (Last, First format)
+        if "," in author_str:
+            parts = author_str.split(",", 1)
+            last_name = parts[0].strip()
+            first_names = parts[1].strip()
+            
+            # Format initials
+            initials = ""
+            for name in first_names.split():
+                if name:
+                    initials += name[0].upper() + ". " # Add space after dot
+            initials = initials.strip()
+            
+            return f"{last_name}, {initials}" if initials else last_name
+        
+        # If no comma, assume First Last format
+        parts = author_str.split()
+        if len(parts) == 1:
+            return parts[0]  # Only one name
+        
+        # Last name is the last part
+        last_name = parts[-1]
+        
+        # Initials from other parts
+        initials = ""
+        for name in parts[:-1]:
+            if name:
+                initials += name[0].upper() + ". " # Add space after dot
+        initials = initials.strip()
+        
+        return f"{last_name}, {initials}" if initials else last_name
+    else:
+        return "Unknown"
 
 
-def extract_last_name(author: str) -> str:
+def extract_last_name(author_data: Union[Dict, str]) -> str:
     """
-    Extract the last name from an author string.
+    Extract the last name from an author dictionary or string.
+    Handles both dictionary format {'family': '...'} and simple string format.
     
     Args:
-        author (str): Author name
+        author_data (Union[Dict, str]): Author information (dictionary or string)
         
     Returns:
         str: Last name
     """
-    # Clean up the author string
-    author = author.strip()
-    
-    # If there's a comma, the last name is likely before it
-    if "," in author:
-        return author.split(",")[0].strip()
-    
-    # Otherwise take the last word as the last name
-    parts = author.split()
-    if parts:
-        return parts[-1].strip()
-    
-    return "Unknown" 
+    if isinstance(author_data, dict):
+        # If it's a dictionary, get the 'family' name, fallback to 'name' if family missing
+        family_name = author_data.get('family', '').strip()
+        if family_name:
+            return family_name
+        # Fallback: try to get last word from 'name' field if 'family' is empty
+        full_name = author_data.get('name', '').strip()
+        if full_name:
+            parts = full_name.split()
+            if parts: return parts[-1]
+        return "Unknown"
+    elif isinstance(author_data, str):
+        # If it's a string, process as before
+        author_str = author_data.strip()
+        if not author_str or author_str == "Unknown Author":
+            return "Unknown"
+            
+        # If there's a comma, the last name is likely before it
+        if "," in author_str:
+            return author_str.split(",")[0].strip()
+        
+        # Otherwise take the last word as the last name
+        parts = author_str.split()
+        if parts:
+            return parts[-1].strip()
+        
+        return "Unknown"
+    else:
+        # Handle unexpected types
+        return "Unknown" 
