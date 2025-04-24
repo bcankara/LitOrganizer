@@ -89,6 +89,20 @@ class PDFProcessor:
         self.processed_count = 0
         self.renamed_count = 0
         self.problematic_count = 0
+
+        # Categorization statistics dictionaries
+        self.category_counts = {
+            'journal': {},
+            'author': {},
+            'year': {},
+            'subject': {}
+        }
+        self.categorized_file_count = {
+            'journal': 0,
+            'author': 0,
+            'year': 0,
+            'subject': 0
+        }
         
         # Make sure directories exist
         ensure_dir(self.directory)
@@ -515,64 +529,97 @@ class PDFProcessor:
 
     def categorize_file(self, source_file_path: Path, metadata: Dict[str, Any], target_filename: str) -> bool:
         """
-        Categorizes the file by copying it to appropriate subdirectories based on metadata.
+        Categorize the file based on metadata if options are enabled.
+        Copies the file to category subfolders.
         
         Args:
-            source_file_path (Path): Path to the file to be copied (typically in Named Article).
-            metadata (Dict[str, Any]): Extracted metadata for the file.
-            target_filename (str): The desired filename (including extension) in the category folder.
-
+            source_file_path (Path): The path of the successfully renamed file in the 'Named Article' directory.
+            metadata (Dict[str, Any]): The metadata dictionary for the file.
+            target_filename (str): The final filename (e.g., '(Author, Year) - Title.pdf').
+            
         Returns:
-            bool: True if at least one categorization copy was successful, False otherwise.
+            bool: True if at least one categorization was successful, False otherwise.
         """
-        if not self.categorize_options or not any(self.categorize_options.values()):
-            self.logger.debug("No categorization options enabled, skipping categorization.")
-            return False
-
-        base_categorized_dir = self.categorized_dir
-        any_copy_succeeded = False
-
-        category_map = {
-            "by_year": metadata.get("year"),
-            "by_journal": metadata.get("journal"),
-            "by_author": (metadata.get("authors")[0].get("family") or metadata.get("authors")[0].get("name")) if isinstance(metadata.get("authors"), list) and metadata["authors"] else None,
-            "by_subject": (metadata["subjects"][0].get("name") if isinstance(metadata["subjects"][0], dict) else metadata["subjects"][0]) if isinstance(metadata.get("subjects"), list) and metadata["subjects"] else None
-        }
-
-        for category_key, category_value in category_map.items():
-            if self.categorize_options.get(category_key, False) and category_value:
-                category_folder_name = sanitize_filename(str(category_value))
-                if not category_folder_name: # Skip if sanitized name is empty
-                    self.logger.warning(f"Skipping categorization for key '{category_key}' due to empty value after sanitization: {category_value}")
-                    continue
-
-                target_dir = base_categorized_dir / category_key / category_folder_name
-                final_target_path = target_dir / target_filename
-
-                try:
-                    ensure_dir(target_dir)
+        if not any(self.categorize_options.values()):
+            return False # No categorization requested
+            
+        if not self.categorized_dir:
+             self.logger.error("Categorization failed: Categorized Article directory is not set.")
+             return False
+             
+        ensure_dir(self.categorized_dir)
+        
+        categorized_successfully = False
+        at_least_one_category_created = False
+        
+        # --- Category extraction logic --- 
+        category_values = {}
+        if self.categorize_options.get("by_journal"):
+            journal = metadata.get('journal')
+            if journal:
+                category_values['journal'] = sanitize_filename(journal)
+        if self.categorize_options.get("by_author"):
+            authors = metadata.get('authors')
+            if authors:
+                first_author_surname = authors[0].get('family', 'UnknownAuthor')
+                category_values['author'] = sanitize_filename(first_author_surname)
+        if self.categorize_options.get("by_year"):
+            year = metadata.get('year')
+            if year:
+                category_values['year'] = str(year)
+        if self.categorize_options.get("by_subject"):
+            # Assuming 'subjects' might be a list or a single string - take the first one if list
+            subjects = metadata.get('subjects') # Updated to 'subjects'
+            if subjects:
+                 # Handle both list and string cases, take first subject if list
+                 first_subject = subjects[0] if isinstance(subjects, list) and subjects else subjects if isinstance(subjects, str) else None
+                 if first_subject:
+                      category_values['subject'] = sanitize_filename(first_subject)
+        
+        # --- Copy file to respective category folders --- 
+        for category_type, folder_name in category_values.items():
+            if not folder_name: continue # Skip if folder name is empty
+            
+            try:
+                category_base_folder = self.categorized_dir / f"by_{category_type}"
+                category_target_folder = category_base_folder / folder_name
+                ensure_dir(category_target_folder)
                 
-                    if final_target_path.exists():
-                        self.logger.warning(f"Categorized file already exists: {final_target_path}, skipping copy for '{category_key}'.")
-                        # Even if it exists, we consider it a "successful" categorization for this key
-                        any_copy_succeeded = True
-                        continue # Skip the copy but proceed to next category
-
-                    # Perform the copy
-                    shutil.copy2(str(source_file_path), str(final_target_path))
-                    self.logger.info(f"Successfully categorized (copied) to '{category_key}': {final_target_path}")
-                    any_copy_succeeded = True
-
-                except (OSError, IOError, PermissionError) as e_copy:
-                    self.logger.error(f"File System Error (categorize copy for {category_key}): Failed to copy {source_file_path.name} to {final_target_path}: {e_copy}")
-                except Exception as e_generic:
-                    self.logger.error(f"Error during categorization copy for {category_key} ({source_file_path.name} to {final_target_path}): {e_generic}", exc_info=True)
-            elif self.categorize_options.get(category_key, False):
-                 self.logger.debug(f"Skipping categorization for key '{category_key}': No valid value found in metadata ({category_value}).")
-
-
-        return any_copy_succeeded
-
+                # Destination path within the category folder
+                destination_path = category_target_folder / target_filename
+                
+                # Copy the file from the 'Named Article' directory
+                shutil.copy2(source_file_path, destination_path)
+                self.logger.info(f"Successfully categorized (copied) to 'by_{category_type}': {destination_path}")
+                
+                # --- Update categorization statistics --- 
+                # Increment count for the specific category value (e.g., journal name 'Nature')
+                self.category_counts[category_type][folder_name] = self.category_counts[category_type].get(folder_name, 0) + 1
+                # Increment the total count for this category type (e.g., total files categorized by journal)
+                self.categorized_file_count[category_type] += 1
+                # --- End update --- 
+                
+                at_least_one_category_created = True
+                
+                # Create reference files within the category folder
+                if self.create_references:
+                     # Ensure we only use the current file's metadata for category reference files
+                     current_reference = self.format_citation(metadata)
+                     if current_reference:
+                         self._create_reference_files(category_target_folder, [current_reference], title=f"References_{folder_name}")
+                         
+            except (OSError, IOError, PermissionError) as e:
+                self.logger.error(f"File System Error (categorize move): Failed to copy {target_filename} to {category_target_folder}: {e}")
+            except Exception as e_cat:
+                 self.logger.error(f"Error during categorization of {target_filename} to by_{category_type}/{folder_name}: {e_cat}", exc_info=True)
+                 
+        if at_least_one_category_created:
+             self.logger.info(f"Categorization process completed for {target_filename} (at least one category created).")
+        else:
+             self.logger.warning(f"Categorization enabled but no suitable categories found or created for {target_filename}.")
+             
+        return at_least_one_category_created
+    
     def _move_to_problematic(self, file_path: Path, reason_tag: str) -> None:
          """ Helper function to move a file to the problematic directory. """
          if not self.move_problematic or not self.problematic_dir:

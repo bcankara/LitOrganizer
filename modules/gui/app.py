@@ -58,7 +58,8 @@ class WorkerThread(QThread):
     # Signals for progress reporting
     progress_update = pyqtSignal(str)
     file_processed = pyqtSignal(str, bool)
-    processing_complete = pyqtSignal(int, int, int)
+    # Updated signal to include categorization statistics
+    processing_complete = pyqtSignal(int, int, int, dict, dict)
     error_occurred = pyqtSignal(str)
     progress_percentage = pyqtSignal(int)  # Signal for percentage-based progress
     
@@ -159,11 +160,13 @@ class WorkerThread(QThread):
             # Start processing
             processor.process_files()
             
-            # Emit completion signal
+            # Emit completion signal with categorization counts
             self.processing_complete.emit(
                 processor.processed_count,
                 processor.renamed_count,
-                processor.problematic_count
+                processor.problematic_count,
+                processor.category_counts,       # Pass the detailed counts
+                processor.categorized_file_count # Pass the total counts per category type
             )
         
         except Exception as e:
@@ -2369,7 +2372,7 @@ class MainWindow(QMainWindow):
         self.results_list.addItem(item)
         self.results_list.scrollToBottom()
     
-    def processing_completed(self, processed, renamed, problematic):
+    def processing_completed(self, processed, renamed, problematic, category_counts, categorized_file_counts):
         """
         Handle processing completion.
         
@@ -2377,6 +2380,8 @@ class MainWindow(QMainWindow):
             processed (int): Number of processed files
             renamed (int): Number of renamed files
             problematic (int): Number of unclassified files
+            category_counts (dict): Detailed counts for each category value (e.g., {'journal': {'Nature': 5, ...}})
+            categorized_file_counts (dict): Total files categorized per type (e.g., {'journal': 100, ...})
         """
         # Record end time for performance tracking
         self.process_end_time = time.time()
@@ -2399,8 +2404,8 @@ class MainWindow(QMainWindow):
         self.results_list.addItem(stats_item)
         self.results_list.scrollToBottom()
         
-        # Update statistics tab
-        self.update_statistics(processed, renamed, problematic)
+        # Update statistics tab - Pass categorization data
+        self.update_statistics(processed, renamed, problematic, category_counts, categorized_file_counts)
         
         # Switch to statistics tab instead of showing message box
         self.tabs.setCurrentIndex(3)  # Index 3 is the Statistics tab
@@ -3299,7 +3304,7 @@ class MainWindow(QMainWindow):
         # Show the dialog
         help_dialog.exec_()
 
-    def update_statistics(self, processed, renamed, problematic):
+    def update_statistics(self, processed, renamed, problematic, category_counts, categorized_file_counts):
         """
         Update statistics tab with the processing results.
         
@@ -3307,6 +3312,8 @@ class MainWindow(QMainWindow):
             processed (int): Number of processed files
             renamed (int): Number of renamed files
             problematic (int): Number of unclassified files
+            category_counts (dict): Detailed counts for each category value.
+            categorized_file_counts (dict): Total files categorized per type.
         """
         # Calculate success rate
         success_rate = round((renamed / processed) * 100 if processed > 0 else 0, 1)
@@ -3395,7 +3402,9 @@ class MainWindow(QMainWindow):
         api_sources = {}
         
         # Search for API source mentions in the log
-        api_matches = re.findall(r"Found metadata using ([a-zA-Z0-9]+) for", log_text)
+        # Original Regex: r"Found metadata using ([a-zA-Z0-9]+) for"
+        # New Regex to match "Sufficient metadata found for ... via [API_Name]"
+        api_matches = re.findall(r"Sufficient metadata found for .*? via (\w+)", log_text)
         for api in api_matches:
             api_sources[api] = api_sources.get(api, 0) + 1
         
@@ -3410,22 +3419,22 @@ class MainWindow(QMainWindow):
         
         # Update categorization statistics if options are enabled
         if self.categorize_by_journal_check.isChecked():
-            self.stat_categorized_by_journal.setText(f"Categorized by Journal: {renamed} files")
+            self.stat_categorized_by_journal.setText(f"Categorized by Journal: {categorized_file_counts.get('journal', 0)} files")
         else:
             self.stat_categorized_by_journal.setText("Categorized by Journal: Disabled")
         
         if self.categorize_by_author_check.isChecked():
-            self.stat_categorized_by_author.setText(f"Categorized by Author: {renamed} files")
+            self.stat_categorized_by_author.setText(f"Categorized by Author: {categorized_file_counts.get('author', 0)} files")
         else:
             self.stat_categorized_by_author.setText("Categorized by Author: Disabled")
         
         if self.categorize_by_year_check.isChecked():
-            self.stat_categorized_by_year.setText(f"Categorized by Year: {renamed} files")
+            self.stat_categorized_by_year.setText(f"Categorized by Year: {categorized_file_counts.get('year', 0)} files")
         else:
             self.stat_categorized_by_year.setText("Categorized by Year: Disabled")
         
         if self.categorize_by_subject_check.isChecked():
-            self.stat_categorized_by_subject.setText(f"Categorized by Subject: {renamed} files")
+            self.stat_categorized_by_subject.setText(f"Categorized by Subject: {categorized_file_counts.get('subject', 0)} files")
         else:
             self.stat_categorized_by_subject.setText("Categorized by Subject: Disabled")
         
@@ -3511,18 +3520,12 @@ class MainWindow(QMainWindow):
         # --- Update publication statistics ---
         # Year distribution
         self.year_distribution_list.clear()
-        
-        # Search for year information in the log
-        year_stats = {}
-        year_matches = re.findall(r"Categorized .+ by year: (\d{4})", log_text)
-        
-        for year in year_matches:
-            year_stats[year] = year_stats.get(year, 0) + 1
-        
-        # Add year stats to the list
+        year_stats = category_counts.get('year', {})
+        total_categorized_by_year = categorized_file_counts.get('year', 0)
+
         if year_stats:
             for year, count in sorted(year_stats.items(), key=lambda x: x[0], reverse=True):
-                percentage = round((count / renamed) * 100 if renamed > 0 else 0, 1)
+                percentage = round((count / total_categorized_by_year) * 100 if total_categorized_by_year > 0 else 0, 1)
                 item = QListWidgetItem(f"{year}: {count} files ({percentage}%)")
                 self.year_distribution_list.addItem(item)
         elif self.categorize_by_year_check.isChecked():
@@ -3532,21 +3535,13 @@ class MainWindow(QMainWindow):
         
         # Author statistics
         self.top_authors_list.clear()
-        
-        # Extract author information
-        author_stats = {}
-        author_matches = re.findall(r"Categorized .+ by author: (.+)", log_text)
-        
-        for author in author_matches:
-            author = author.strip()
-            author_stats[author] = author_stats.get(author, 0) + 1
-        
-        # Add all authors to the list (not just top 5)
+        author_stats = category_counts.get('author', {})
+        total_categorized_by_author = categorized_file_counts.get('author', 0)
+
         if author_stats:
             for author, count in sorted(author_stats.items(), key=lambda x: x[1], reverse=True):
-                percentage = round((count / renamed) * 100 if renamed > 0 else 0, 1)
+                percentage = round((count / total_categorized_by_author) * 100 if total_categorized_by_author > 0 else 0, 1)
                 item = QListWidgetItem(f"{author}: {count} files ({percentage}%)")
-                # Set background color for visual ranking (white)
                 self.top_authors_list.addItem(item)
         elif self.categorize_by_author_check.isChecked():
             self.top_authors_list.addItem("No author data available")
@@ -3555,19 +3550,12 @@ class MainWindow(QMainWindow):
         
         # Journal statistics
         self.top_journals_list.clear()
+        journal_stats = category_counts.get('journal', {})
+        total_categorized_by_journal = categorized_file_counts.get('journal', 0)
         
-        # Extract journal information
-        journal_stats = {}
-        journal_matches = re.findall(r"Categorized .+ by journal: (.+)", log_text)
-        
-        for journal in journal_matches:
-            journal = journal.strip()
-            journal_stats[journal] = journal_stats.get(journal, 0) + 1
-        
-        # Add all journals to the list (not just top 5)
         if journal_stats:
             for journal, count in sorted(journal_stats.items(), key=lambda x: x[1], reverse=True):
-                percentage = round((count / renamed) * 100 if renamed > 0 else 0, 1)
+                percentage = round((count / total_categorized_by_journal) * 100 if total_categorized_by_journal > 0 else 0, 1)
                 item = QListWidgetItem(f"{journal}: {count} files ({percentage}%)")
                 self.top_journals_list.addItem(item)
         elif self.categorize_by_journal_check.isChecked():
@@ -3577,19 +3565,12 @@ class MainWindow(QMainWindow):
         
         # Subject statistics
         self.subject_list.clear()
+        subject_stats = category_counts.get('subject', {})
+        total_categorized_by_subject = categorized_file_counts.get('subject', 0)
         
-        # Extract subject information
-        subject_stats = {}
-        subject_matches = re.findall(r"Categorized .+ by subject: (.+)", log_text)
-        
-        for subject in subject_matches:
-            subject = subject.strip()
-            subject_stats[subject] = subject_stats.get(subject, 0) + 1
-        
-        # Add subjects to the list
         if subject_stats:
             for subject, count in sorted(subject_stats.items(), key=lambda x: x[1], reverse=True):
-                percentage = round((count / renamed) * 100 if renamed > 0 else 0, 1)
+                percentage = round((count / total_categorized_by_subject) * 100 if total_categorized_by_subject > 0 else 0, 1)
                 item = QListWidgetItem(f"{subject}: {count} files ({percentage}%)")
                 self.subject_list.addItem(item)
         elif self.categorize_by_subject_check.isChecked():
