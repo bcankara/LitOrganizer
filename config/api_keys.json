@@ -3,7 +3,7 @@
         "enabled": true
     },
     "openalex": {
-        "email": "burakcan.kara@amasya.edu.tr",
+        "email": "mail@university.edu.tr",
         "enabled": true
     },
     "datacite": {
@@ -21,7 +21,7 @@
         "enabled": true
     },
     "unpaywall": {
-        "email": "burakcan.kara@amasya.edu.tr",
+        "email": "mail@university.edu.tr",
         "enabled": true
     }
 }
