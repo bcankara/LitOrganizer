@@ -2,7 +2,7 @@
 # Core requirements for PDF processing and metadata extraction
 
 # GUI
-PyQt5==5.15.9         # For the graphical user interface
+PyQt5         # For the graphical user interface
 
 # PDF Processing
 PyMuPDF==1.23.9       # Fast PDF text extraction (fitz)
