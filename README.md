@@ -96,6 +96,8 @@ For more information about running with Docker, visit our [Docker Hub page](http
 1. Clone or download this repository:
    ```bash
    git clone https://github.com/bcankara/LitOrganizer.git
+   ```
+   ```bash
    cd LitOrganizer
    ```
 
