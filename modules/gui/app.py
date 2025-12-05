@@ -3635,8 +3635,6 @@ class SearchKeywordWorkerThread(QThread):
             self.logger.debug(f"SearchKeywordWorkerThread started: Directory={self.directory}, Keyword={self.keyword}, ExactMatch={self.exact_match}, CaseSensitive={self.case_sensitive}, UseRegex={self.use_regex}")
             
             import fitz  # PyMuPDF
-            import re
-            import traceback
             import gc  # Garbage collector
             from concurrent.futures import ThreadPoolExecutor, as_completed
             from modules.utils.pdf_metadata_extractor import extract_doi
@@ -3875,8 +3873,15 @@ def launch_gui(logger: Optional[logging.Logger] = None):
         import os
         from pathlib import Path
         
-        # Create log directory
-        log_dir = Path("logs")
+        # Get the application root directory (where litorganizer.py is)
+        # This ensures the app works correctly regardless of where it's launched from
+        app_root = Path(__file__).resolve().parent.parent.parent
+        
+        # Change working directory to app root (solves 'static/' not found issues on Mac)
+        os.chdir(app_root)
+        
+        # Create log directory using absolute path
+        log_dir = app_root / "logs"
         if not log_dir.exists():
             log_dir.mkdir(exist_ok=True)
             
@@ -3907,7 +3912,6 @@ def launch_gui(logger: Optional[logging.Logger] = None):
             """
             Log uncaught exceptions and notify user.
             """
-            import traceback
             logger.critical("Unexpected error:", exc_info=(exctype, value, traceback_obj))
             
             # Write error message to file

@@ -3,13 +3,12 @@
   <br>
   <h3>Organize Your Academic Literature Efficiently</h3>
   
-  [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
+  [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org)
   [![PyQt5](https://img.shields.io/badge/PyQt5-5.15.9-green.svg)](https://pypi.org/project/PyQt5/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)]()
   [![GitHub stars](https://img.shields.io/github/stars/bcankara/LitOrganizer.svg)](https://github.com/bcankara/LitOrganizer/stargazers)
   [![GitHub issues](https://img.shields.io/github/issues/bcankara/LitOrganizer.svg)](https://github.com/bcankara/LitOrganizer/issues)
-  [![GitHub release](https://img.shields.io/github/release/bcankara/LitOrganizer.svg)](https://github.com/bcankara/LitOrganizer/releases)
-  [![Downloads](https://img.shields.io/github/downloads/bcankara/LitOrganizer/total.svg)](https://github.com/bcankara/LitOrganizer/releases)
 </div>
 
 LitOrganizer is a powerful tool designed for researchers, academics, and students to organize their PDF literature collections automatically. It extracts metadata from academic papers, renames files according to citation standards, categorizes them into a logical directory structure, and provides powerful search capabilities.
@@ -39,6 +38,8 @@ LitOrganizer is a powerful tool designed for researchers, academics, and student
   </table>
 </div>
 
+---
+
 ## ✨ Features
 
 ### 📚 Automatic Organization
@@ -65,70 +66,205 @@ LitOrganizer is a powerful tool designed for researchers, academics, and student
 - **Progress Tracking**: Real-time progress indicators and detailed logging
 - **Customizable Options**: Flexible settings to adapt to your workflow
 
-## 🚀 Installation
+---
 
-### Docker (Recommended)
-The easiest way to use LitOrganizer is through Docker:
+## 🚀 Quick Start (One-Click Launch)
 
+The easiest way to run LitOrganizer is using the provided launcher scripts. They will automatically:
+- ✅ Check for Python 3.11 installation
+- ✅ Create a virtual environment (`.venv`)
+- ✅ Install all required dependencies
+- ✅ Launch the application
+
+---
+
+### 🪟 Windows
+
+1. **Download** or clone the repository
+2. **Double-click** `start_litorganizer.bat`
+3. Follow the on-screen instructions
+
+> If Python 3.11 is not installed, the script will show you how to install it.
+
+---
+
+### 🍎 macOS
+
+#### First-Time Setup (Required)
+
+macOS has security restrictions that prevent running downloaded scripts. Follow these steps:
+
+**Step 1: Download the Repository**
 ```bash
-# Pull the image from Docker Hub
-docker pull bcankara/litorganizer:latest
-
-# Run the container with GUI support
-# For Windows:
-docker run -it --rm -e DISPLAY=host.docker.internal:0 -v %cd%/pdfs:/app/pdf bcankara/litorganizer
-
-# For Linux:
-docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+git clone https://github.com/bcankara/LitOrganizer.git
+cd LitOrganizer
 ```
 
-**Requirements for Docker:**
-- [Docker](https://www.docker.com/get-started) installed on your system
-- X11 server for GUI:
-  - Windows: [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [Xming](https://sourceforge.net/projects/xming/)
-  - Linux: Built-in X11 server
-  - macOS: [XQuartz](https://www.xquartz.org/)
+**Step 2: Make Scripts Executable**
+```bash
+chmod +x start_litorganizer.sh
+chmod +x "Start LitOrganizer.command"
+```
 
-For more information about running with Docker, visit our [Docker Hub page](https://hub.docker.com/r/bcankara/litorganizer).
+**Step 3: Remove Quarantine (if downloaded as ZIP)**
+```bash
+xattr -cr .
+```
+
+**Step 4: Run the Application**
+
+You have two options:
+
+**Option A: Double-click in Finder**
+1. Open Finder and navigate to the LitOrganizer folder
+2. Double-click `Start LitOrganizer.command`
+3. If you see "cannot be opened because it is from an unidentified developer":
+   - Right-click the file → Select "Open" → Click "Open" in the dialog
+   - Or go to System Preferences → Security & Privacy → Click "Open Anyway"
+
+**Option B: Run from Terminal**
+```bash
+./start_litorganizer.sh
+```
+
+#### Installing Python 3.11 on macOS
+
+If Python 3.11 is not installed, the script will offer to install it. You can also install manually:
+
+**Using Homebrew (Recommended):**
+```bash
+# Install Homebrew (if not installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Python 3.11
+brew install python@3.11
+```
+
+**Using pyenv:**
+```bash
+brew install pyenv
+pyenv install 3.11.10
+pyenv global 3.11.10
+```
+
+**Official Installer:**
+Download from [python.org](https://www.python.org/downloads/release/python-31110/)
+
+#### Troubleshooting macOS Issues
+
+| Issue | Solution |
+|-------|----------|
+| "Permission denied" | Run `chmod +x start_litorganizer.sh` |
+| "Operation not permitted" | Run `xattr -cr .` in the project folder |
+| "Unidentified developer" | Right-click → Open → Open |
+| App doesn't open | Check System Preferences → Security & Privacy |
+| Python not found | Install via Homebrew: `brew install python@3.11` |
+
+---
+
+### 🐧 Linux
+
+**Step 1: Clone and Navigate**
+```bash
+git clone https://github.com/bcankara/LitOrganizer.git
+cd LitOrganizer
+```
+
+**Step 2: Make Executable and Run**
+```bash
+chmod +x start_litorganizer.sh
+./start_litorganizer.sh
+```
+
+#### Installing Python 3.11 on Linux
+
+**Ubuntu/Debian:**
+```bash
+# For Ubuntu 22.04+
+sudo apt update
+sudo apt install python3.11 python3.11-venv python3.11-pip
+
+# For older Ubuntu versions
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.11 python3.11-venv python3.11-pip
+```
+
+**Fedora:**
+```bash
+sudo dnf install python3.11
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -S python
+```
+
+---
+
+## 📦 Alternative Installation Methods
+
+### Docker (Cross-Platform)
+
+```bash
+# Pull the image
+docker pull bcankara/litorganizer:latest
+
+# Windows
+docker run -it --rm -e DISPLAY=host.docker.internal:0 -v %cd%/pdfs:/app/pdf bcankara/litorganizer
+
+# Linux
+docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+
+# macOS (with XQuartz)
+docker run -it --rm -e DISPLAY=host.docker.internal:0 -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+```
+
+**Requirements:**
+- [Docker](https://www.docker.com/get-started)
+- X11 Server: [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (Windows), [XQuartz](https://www.xquartz.org/) (macOS)
 
 ### Manual Installation
 
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/bcankara/LitOrganizer.git
-   ```
-   ```bash
-   cd LitOrganizer
-   ```
+```bash
+# Clone repository
+git clone https://github.com/bcankara/LitOrganizer.git
+cd LitOrganizer
 
-2. Install required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Create virtual environment
+python3.11 -m venv .venv
 
-3. (Optional) For OCR functionality, install Tesseract OCR:
-   - **Windows**: Download and install from [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki)
-   - **macOS**: `brew install tesseract`
-   - **Linux**: `sudo apt install tesseract-ocr`
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Activate (macOS/Linux)
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run
+python litorganizer.py
+```
+
+---
 
 ## 📖 Usage
 
 ### GUI Mode
 
-Run the application without arguments to start in GUI mode:
+Run without arguments to start the graphical interface:
 ```bash
 python litorganizer.py
 ```
 
 #### Main Tab
-
 1. Select a directory containing PDFs using the "Browse" button
 2. Configure categorization options (by journal, author, year, subject)
 3. Click "Start Processing" to begin organizing your files
 4. Monitor progress in the log window
 
 #### Search Keywords Tab
-
 1. Select a directory containing PDFs
 2. Enter a keyword to search for
 3. Configure search options:
@@ -138,51 +274,23 @@ python litorganizer.py
 4. Click "Start Search" to begin
 5. View results and save to Word/Excel if desired
 
-#### Statistics Tabs
-
-1. **General Statistics**: Overall performance metrics and accuracy analysis
-2. **Publication Statistics**: Detailed breakdown by author, journal, year, and subject
-
 ### Command Line Mode
 
-Basic usage:
 ```bash
-python litorganizer.py -d /path/to/pdfs
+python litorganizer.py -d /path/to/pdfs --create-references
 ```
 
-Additional options:
-```bash
-python litorganizer.py --help
-```
+Run `python litorganizer.py --help` for all options.
+
+---
 
 ## ⚙️ Configuration
 
 API settings for DOI metadata retrieval can be configured in the API Settings tab or by editing `config/api_config.json`.
 
-## 🔄 Workflow Example
-
-<div align="center">
-  <p><strong>LitOrganizer Workflow</strong></p>
-  <ol>
-    <li>Start with unorganized PDFs</li>
-    <li>Extract DOIs and metadata</li>
-    <li>Rename and categorize files</li>
-    <li>Generate references and statistics</li>
-  </ol>
-</div>
-
-1. **Input**: Start with a folder of unorganized PDF files
-2. **Processing**: LitOrganizer extracts DOIs and retrieves metadata
-3. **Organization**: Files are renamed and categorized
-4. **Output**: A well-structured directory with properly named files
+---
 
 ## 🛠️ Technical Details
-
-LitOrganizer is built with:
-- **PyQt5**: For the graphical user interface
-- **PyMuPDF & pdfplumber**: For PDF text extraction
-- **Requests**: For API communication with academic databases
-- **pandas & python-docx**: For exporting search results
 
 <div align="center">
   <table>
@@ -191,24 +299,41 @@ LitOrganizer is built with:
       <td align="center"><img width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg"/><br>PyQt5</td>
       <td align="center"><img width="50" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/833px-PDF_file_icon.svg.png"/><br>PDF Processing</td>
       <td align="center"><img width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"/><br>Pandas</td>
-      <td align="center"><img width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"/><br>VS Code</td>
     </tr>
   </table>
 </div>
+
+**Dependencies:**
+- **PyQt5**: Graphical user interface
+- **PyMuPDF & pdfplumber**: PDF text extraction
+- **pandas & openpyxl**: Excel file generation
+- **python-docx**: Word document creation
+- **requests**: API communication
+
+---
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+---
 
-- Built with PyQt5 for the user interface
-- Uses pdfplumber and PyMuPDF for PDF text extraction
-- Integrated with multiple academic APIs for metadata retrieval
+## 🤝 Contributing
 
-## 📬 Contact
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-For questions, suggestions, or issues, please [open an issue on GitHub](https://github.com/bcankara/LitOrganizer/issues) or contact the maintainer.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📬 Contact & Support
+
+- **Issues**: [GitHub Issues](https://github.com/bcankara/LitOrganizer/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/bcankara/LitOrganizer/discussions)
 
 ---
 
@@ -219,9 +344,6 @@ For questions, suggestions, or issues, please [open an issue on GitHub](https://
   <a href="https://github.com/bcankara/LitOrganizer/fork">
     <img src="https://img.shields.io/github/forks/bcankara/LitOrganizer?style=social" alt="Forks">
   </a>
-  <a href="https://github.com/bcankara/LitOrganizer/watchers">
-    <img src="https://img.shields.io/github/watchers/bcankara/LitOrganizer?style=social" alt="Watchers">
-  </a>
-  <br>
+  <br><br>
   <p>Made with ❤️ for the academic community</p>
-</div> 
+</div>
