@@ -1,6 +1,6 @@
 # LitOrganizer User Guide
 
-> **LitOrganizer v2.1** — Academic PDF Management Platform  
+> **LitOrganizer v2.0.0** — Academic PDF Management Platform  
 > Last updated: February 2026
 
 ---

@@ -9,9 +9,11 @@
         <div class="flex items-start justify-between">
             <div>
                 <h1 class="font-display text-3xl font-bold text-navy tracking-tight">Documentation</h1>
-                <p class="text-gray-500 mt-1.5 text-sm">LitOrganizer v2.1 &mdash; Academic PDF Management Platform</p>
+                <p class="text-gray-500 mt-1.5 text-sm">LitOrganizer v2.0.0 &mdash; Academic PDF Management Platform</p>
             </div>
-            <span class="text-[11px] text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-full font-mono mt-1">Last updated: Feb 2026</span>
+            <span
+                class="text-[11px] text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-full font-mono mt-1">Last
+                updated: Feb 2026</span>
         </div>
     </header>
 
@@ -20,27 +22,33 @@
         <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Contents</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <a href="#overview" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-navy/10 text-navy flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
+                <span
+                    class="w-5 h-5 rounded bg-navy/10 text-navy flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
                 Overview
             </a>
             <a href="#naming-pipeline" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
+                <span
+                    class="w-5 h-5 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
                 Naming Pipeline
             </a>
             <a href="#gemini-ai" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
+                <span
+                    class="w-5 h-5 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
                 Gemini AI Integration
             </a>
             <a href="#search" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
+                <span
+                    class="w-5 h-5 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold flex-shrink-0">4</span>
                 Keyword Search
             </a>
             <a href="#folder-structure" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold flex-shrink-0">5</span>
+                <span
+                    class="w-5 h-5 rounded bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold flex-shrink-0">5</span>
                 Output Structure
             </a>
             <a href="#api-reference" class="guide-toc-link">
-                <span class="w-5 h-5 rounded bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-bold flex-shrink-0">6</span>
+                <span
+                    class="w-5 h-5 rounded bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-bold flex-shrink-0">6</span>
                 API Reference
             </a>
         </div>
@@ -51,57 +59,69 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="overview" class="card stagger-item">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-navy text-white flex items-center justify-center text-sm font-bold">1</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-navy text-white flex items-center justify-center text-sm font-bold">1</span>
             <h2 class="font-display text-xl font-bold text-navy">Overview</h2>
         </div>
 
         <div class="text-sm text-gray-600 leading-relaxed space-y-4">
-            <p>LitOrganizer is an automated academic PDF management tool that <strong>extracts metadata</strong> from scientific publications and <strong>renames</strong> them in standardized <strong>APA 7th edition</strong> citation format:</p>
+            <p>LitOrganizer is an automated academic PDF management tool that <strong>extracts metadata</strong> from
+                scientific publications and <strong>renames</strong> them in standardized <strong>APA 7th
+                    edition</strong> citation format:</p>
 
             <div class="bg-gray-900 text-gray-100 rounded-xl p-4 font-mono text-sm text-center tracking-wide">
-                <span class="text-green-400">(Author, Year)</span> <span class="text-gray-400">-</span> <span class="text-blue-400">Title of the Paper</span><span class="text-gray-500">.pdf</span>
+                <span class="text-green-400">(Author, Year)</span> <span class="text-gray-400">-</span> <span
+                    class="text-blue-400">Title of the Paper</span><span class="text-gray-500">.pdf</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
                 <div class="bg-gradient-to-br from-navy/5 to-navy/10 rounded-xl p-4 border border-navy/10">
                     <div class="text-navy font-semibold text-sm mb-1.5">Automated Naming</div>
-                    <p class="text-xs text-gray-500 leading-relaxed">DOI extraction, multi-API metadata retrieval, and AI-powered fallback naming pipeline.</p>
+                    <p class="text-xs text-gray-500 leading-relaxed">DOI extraction, multi-API metadata retrieval, and
+                        AI-powered fallback naming pipeline.</p>
                 </div>
                 <div class="bg-gradient-to-br from-indigo-50 to-indigo-100/50 rounded-xl p-4 border border-indigo-100">
                     <div class="text-indigo-800 font-semibold text-sm mb-1.5">AI-Powered</div>
-                    <p class="text-xs text-gray-500 leading-relaxed">Google Gemini Flash integration for intelligent metadata extraction from PDF content.</p>
+                    <p class="text-xs text-gray-500 leading-relaxed">Google Gemini Flash integration for intelligent
+                        metadata extraction from PDF content.</p>
                 </div>
-                <div class="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4 border border-emerald-100">
+                <div
+                    class="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4 border border-emerald-100">
                     <div class="text-emerald-800 font-semibold text-sm mb-1.5">Full-Text Search</div>
-                    <p class="text-xs text-gray-500 leading-relaxed">Keyword search across entire PDF collections with regex support and export options.</p>
+                    <p class="text-xs text-gray-500 leading-relaxed">Keyword search across entire PDF collections with
+                        regex support and export options.</p>
                 </div>
             </div>
 
             <h3 class="font-semibold text-navy text-base mt-5 pt-3 border-t border-gray-100">Quick Start</h3>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <span class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+                    <span
+                        class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
                     <div>
                         <div class="text-xs font-semibold text-navy">Select Folder</div>
                         <p class="text-[11px] text-gray-400 mt-0.5">Native file picker or built-in browser</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <span class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+                    <span
+                        class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
                     <div>
                         <div class="text-xs font-semibold text-navy">Configure</div>
                         <p class="text-[11px] text-gray-400 mt-0.5">Backup, OCR, categorization</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <span class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+                    <span
+                        class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
                     <div>
                         <div class="text-xs font-semibold text-navy">Process</div>
                         <p class="text-[11px] text-gray-400 mt-0.5">Real-time progress tracking</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <span class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
+                    <span
+                        class="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
                     <div>
                         <div class="text-xs font-semibold text-navy">Review</div>
                         <p class="text-[11px] text-gray-400 mt-0.5">Statistics and organized files</p>
@@ -112,12 +132,39 @@
             <h3 class="font-semibold text-navy text-base mt-5 pt-3 border-t border-gray-100">Processing Options</h3>
             <div class="overflow-hidden rounded-xl border border-gray-200">
                 <table class="w-full text-xs">
-                    <thead><tr class="bg-gray-50 text-left"><th class="px-4 py-2.5 font-semibold text-navy">Option</th><th class="px-4 py-2.5 font-semibold text-navy">Description</th><th class="px-4 py-2.5 font-semibold text-navy text-center">Default</th></tr></thead>
+                    <thead>
+                        <tr class="bg-gray-50 text-left">
+                            <th class="px-4 py-2.5 font-semibold text-navy">Option</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy">Description</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy text-center">Default</th>
+                        </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Create Backups</td><td class="px-4 py-2.5 text-gray-500">Copies originals to <code class="bg-gray-100 px-1 rounded">backups/</code> before renaming</td><td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">ON</span></td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Create References</td><td class="px-4 py-2.5 text-gray-500">Generates APA7 bibliography in Excel + Text format</td><td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Move Unnamed</td><td class="px-4 py-2.5 text-gray-500">Moves unprocessable files to <code class="bg-gray-100 px-1 rounded">Unnamed Article/</code></td><td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Use OCR</td><td class="px-4 py-2.5 text-gray-500">Optical character recognition for scanned/image-based PDFs</td><td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td></tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Create Backups</td>
+                            <td class="px-4 py-2.5 text-gray-500">Copies originals to <code
+                                    class="bg-gray-100 px-1 rounded">backups/</code> before renaming</td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">ON</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Create References</td>
+                            <td class="px-4 py-2.5 text-gray-500">Generates APA7 bibliography in Excel + Text format
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Move Unnamed</td>
+                            <td class="px-4 py-2.5 text-gray-500">Moves unprocessable files to <code
+                                    class="bg-gray-100 px-1 rounded">Unnamed Article/</code></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Use OCR</td>
+                            <td class="px-4 py-2.5 text-gray-500">Optical character recognition for scanned/image-based
+                                PDFs</td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-gray-400">OFF</span></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -129,12 +176,14 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="naming-pipeline" class="card stagger-item">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold">2</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold">2</span>
             <h2 class="font-display text-xl font-bold text-navy">Naming Pipeline</h2>
         </div>
 
         <div class="text-sm text-gray-600 leading-relaxed space-y-4">
-            <p>LitOrganizer employs a <strong>multi-stage pipeline</strong> to maximize naming success rate. Each PDF passes through the following decision tree:</p>
+            <p>LitOrganizer employs a <strong>multi-stage pipeline</strong> to maximize naming success rate. Each PDF
+                passes through the following decision tree:</p>
 
             <!-- Pipeline Flowchart -->
             <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
@@ -147,18 +196,25 @@
                     </div>
                     <div class="flex items-center gap-6 my-2 w-full max-w-lg">
                         <div class="flex-1 flex flex-col items-center">
-                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
                             <span class="text-[10px] text-green-600 font-semibold">DOI BULUNDU</span>
                         </div>
                         <div class="flex-1 flex flex-col items-center">
-                            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
                             <span class="text-[10px] text-orange-500 font-semibold">DOI YOK</span>
                         </div>
                     </div>
                     <div class="flex gap-4 w-full max-w-lg">
                         <!-- DOI Found -->
                         <div class="flex-1 bg-white rounded-xl border border-green-200 p-3 text-center">
-                            <div class="text-[10px] font-semibold text-green-600 uppercase tracking-wider mb-1">Stage 2a</div>
+                            <div class="text-[10px] font-semibold text-green-600 uppercase tracking-wider mb-1">Stage 2a
+                            </div>
                             <div class="text-xs font-bold text-green-800">API Metadata Sorgusu</div>
                             <p class="text-[10px] text-gray-400 mt-1">Crossref, OpenAlex, Semantic Scholar...</p>
                             <div class="mt-2 bg-green-50 rounded-lg p-2">
@@ -167,19 +223,26 @@
                         </div>
                         <!-- DOI Not Found -->
                         <div class="flex-1 bg-white rounded-xl border border-indigo-200 p-3 text-center">
-                            <div class="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mb-1">Stage 2b</div>
+                            <div class="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider mb-1">Stage
+                                2b</div>
                             <div class="text-xs font-bold text-indigo-800">Gemini AI Extraction</div>
                             <p class="text-[10px] text-gray-400 mt-1">AI extracts title, authors, year</p>
-                            <svg class="w-3 h-3 text-gray-300 mx-auto mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                            <svg class="w-3 h-3 text-gray-300 mx-auto mt-1.5" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Crossref Validation -->
                     <div class="w-full max-w-md mt-2">
                         <div class="bg-white rounded-xl border border-blue-200 p-3 text-center">
-                            <div class="text-[10px] font-semibold text-blue-600 uppercase tracking-wider mb-1">Stage 3</div>
+                            <div class="text-[10px] font-semibold text-blue-600 uppercase tracking-wider mb-1">Stage 3
+                            </div>
                             <div class="text-xs font-bold text-blue-800">Crossref Title Validation</div>
-                            <p class="text-[10px] text-gray-400 mt-1">Gemini result validated via <code>query.bibliographic</code> (similarity &ge; 80%)</p>
+                            <p class="text-[10px] text-gray-400 mt-1">Gemini result validated via
+                                <code>query.bibliographic</code> (similarity &ge; 80%)</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-6 my-2 w-full max-w-lg">
@@ -207,39 +270,57 @@
             <h3 class="font-semibold text-navy text-base mt-5 pt-3 border-t border-gray-100">Confidence Levels</h3>
             <div class="space-y-2">
                 <div class="flex items-center gap-3 rounded-xl p-3 bg-green-50 border border-green-100">
-                    <div class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                     </div>
                     <div class="flex-1">
                         <div class="flex items-center gap-2">
                             <strong class="text-green-800 text-sm">Named Article</strong>
-                            <span class="text-[10px] px-1.5 py-0.5 bg-green-200 text-green-800 rounded-full font-semibold">HIGH</span>
+                            <span
+                                class="text-[10px] px-1.5 py-0.5 bg-green-200 text-green-800 rounded-full font-semibold">HIGH</span>
                         </div>
-                        <p class="text-xs text-green-700 mt-0.5">DOI found and verified via API, or Crossref title match &ge; 80%</p>
+                        <p class="text-xs text-green-700 mt-0.5">DOI found and verified via API, or Crossref title match
+                            &ge; 80%</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 rounded-xl p-3 bg-amber-50 border border-amber-100">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
                     </div>
                     <div class="flex-1">
                         <div class="flex items-center gap-2">
                             <strong class="text-amber-800 text-sm">AI_Named_Content</strong>
-                            <span class="text-[10px] px-1.5 py-0.5 bg-amber-200 text-amber-800 rounded-full font-semibold">MEDIUM</span>
+                            <span
+                                class="text-[10px] px-1.5 py-0.5 bg-amber-200 text-amber-800 rounded-full font-semibold">MEDIUM</span>
                         </div>
-                        <p class="text-xs text-amber-700 mt-0.5">No DOI, no Crossref match, but Gemini AI successfully extracted metadata</p>
+                        <p class="text-xs text-amber-700 mt-0.5">No DOI, no Crossref match, but Gemini AI successfully
+                            extracted metadata</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3 rounded-xl p-3 bg-red-50 border border-red-100">
-                    <div class="w-10 h-10 rounded-xl bg-red-400 text-white flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-red-400 text-white flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
                     </div>
                     <div class="flex-1">
                         <div class="flex items-center gap-2">
                             <strong class="text-red-800 text-sm">Unnamed Article</strong>
-                            <span class="text-[10px] px-1.5 py-0.5 bg-red-200 text-red-800 rounded-full font-semibold">FAILED</span>
+                            <span
+                                class="text-[10px] px-1.5 py-0.5 bg-red-200 text-red-800 rounded-full font-semibold">FAILED</span>
                         </div>
-                        <p class="text-xs text-red-600 mt-0.5">No naming method succeeded. File may be encrypted, scanned without OCR, or not an academic paper.</p>
+                        <p class="text-xs text-red-600 mt-0.5">No naming method succeeded. File may be encrypted,
+                            scanned without OCR, or not an academic paper.</p>
                     </div>
                 </div>
             </div>
@@ -251,41 +332,52 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="gemini-ai" class="card stagger-item overflow-hidden">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-sm font-bold">3</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center text-sm font-bold">3</span>
             <h2 class="font-display text-xl font-bold text-navy">Google Gemini AI Integration</h2>
             <span class="text-[10px] px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full font-semibold ml-1">NEW</span>
         </div>
 
         <div class="text-sm text-gray-600 leading-relaxed space-y-4">
-            <p>An advanced system that uses <strong>Google Gemini Flash 2.0</strong> AI to automatically extract title, author, and year information from PDFs where DOI could not be found.</p>
+            <p>An advanced system that uses <strong>Google Gemini Flash 2.0</strong> AI to automatically extract title,
+                author, and year information from PDFs where DOI could not be found.</p>
 
             <!-- How it works -->
             <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 p-5">
                 <h3 class="font-bold text-blue-900 text-sm mb-3 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
                     How It Works
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div class="bg-white/80 rounded-lg p-3 border border-blue-100">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">1</span>
+                            <span
+                                class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">1</span>
                             <span class="text-xs font-bold text-blue-900">Text Extraction</span>
                         </div>
-                        <p class="text-[11px] text-blue-800/70">Text is extracted from the first 2 pages using <code class="bg-blue-100 px-1 rounded text-[10px]">pdfplumber</code>.</p>
+                        <p class="text-[11px] text-blue-800/70">Text is extracted from the first 2 pages using <code
+                                class="bg-blue-100 px-1 rounded text-[10px]">pdfplumber</code>.</p>
                     </div>
                     <div class="bg-white/80 rounded-lg p-3 border border-blue-100">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">2</span>
+                            <span
+                                class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">2</span>
                             <span class="text-xs font-bold text-blue-900">AI Analysis</span>
                         </div>
-                        <p class="text-[11px] text-blue-800/70">Text is sent to Gemini Flash API. AI understands academic structure and extracts metadata.</p>
+                        <p class="text-[11px] text-blue-800/70">Text is sent to Gemini Flash API. AI understands
+                            academic structure and extracts metadata.</p>
                     </div>
                     <div class="bg-white/80 rounded-lg p-3 border border-blue-100">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">3</span>
+                            <span
+                                class="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">3</span>
                             <span class="text-xs font-bold text-blue-900">Validation</span>
                         </div>
-                        <p class="text-[11px] text-blue-800/70">AI result is validated via Crossref API. If no match, the file is named using AI data.</p>
+                        <p class="text-[11px] text-blue-800/70">AI result is validated via Crossref API. If no match,
+                            the file is named using AI data.</p>
                     </div>
                 </div>
             </div>
@@ -296,18 +388,24 @@
             <div class="bg-gray-900 text-gray-100 rounded-xl p-4 font-mono text-xs leading-relaxed">
                 <span class="text-gray-500">// Gemini Flash 2.0 Response</span><br>
                 {<br>
-                <span class="ml-4 text-blue-400">"title"</span>: <span class="text-green-400">"The Role of Openness and Cultural Intelligence..."</span>,<br>
-                <span class="ml-4 text-blue-400">"authors"</span>: [<span class="text-green-400">"Bukovec"</span>, <span class="text-green-400">"Erksenc"</span>, <span class="text-green-400">"Burcdo"</span>],<br>
+                <span class="ml-4 text-blue-400">"title"</span>: <span class="text-green-400">"The Role of Openness and
+                    Cultural Intelligence..."</span>,<br>
+                <span class="ml-4 text-blue-400">"authors"</span>: [<span class="text-green-400">"Bukovec"</span>, <span
+                    class="text-green-400">"Erksenc"</span>, <span class="text-green-400">"Burcdo"</span>],<br>
                 <span class="ml-4 text-blue-400">"year"</span>: <span class="text-yellow-400">"2024"</span><br>
                 }
             </div>
 
             <!-- Real-time Panel -->
             <h3 class="font-semibold text-navy text-base mt-5 pt-3 border-t border-gray-100">Real-Time Monitoring</h3>
-            <p class="text-xs text-gray-500">On the processing page, the <strong>Gemini AI</strong> panel is displayed alongside <strong>File Status</strong>. For each file without DOI:</p>
+            <p class="text-xs text-gray-500">On the processing page, the <strong>Gemini AI</strong> panel is displayed
+                alongside <strong>File Status</strong>. For each file without DOI:</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                 <div class="flex items-start gap-2 bg-green-50 border border-green-200 rounded-lg p-2.5">
-                    <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
                     <div>
                         <div class="text-[11px] text-gray-400">example_paper.pdf</div>
                         <div class="text-xs font-semibold text-green-800 mt-0.5">Extracted Title Here</div>
@@ -315,7 +413,11 @@
                     </div>
                 </div>
                 <div class="flex items-start gap-2 bg-orange-50 border border-orange-200 rounded-lg p-2.5">
-                    <svg class="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <svg class="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
                     <div>
                         <div class="text-[11px] text-gray-400">encrypted_file.pdf</div>
                         <div class="text-[11px] text-orange-700 mt-0.5">Metadata extraction failed</div>
@@ -331,7 +433,8 @@
                         <tr>
                             <td class="px-4 py-3 font-medium text-navy bg-gray-50 w-32">API Key</td>
                             <td class="px-4 py-3 text-gray-500">
-                                Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" class="text-accent hover:underline font-medium">Google AI Studio</a>
+                                Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank"
+                                    class="text-accent hover:underline font-medium">Google AI Studio</a>
                             </td>
                         </tr>
                         <tr>
@@ -340,19 +443,28 @@
                         </tr>
                         <tr>
                             <td class="px-4 py-3 font-medium text-navy bg-gray-50">Model</td>
-                            <td class="px-4 py-3 text-gray-500"><code class="bg-gray-100 px-1.5 rounded">gemini-2.0-flash</code></td>
+                            <td class="px-4 py-3 text-gray-500"><code
+                                    class="bg-gray-100 px-1.5 rounded">gemini-2.0-flash</code></td>
                         </tr>
                         <tr>
                             <td class="px-4 py-3 font-medium text-navy bg-gray-50">Activation</td>
-                            <td class="px-4 py-3 text-gray-500"><a href="/settings" class="text-accent hover:underline font-medium">Settings</a> &rarr; AI-Powered Extraction &rarr; Toggle ON + paste API Key</td>
+                            <td class="px-4 py-3 text-gray-500"><a href="/settings"
+                                    class="text-accent hover:underline font-medium">Settings</a> &rarr; AI-Powered
+                                Extraction &rarr; Toggle ON + paste API Key</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mt-2 flex items-start gap-2">
-                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                <p class="text-xs text-amber-800"><strong>Note:</strong> If Gemini AI is disabled or no API key is provided, files without DOI will be moved directly to <code class="bg-amber-100 px-1 rounded">Unnamed Article/</code>.</p>
+                <svg class="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p class="text-xs text-amber-800"><strong>Note:</strong> If Gemini AI is disabled or no API key is
+                    provided, files without DOI will be moved directly to <code
+                        class="bg-amber-100 px-1 rounded">Unnamed Article/</code>.</p>
             </div>
         </div>
     </section>
@@ -362,22 +474,49 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="search" class="card stagger-item">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold">4</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold">4</span>
             <h2 class="font-display text-xl font-bold text-navy">Keyword Search</h2>
         </div>
 
         <div class="text-sm text-gray-600 leading-relaxed space-y-4">
-            <p>Search for specific keywords across your entire PDF collection. Find exactly where concepts, methods, or references are mentioned.</p>
+            <p>Search for specific keywords across your entire PDF collection. Find exactly where concepts, methods, or
+                references are mentioned.</p>
 
             <h3 class="font-semibold text-navy text-base">Search Modes</h3>
             <div class="overflow-hidden rounded-xl border border-gray-200">
                 <table class="w-full text-xs">
-                    <thead><tr class="bg-gray-50 text-left"><th class="px-4 py-2.5 font-semibold text-navy">Mode</th><th class="px-4 py-2.5 font-semibold text-navy">Description</th><th class="px-4 py-2.5 font-semibold text-navy">Example</th></tr></thead>
+                    <thead>
+                        <tr class="bg-gray-50 text-left">
+                            <th class="px-4 py-2.5 font-semibold text-navy">Mode</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy">Description</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy">Example</th>
+                        </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-100">
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Standard</td><td class="px-4 py-2.5 text-gray-500">Case-insensitive, partial match</td><td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">education</code> &rarr; Education, EDUCATION</td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Exact Match</td><td class="px-4 py-2.5 text-gray-500">Word boundary detection</td><td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">education</code> &ne; educational</td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Case Sensitive</td><td class="px-4 py-2.5 text-gray-500">Exact case matching</td><td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">DNA</code> &ne; dna, Dna</td></tr>
-                        <tr><td class="px-4 py-2.5 font-medium text-navy">Regex</td><td class="px-4 py-2.5 text-gray-500">Regular expression patterns</td><td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">p\s*[&lt;&gt;=]\s*0\.\d+</code></td></tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Standard</td>
+                            <td class="px-4 py-2.5 text-gray-500">Case-insensitive, partial match</td>
+                            <td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">education</code> &rarr;
+                                Education, EDUCATION</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Exact Match</td>
+                            <td class="px-4 py-2.5 text-gray-500">Word boundary detection</td>
+                            <td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">education</code> &ne;
+                                educational</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Case Sensitive</td>
+                            <td class="px-4 py-2.5 text-gray-500">Exact case matching</td>
+                            <td class="px-4 py-2.5"><code class="bg-gray-100 px-1 rounded">DNA</code> &ne; dna, Dna</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2.5 font-medium text-navy">Regex</td>
+                            <td class="px-4 py-2.5 text-gray-500">Regular expression patterns</td>
+                            <td class="px-4 py-2.5"><code
+                                    class="bg-gray-100 px-1 rounded">p\s*[&lt;&gt;=]\s*0\.\d+</code></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -405,24 +544,35 @@
             <h3 class="font-semibold text-navy text-base mt-5 pt-3 border-t border-gray-100">Export Options</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <div class="w-9 h-9 rounded-lg bg-green-600 text-white flex items-center justify-center flex-shrink-0 text-[10px] font-bold">.xlsx</div>
+                    <div
+                        class="w-9 h-9 rounded-lg bg-green-600 text-white flex items-center justify-center flex-shrink-0 text-[10px] font-bold">
+                        .xlsx</div>
                     <div>
                         <strong class="text-navy text-xs">Excel Export</strong>
-                        <p class="text-[11px] text-gray-400 mt-0.5">DOI, filename, page, context, and matched text. Ideal for data analysis.</p>
+                        <p class="text-[11px] text-gray-400 mt-0.5">DOI, filename, page, context, and matched text.
+                            Ideal for data analysis.</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-3 bg-gray-50 rounded-lg p-3">
-                    <div class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-[10px] font-bold">.docx</div>
+                    <div
+                        class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-[10px] font-bold">
+                        .docx</div>
                     <div>
                         <strong class="text-navy text-xs">Word Export</strong>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Formatted document with highlighted keywords. Ideal for reports and reviews.</p>
+                        <p class="text-[11px] text-gray-400 mt-0.5">Formatted document with highlighted keywords. Ideal
+                            for reports and reviews.</p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 flex items-start gap-2 mt-2">
-                <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <p class="text-xs text-blue-800"><strong>Tip:</strong> Keyword search and PDF processing can run simultaneously. Track progress for both tasks from the bottom panel.</p>
+                <svg class="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-xs text-blue-800"><strong>Tip:</strong> Keyword search and PDF processing can run
+                    simultaneously. Track progress for both tasks from the bottom panel.</p>
             </div>
         </div>
     </section>
@@ -432,7 +582,8 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="folder-structure" class="card stagger-item">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm font-bold">5</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm font-bold">5</span>
             <h2 class="font-display text-xl font-bold text-navy">Output Folder Structure</h2>
         </div>
 
@@ -495,63 +646,86 @@
     <!-- ═══════════════════════════════════════════════════════════════════════ -->
     <section id="api-reference" class="card stagger-item">
         <div class="flex items-center gap-2 mb-5">
-            <span class="w-7 h-7 rounded-lg bg-gray-600 text-white flex items-center justify-center text-sm font-bold">6</span>
+            <span
+                class="w-7 h-7 rounded-lg bg-gray-600 text-white flex items-center justify-center text-sm font-bold">6</span>
             <h2 class="font-display text-xl font-bold text-navy">API Reference</h2>
         </div>
 
         <div class="text-sm text-gray-600 leading-relaxed space-y-4">
-            <p>LitOrganizer queries multiple academic APIs to retrieve metadata. All APIs can be configured from the <a href="/settings" class="text-accent hover:underline font-medium">Settings</a> page.</p>
+            <p>LitOrganizer queries multiple academic APIs to retrieve metadata. All APIs can be configured from the <a
+                    href="/settings" class="text-accent hover:underline font-medium">Settings</a> page.</p>
 
             <div class="overflow-hidden rounded-xl border border-gray-200">
                 <table class="w-full text-xs">
-                    <thead><tr class="bg-gray-50 text-left"><th class="px-4 py-2.5 font-semibold text-navy">API</th><th class="px-4 py-2.5 font-semibold text-navy">Purpose</th><th class="px-4 py-2.5 font-semibold text-navy text-center">Cost</th><th class="px-4 py-2.5 font-semibold text-navy text-center">Key Required</th></tr></thead>
+                    <thead>
+                        <tr class="bg-gray-50 text-left">
+                            <th class="px-4 py-2.5 font-semibold text-navy">API</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy">Purpose</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy text-center">Cost</th>
+                            <th class="px-4 py-2.5 font-semibold text-navy text-center">Key Required</th>
+                        </tr>
+                    </thead>
                     <tbody class="divide-y divide-gray-100">
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">Google Gemini</td>
                             <td class="px-4 py-2.5 text-gray-500">AI-powered metadata extraction (DOI fallback)</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-amber-600 font-semibold">Yes</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-amber-600 font-semibold">Yes</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">Crossref</td>
                             <td class="px-4 py-2.5 text-gray-500">Primary DOI metadata + title search validation</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">OpenAlex</td>
                             <td class="px-4 py-2.5 text-gray-500">Scholarly works database, citations, concepts</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">Semantic Scholar</td>
                             <td class="px-4 py-2.5 text-gray-500">AI-powered academic search engine</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
                             <td class="px-4 py-2.5 text-center"><span class="text-gray-400">Optional</span></td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">DataCite</td>
                             <td class="px-4 py-2.5 text-gray-500">DOI registration and metadata for datasets</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2.5 font-medium text-navy">Europe PMC</td>
                             <td class="px-4 py-2.5 text-gray-500">Biomedical and life sciences literature</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">No</span>
+                            </td>
                         </tr>
                         <tr class="bg-gray-50/50">
                             <td class="px-4 py-2.5 font-medium text-navy">Scopus</td>
                             <td class="px-4 py-2.5 text-gray-500">Elsevier abstract and citation database</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-amber-600 font-semibold">Institutional</span></td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-amber-600 font-semibold">Yes</span></td>
+                            <td class="px-4 py-2.5 text-center"><span
+                                    class="text-amber-600 font-semibold">Institutional</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-amber-600 font-semibold">Yes</span>
+                            </td>
                         </tr>
                         <tr class="bg-gray-50/50">
                             <td class="px-4 py-2.5 font-medium text-navy">Unpaywall</td>
                             <td class="px-4 py-2.5 text-gray-500">Open access availability checker</td>
-                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span></td>
+                            <td class="px-4 py-2.5 text-center"><span class="text-green-600 font-semibold">Free</span>
+                            </td>
                             <td class="px-4 py-2.5 text-center"><span class="text-gray-400">Email</span></td>
                         </tr>
                     </tbody>
@@ -562,8 +736,11 @@
 
     <!-- Back to top -->
     <div class="text-center pb-4 stagger-item">
-        <a href="#toc" class="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-accent transition-colors">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+        <a href="#toc"
+            class="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-accent transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
             Back to top
         </a>
     </div>
