@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="resources/logo_v2.svg" alt="LitOrganizer Logo" width="400">
+  <img src="resources/logo_v2.svg" alt="LitOrganizer Logo" width="500">
   <br>
   <h3>V2 - Automated Academic PDF Organization with AI</h3>
   
