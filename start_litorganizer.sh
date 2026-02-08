@@ -13,11 +13,11 @@ NC='\033[0m'
 
 echo ""
 echo "  LitOrganizer v2.0.0"
-echo "  Academic Literature Organizer"
+echo "  Organize your academic literature efficiently"
 echo -e "  ${DIM}─────────────────────────────${NC}"
 echo ""
 
-# Get script directory
+# Get script directory and change to it
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
 
@@ -38,13 +38,11 @@ PYTHON_CMD=""
 
 # Check python3 first
 if command -v python3 &> /dev/null; then
-    PY_VER=$(python3 --version 2>&1 | awk '{print $2}')
     PYTHON_CMD="python3"
-    echo -e "  ${GREEN}[OK]${NC} Python $PY_VER"
+    echo -e "  ${GREEN}[OK]${NC} Python found"
 elif command -v python &> /dev/null; then
-    PY_VER=$(python --version 2>&1 | awk '{print $2}')
     PYTHON_CMD="python"
-    echo -e "  ${GREEN}[OK]${NC} Python $PY_VER"
+    echo -e "  ${GREEN}[OK]${NC} Python found"
 fi
 
 if [ -z "$PYTHON_CMD" ]; then
@@ -61,8 +59,6 @@ if [ -z "$PYTHON_CMD" ]; then
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 brew install python
                 PYTHON_CMD="python3"
-                PY_VER=$($PYTHON_CMD --version 2>&1 | awk '{print $2}')
-                echo -e "  ${GREEN}[OK]${NC} Python $PY_VER installed"
             else
                 exit 1
             fi
@@ -87,12 +83,12 @@ echo ""
 # ============================================================================
 echo -e "${BLUE}[2/4]${NC} Setting up environment..."
 
-if [ -d ".venv" ] && [ -f ".venv/bin/activate" ]; then
+if [ -f ".venv/bin/python" ]; then
     echo -e "  ${GREEN}[OK]${NC} Virtual environment exists"
 else
     echo "  Creating virtual environment..."
     $PYTHON_CMD -m venv .venv
-    if [ $? -ne 0 ]; then
+    if [ ! -f ".venv/bin/python" ]; then
         echo -e "  ${RED}[ERROR]${NC} Failed to create virtual environment!"
         echo "  On some Linux systems: sudo apt install python3-venv"
         exit 1
@@ -100,6 +96,7 @@ else
     echo -e "  ${GREEN}[OK]${NC} Created"
 fi
 
+echo "  Activating virtual environment..."
 source .venv/bin/activate
 echo ""
 
@@ -108,23 +105,42 @@ echo ""
 # ============================================================================
 echo -e "${BLUE}[3/4]${NC} Checking dependencies..."
 
-python -m pip install --upgrade pip --quiet 2>/dev/null
+# Update pip silently
+echo "  Updating pip..."
+python -m pip install --upgrade pip >/dev/null 2>&1
 
-python -c "import flask; import fitz; import pdfplumber" 2>/dev/null
-if [ $? -ne 0 ]; then
-    echo "  Installing packages (first run may take a minute)..."
-    pip install -r requirements.txt --quiet
+# Check if core packages exist
+python -c "import flask; import fitz; import pdfplumber" >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo -e "  ${GREEN}[OK]${NC} All dependencies already installed"
+else
+    # Install dependencies
+    echo "  Installing packages (first run may take a few minutes)..."
+    echo ""
+    
+    pip install -r requirements.txt
     if [ $? -ne 0 ]; then
-        echo "  Retrying with explicit packages..."
+        echo ""
+        echo -e "  ${RED}[WARN]${NC} requirements.txt install had issues, trying explicit packages..."
         pip install Flask flask-socketio PyMuPDF pdfplumber pdf2image pytesseract Pillow python-docx pandas openpyxl requests python-dateutil tqdm
     fi
-else
-    echo -e "  ${GREEN}[OK]${NC} All dependencies installed"
+    
+    # Verify installation
+    echo ""
+    python -c "import flask; import fitz; import pdfplumber" >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        echo -e "  ${RED}[ERROR]${NC} Core dependencies could not be installed!"
+        echo "  Please check the error messages above."
+        exit 1
+    fi
+    
+    echo -e "  ${GREEN}[OK]${NC} Dependencies installed successfully"
 fi
+
 echo ""
 
 # ============================================================================
-# STEP 4: Launch
+# STEP 4: Launch Application
 # ============================================================================
 echo -e "${BLUE}[4/4]${NC} Starting LitOrganizer..."
 echo "  ─────────────────────────────"
@@ -132,7 +148,7 @@ echo ""
 
 python litorganizer.py
 
+# Cleanup
 deactivate 2>/dev/null
-
 echo ""
 echo "  LitOrganizer closed."
