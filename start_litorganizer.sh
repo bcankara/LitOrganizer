@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================================
-# LitOrganizer v2.0 - macOS/Linux Launcher
+# LitOrganizer v2.0.0 - macOS/Linux Launcher
 # ============================================================================
 
 # Colors
@@ -12,7 +12,7 @@ DIM='\033[2m'
 NC='\033[0m'
 
 echo ""
-echo "  LitOrganizer v2.0"
+echo "  LitOrganizer v2.0.0"
 echo "  Academic Literature Organizer"
 echo -e "  ${DIM}─────────────────────────────${NC}"
 echo ""

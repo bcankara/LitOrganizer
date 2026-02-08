@@ -3,13 +3,13 @@ chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
 :: ============================================================================
-:: LitOrganizer v2.0 - Windows Launcher
+:: LitOrganizer v2.0.0 - Windows Launcher
 :: ============================================================================
 
 title LitOrganizer
 
 echo.
-echo   LitOrganizer v2.0
+echo   LitOrganizer v2.0.0
 echo   Academic Literature Organizer
 echo   ─────────────────────────────
 echo.
