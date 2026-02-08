@@ -15,9 +15,31 @@
 
   <br>
 
-  > **Published in [SoftwareX (Elsevier)](https://www.sciencedirect.com/journal/softwarex) · SCI-E**
+  > **Published in [SoftwareX (Elsevier)](https://doi.org/10.1016/j.softx.2025.102198) · SCI-E**
   > <br>An open-source tool for automated academic PDF organization using DOI extraction, multi-API metadata retrieval, and AI-powered naming.
 </div>
+
+## Citation
+
+If you use LitOrganizer in your research, please cite:
+
+**APA 7:**
+> Şahin, A., Kara, B. C., & Dirsehan, T. (2025). LitOrganizer: Automating the process of data extraction and organization for scientific literature reviews. *SoftwareX*, 30, 102198. https://doi.org/10.1016/j.softx.2025.102198
+
+**BibTeX:**
+```bibtex
+@article{sahin2025litorganizer,
+  title = {LitOrganizer: Automating the process of data extraction and organization for scientific literature reviews},
+  author = {Şahin, Alperen and Kara, Burak Can and Dirsehan, Taşkın},
+  journal = {SoftwareX},
+  volume = {30},
+  pages = {102198},
+  year = {2025},
+  publisher = {Elsevier},
+  doi = {10.1016/j.softx.2025.102198},
+  url = {https://doi.org/10.1016/j.softx.2025.102198}
+}
+```
 
 ---
 
@@ -31,17 +53,17 @@ LitOrganizer is a powerful tool designed for researchers, academics, and student
         <p style="margin-top: 15px; font-weight: bold;">Process Page</p>
       </td>
       <td align="center" style="padding: 10px; background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <img src="resources/screenshots/SS_03.png" alt="General Statistic" width="400" style="border-radius: 8px; max-width: 100%;">
+        <img src="resources/screenshots/SS_04.png" alt="General Statistic" width="400" style="border-radius: 8px; max-width: 100%;">
         <p style="margin-top: 15px; font-weight: bold;">General Statistic</p>
       </td>
     </tr>
     <tr>
       <td align="center" style="padding: 10px; background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <img src="resources/screenshots/SS_02.png" alt="Rename Results" width="400" style="border-radius: 8px; max-width: 100%;">
+        <img src="resources/screenshots/SS_03.png" alt="Rename Results" width="400" style="border-radius: 8px; max-width: 100%;">
         <p style="margin-top: 15px; font-weight: bold;">Rename Results</p>
       </td>
       <td align="center" style="padding: 10px; background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        <img src="resources/screenshots/SS_04.png" alt="Term Search" width="400" style="border-radius: 8px; max-width: 100%;">
+        <img src="resources/screenshots/SS_02.png" alt="Term Search" width="400" style="border-radius: 8px; max-width: 100%;">
         <p style="margin-top: 15px; font-weight: bold;">Term Search</p>
       </td>
     </tr>
