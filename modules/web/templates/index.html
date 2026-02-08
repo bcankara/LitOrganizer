@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}LitOrganizer — Process PDFs{% endblock %}
+{% block title %}LitOrganizer — PDF Renamer{% endblock %}
 
 {% block content %}
 <!-- State Loading Overlay -->
@@ -7,7 +7,9 @@
     <div class="flex flex-col items-center gap-4">
         <svg class="animate-spin w-10 h-10 text-accent" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
         </svg>
         <div class="text-center">
             <p class="font-display text-lg font-semibold text-navy">Restoring Session</p>
@@ -16,77 +18,81 @@
     </div>
 </div>
 
-<div class="space-y-8 animate-stagger">
+<div class="space-y-6 animate-stagger">
 
     <!-- Page Header -->
     <header class="stagger-item flex items-center justify-between">
         <div>
-            <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">PDF Processing</h1>
-            <p class="text-gray-500 mt-1">Organize your academic PDFs by extracting citation information and renaming them in APA7 format.</p>
+            <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">PDF Renamer</h1>
+            <p class="text-gray-500 mt-1">Organize your academic PDFs by extracting citation information and renaming
+                them in APA7 format.</p>
         </div>
-        <a href="/guide#process" class="text-xs text-accent hover:text-accent-hover flex items-center gap-1 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <a href="/guide#process"
+            class="text-xs text-accent hover:text-accent-hover flex items-center gap-1 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             Usage Guide
         </a>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-        <!-- Left Column: Settings -->
-        <div class="lg:col-span-1 space-y-6">
+    <!-- COMPACT SETTINGS SECTION -->
+    <div class="card stagger-item">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
             <!-- Directory Selection -->
-            <div class="card stagger-item">
-                <h2 class="card-title">
-                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            <div class="md:col-span-4 space-y-3">
+                <h2 class="text-sm font-semibold text-navy flex items-center gap-2">
+                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
                     Directory
                 </h2>
-                <div class="space-y-3">
-                    <!-- Select Folder Button (primary - native OS picker) -->
-                    <button onclick="nativeBrowse('dir-input')" class="folder-select-btn w-full">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                <button onclick="nativeBrowse('dir-input')" class="folder-select-btn w-full text-sm py-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    Select PDF Folder
+                </button>
+                <button onclick="browseDirectory('dir-input')"
+                    class="text-xs text-gray-400 hover:text-accent transition-colors w-full text-center">
+                    or browse manually
+                </button>
+                <!-- Selected path display -->
+                <div id="selected-path-display" class="selected-path-display hidden">
+                    <svg class="w-4 h-4 text-success flex-shrink-0" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span id="selected-path-text" class="text-xs font-mono text-navy truncate flex-1"></span>
+                    <button onclick="clearSelectedPath('dir-input')"
+                        class="text-gray-400 hover:text-danger ml-auto flex-shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                        Select PDF Folder
                     </button>
-                    <!-- Alternative: manual browse -->
-                    <div class="text-center">
-                        <button onclick="browseDirectory('dir-input')" class="text-xs text-gray-400 hover:text-accent transition-colors">
-                            or browse manually
-                        </button>
-                    </div>
-                    <!-- Selected path display -->
-                    <div id="selected-path-display" class="selected-path-display hidden">
-                        <svg class="w-4 h-4 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        <span id="selected-path-text" class="text-xs font-mono text-navy truncate flex-1"></span>
-                        <button onclick="clearSelectedPath('dir-input')" class="text-gray-400 hover:text-danger ml-auto flex-shrink-0">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </button>
-                    </div>
-                    <input type="hidden" id="dir-input" value="">
-                    <p id="dir-info" class="text-xs text-gray-400"></p>
-                    <div>
-                        <label class="label">Unnamed Article Directory <span class="text-gray-400">(optional)</span></label>
-                        <div class="flex gap-2">
-                            <input type="text" id="unnamed-dir-input" class="input flex-1" placeholder="Auto-created if empty">
-                            <button onclick="browseDirectory('unnamed-dir-input')" class="btn-secondary text-sm px-3">Browse</button>
-                        </div>
-                    </div>
                 </div>
+                <input type="hidden" id="dir-input" value="">
+                <p id="dir-info" class="text-xs text-gray-400"></p>
             </div>
 
-            <!-- Processing Options -->
-            <div class="card stagger-item">
-                <h2 class="card-title">
-                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+            <!-- Options -->
+            <div class="md:col-span-3">
+                <h2 class="text-sm font-semibold text-navy flex items-center gap-2 mb-3">
+                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
                     Options
                 </h2>
-                <div class="space-y-3">
+                <div class="grid grid-cols-1 gap-1.5 text-sm">
                     <label class="checkbox-label">
                         <input type="checkbox" id="opt-references" class="checkbox">
-                        <span>Create References File</span>
+                        <span>References File</span>
                     </label>
                     <label class="checkbox-label">
                         <input type="checkbox" id="opt-backups" class="checkbox" checked>
@@ -94,26 +100,29 @@
                     </label>
                     <label class="checkbox-label">
                         <input type="checkbox" id="opt-move-unnamed" class="checkbox" checked>
-                        <span>Move Unnamed Articles</span>
+                        <span>Move Unnamed</span>
                     </label>
                     <label class="checkbox-label">
                         <input type="checkbox" id="opt-ocr" class="checkbox">
-                        <span>Use OCR (slow)</span>
+                        <span>Use OCR</span>
                     </label>
                     <label class="checkbox-label">
                         <input type="checkbox" id="opt-separate-ai" class="checkbox">
-                        <span>AI Named &rarr; Separate Folder</span>
+                        <span>AI &rarr; Separate</span>
                     </label>
                 </div>
             </div>
 
             <!-- Categorization -->
-            <div class="card stagger-item">
-                <h2 class="card-title">
-                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-                    Categorization
+            <div class="md:col-span-2">
+                <h2 class="text-sm font-semibold text-navy flex items-center gap-2 mb-3">
+                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    </svg>
+                    Categorize
                 </h2>
-                <div class="space-y-3">
+                <div class="grid grid-cols-1 gap-1.5 text-sm">
                     <label class="checkbox-label">
                         <input type="checkbox" id="cat-journal" class="checkbox">
                         <span>By Journal</span>
@@ -133,79 +142,142 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="stagger-item flex gap-3">
-                <button id="btn-start" onclick="startProcessing()" class="btn-primary flex-1 py-3 text-base">
-                    Start Processing
-                </button>
-                <button id="btn-stop" onclick="stopProcessing()" class="btn-danger flex-1 py-3 text-base" disabled>
-                    Stop
-                </button>
+            <!-- Action Buttons & Progress -->
+            <div class="md:col-span-3 flex flex-col justify-between">
+                <div class="space-y-3">
+                    <button id="btn-start" onclick="startProcessing()"
+                        class="btn-primary w-full py-2.5 text-sm font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Start Processing
+                    </button>
+                    <button id="btn-stop" onclick="stopProcessing()" class="btn-danger w-full py-2 text-sm" disabled>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+                        </svg>
+                        Stop
+                    </button>
+                </div>
+                <!-- Inline Progress -->
+                <div class="mt-3">
+                    <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                        <span>Progress</span>
+                        <span id="progress-text" class="font-mono">0%</span>
+                    </div>
+                    <div class="progress-bar-track h-2">
+                        <div id="progress-bar" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Right Column: Progress & Results -->
-        <div class="lg:col-span-2 space-y-6">
+        <!-- Unnamed Directory (collapsible/optional) -->
+        <div class="mt-4 pt-4 border-t border-gray-100">
+            <div class="flex items-center gap-3">
+                <label class="text-xs text-gray-500">Unnamed Directory (optional):</label>
+                <input type="text" id="unnamed-dir-input" class="input flex-1 text-xs py-1.5"
+                    placeholder="Auto-created if empty">
+                <button onclick="browseDirectory('unnamed-dir-input')"
+                    class="btn-secondary text-xs px-2 py-1">Browse</button>
+            </div>
+        </div>
+    </div>
 
-            <!-- Progress -->
-            <div class="card stagger-item">
-                <div class="flex items-center justify-between mb-3">
-                    <h2 class="card-title mb-0">Progress</h2>
-                    <span id="progress-text" class="text-sm font-mono text-gray-400">0%</span>
+    <!-- Progress Stats Bar (shown during/after processing) -->
+    <div id="progress-summary" class="card stagger-item hidden">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Processed:</span>
+                    <span id="stat-processed" class="text-lg font-bold text-navy">0</span>
                 </div>
-                <div class="progress-bar-track">
-                    <div id="progress-bar" class="progress-bar-fill" style="width: 0%"></div>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Renamed:</span>
+                    <span id="stat-renamed" class="text-lg font-bold text-success">0</span>
                 </div>
-                <div id="progress-summary" class="mt-3 flex gap-4 text-sm text-gray-500 hidden">
-                    <span>Processed: <strong id="stat-processed" class="text-navy">0</strong></span>
-                    <span>Renamed: <strong id="stat-renamed" class="text-success">0</strong></span>
-                    <span>Unnamed: <strong id="stat-problematic" class="text-danger">0</strong></span>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-500">Unnamed:</span>
+                    <span id="stat-problematic" class="text-lg font-bold text-danger">0</span>
                 </div>
             </div>
+            <!-- Quick Actions (visible after processing) -->
+            <div id="quick-actions" class="flex items-center gap-2 hidden">
+                <button onclick="openProcessedFolder()" class="btn-secondary text-sm py-1.5 px-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                    </svg>
+                    Open Folder
+                </button>
+                <button onclick="goToStatistics()" class="btn-primary text-sm py-1.5 px-3">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    Statistics
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <!-- File Status + Gemini AI Results -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 stagger-item">
-                <!-- File Status List -->
-                <div class="card">
-                    <div class="flex items-center justify-between mb-3">
-                        <h2 class="card-title mb-0">File Status</h2>
-                        <span id="file-count" class="text-xs font-mono text-gray-400">0 files</span>
-                    </div>
-                    <div id="file-list" class="file-list font-mono text-sm" style="max-height: 400px; overflow-y: auto;">
-                        <div class="text-gray-400 text-center py-8">No files processed yet.</div>
-                    </div>
-                </div>
+    <!-- RESULTS SECTION: File Status + Gemini AI (horizontal) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 stagger-item">
 
-                <!-- Gemini AI Results Panel -->
-                <div class="card" id="gemini-panel">
-                    <div class="flex items-center justify-between mb-3">
-                        <h2 class="card-title mb-0 flex items-center gap-2">
-                            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                            Gemini AI
-                        </h2>
-                        <div class="flex items-center gap-2">
-                            <span id="gemini-counter" class="text-xs font-mono text-gray-400">0 queries</span>
-                            <span id="gemini-status-badge" class="hidden px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Idle</span>
-                        </div>
-                    </div>
-                    <!-- Active query indicator -->
-                    <div id="gemini-active-query" class="hidden mb-3 flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-lg px-3 py-2">
-                        <svg class="w-4 h-4 text-indigo-500 animate-spin flex-shrink-0" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" opacity="0.3"></circle>
-                            <path d="M12 2a10 10 0 019.95 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
-                        </svg>
-                        <span class="text-xs text-indigo-700 truncate" id="gemini-active-filename">Querying...</span>
-                    </div>
-                    <!-- Results list -->
-                    <div id="gemini-results" class="space-y-2" style="max-height: 350px; overflow-y: auto;">
-                        <div class="text-gray-400 text-center py-8 text-sm" id="gemini-empty-state">
-                            <svg class="w-8 h-8 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                            Gemini AI results for PDFs<br>without DOI will appear here.
-                        </div>
-                    </div>
+        <!-- File Status List -->
+        <div class="card">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="card-title mb-0">File Status</h2>
+                <span id="file-count" class="text-xs font-mono text-gray-400">0 files</span>
+            </div>
+            <div id="file-list" class="file-list font-mono text-sm" style="max-height: 450px; overflow-y: auto;">
+                <div class="text-gray-400 text-center py-12">No files processed yet.</div>
+            </div>
+        </div>
+
+        <!-- Gemini AI Results Panel -->
+        <div class="card" id="gemini-panel">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="card-title mb-0 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    Gemini AI
+                </h2>
+                <div class="flex items-center gap-2">
+                    <span id="gemini-counter" class="text-xs font-mono text-gray-400">0 queries</span>
+                    <span id="gemini-status-badge"
+                        class="hidden px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Idle</span>
                 </div>
             </div>
-
+            <!-- Active query indicator -->
+            <div id="gemini-active-query"
+                class="hidden mb-3 flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-lg px-3 py-2">
+                <svg class="w-4 h-4 text-indigo-500 animate-spin flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" opacity="0.3"></circle>
+                    <path d="M12 2a10 10 0 019.95 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    </path>
+                </svg>
+                <span class="text-xs text-indigo-700 truncate" id="gemini-active-filename">Querying...</span>
+            </div>
+            <!-- Results list -->
+            <div id="gemini-results" class="space-y-2" style="max-height: 400px; overflow-y: auto;">
+                <div class="text-gray-400 text-center py-12 text-sm" id="gemini-empty-state">
+                    <svg class="w-10 h-10 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    Gemini AI results for PDFs<br>without DOI will appear here.
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -217,7 +289,9 @@
         <div class="flex items-center justify-between mb-4">
             <h3 class="font-display text-lg font-semibold text-navy">Browse Directory</h3>
             <button onclick="closeDirModal()" class="text-gray-400 hover:text-navy">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
         </div>
         <!-- Quick Access Shortcuts -->
@@ -236,6 +310,7 @@
         </div>
     </div>
 </div>
+
 <!-- Processing Complete Modal -->
 <div id="completion-modal" class="modal hidden">
     <div class="modal-backdrop" onclick="closeCompletionModal()"></div>
@@ -244,7 +319,7 @@
         <div class="text-center mb-6">
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50 mb-4">
                 <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
             </div>
             <h3 class="font-display text-xl font-semibold text-navy">Processing Complete</h3>
@@ -274,7 +349,8 @@
                 <span id="cm-success-rate" class="font-mono font-semibold text-navy">0%</span>
             </div>
             <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                <div id="cm-rate-bar" class="h-full bg-green-500 rounded-full transition-all duration-700" style="width: 0%"></div>
+                <div id="cm-rate-bar" class="h-full bg-green-500 rounded-full transition-all duration-700"
+                    style="width: 0%"></div>
             </div>
         </div>
 
@@ -288,13 +364,15 @@
         <div class="flex gap-3">
             <button onclick="openProcessedFolder()" class="btn-secondary flex-1 py-2.5">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
                 </svg>
                 Open Folder
             </button>
             <button onclick="goToStatistics()" class="btn-primary flex-1 py-2.5">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
                 View Statistics
             </button>
@@ -302,7 +380,8 @@
 
         <!-- Close link -->
         <div class="text-center mt-3">
-            <button onclick="closeCompletionModal()" class="text-xs text-gray-400 hover:text-navy transition-colors">Dismiss</button>
+            <button onclick="closeCompletionModal()"
+                class="text-xs text-gray-400 hover:text-navy transition-colors">Dismiss</button>
         </div>
     </div>
 </div>
@@ -311,7 +390,7 @@
 {% block scripts %}
 <script>
     // Initialize processing page
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         initProcessingPage();
     });
 </script>

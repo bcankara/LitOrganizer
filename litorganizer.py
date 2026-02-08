@@ -14,7 +14,7 @@ from pathlib import Path
 from modules.core.pdf_renamer import PDFProcessor
 from modules.utils.logging_config import setup_logger
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 
 
 def process_command_line():
@@ -107,7 +107,7 @@ def main():
                 create_references=args.create_references,
                 create_backups=not args.no_backups,
                 move_problematic=True,  # Always move problematic files
-                auto_analyze=False,  # Artık False olarak sabitlendi - Sadece DOI kullanılıyor
+                auto_analyze=False,  # Fixed to False - DOI only mode
                 logger=logger
             )
             

@@ -202,11 +202,20 @@ function nativeBrowse(inputId) {
         .then(data => {
             if (data.success && data.path) {
                 setSelectedPath(inputId, data.path);
+            } else if (data.cancelled) {
+                // User cancelled - do nothing, just close silently
+                console.log('Folder selection cancelled by user');
+            } else if (data.fallback) {
+                // Real error (tool not found, etc.) - switch to manual modal
+                appendLog(data.message || 'Opening manual folder browser...');
+                browseDirectory(inputId);
             }
+            // else: just no selection, do nothing
         })
         .catch(err => {
             console.error('Native browse error:', err);
-            appendLog('Could not open folder picker. Use manual browse instead.');
+            appendLog('Could not open folder picker. Opening manual browser...');
+            browseDirectory(inputId);  // Fallback to manual on network/system error
         })
         .finally(() => {
             if (btn) {
@@ -466,9 +475,9 @@ function loadExistingProcessState() {
                 return;
             }
 
-            const hasData = (data.file_statuses && data.file_statuses.length > 0) 
-                            || data.processing 
-                            || data.last_completed_stats;
+            const hasData = (data.file_statuses && data.file_statuses.length > 0)
+                || data.processing
+                || data.last_completed_stats;
 
             // Show overlay only if there's data to restore
             if (hasData && overlay) {
@@ -600,6 +609,10 @@ function showCompletionModal(data) {
         rateBar.className = 'h-full rounded-full transition-all duration-700 ' +
             (successRate >= 70 ? 'bg-green-500' : successRate >= 40 ? 'bg-yellow-500' : 'bg-red-500');
     }
+
+    // Show quick-actions bar on main page
+    const quickActions = document.getElementById('quick-actions');
+    if (quickActions) quickActions.classList.remove('hidden');
 
     modal.classList.remove('hidden');
 }
@@ -1199,7 +1212,7 @@ function resetGeminiPanel() {
     if (counter) counter.textContent = '0 queries';
     if (badge) { badge.classList.add('hidden'); }
     if (activeQuery) activeQuery.classList.add('hidden');
-    
+
     // Re-add empty state
     if (results && emptyState) {
         // Clone won't work if removed, recreate
@@ -1295,7 +1308,7 @@ function escapeHtml(text) {
 }
 
 // Socket listener for Gemini status events
-socket.on('gemini_status', function(data) {
+socket.on('gemini_status', function (data) {
     const panel = document.getElementById('gemini-panel');
     if (!panel) return;
 

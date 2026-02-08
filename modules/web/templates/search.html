@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}LitOrganizer — Keyword Search{% endblock %}
+{% block title %}LitOrganizer — Term Search{% endblock %}
 
 {% block content %}
 <div class="space-y-8 animate-stagger">
@@ -7,11 +7,16 @@
     <!-- Page Header -->
     <header class="stagger-item flex items-center justify-between">
         <div>
-            <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">Keyword Search</h1>
-            <p class="text-gray-500 mt-1">Search for keywords across your PDF collection with context and export capabilities.</p>
+            <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">Term Search</h1>
+            <p class="text-gray-500 mt-1">Search for keywords across your PDF collection with context and export
+                capabilities.</p>
         </div>
-        <a href="/guide#search" class="text-xs text-accent hover:text-accent-hover flex items-center gap-1 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <a href="/guide#search"
+            class="text-xs text-accent hover:text-accent-hover flex items-center gap-1 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             Usage Guide
         </a>
     </header>
@@ -36,24 +41,33 @@
                         <!-- Select Folder Button (primary - native OS picker) -->
                         <button onclick="nativeBrowse('search-dir-input')" class="folder-select-btn w-full">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                             </svg>
                             Select PDF Folder
                         </button>
                         <!-- Alternative: manual browse -->
                         <div class="text-center mt-1">
-                            <button onclick="browseDirectory('search-dir-input')" class="text-xs text-gray-400 hover:text-accent transition-colors">
+                            <button onclick="browseDirectory('search-dir-input')"
+                                class="text-xs text-gray-400 hover:text-accent transition-colors">
                                 or browse manually
                             </button>
                         </div>
                         <!-- Selected path display -->
                         <div id="search-selected-path-display" class="selected-path-display hidden mt-2">
-                            <svg class="w-3.5 h-3.5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            <svg class="w-3.5 h-3.5 text-success flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
                             </svg>
-                            <span id="search-selected-path-text" class="text-xs font-mono text-navy truncate flex-1"></span>
-                            <button onclick="clearSelectedPath('search-dir-input')" class="text-gray-400 hover:text-danger ml-auto flex-shrink-0">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <span id="search-selected-path-text"
+                                class="text-xs font-mono text-navy truncate flex-1"></span>
+                            <button onclick="clearSelectedPath('search-dir-input')"
+                                class="text-gray-400 hover:text-danger ml-auto flex-shrink-0">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </button>
                         </div>
                         <input type="hidden" id="search-dir-input" value="">
@@ -153,7 +167,8 @@
                         </thead>
                         <tbody id="search-results-body">
                             <tr id="search-empty-row">
-                                <td colspan="3" class="text-center text-gray-400 py-8">No results yet. Start a search to find matches.</td>
+                                <td colspan="3" class="text-center text-gray-400 py-8">No results yet. Start a search to
+                                    find matches.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -199,7 +214,7 @@
         <div class="text-center mb-5">
             <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-50 mb-3">
                 <svg class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
             </div>
             <h3 class="font-display text-xl font-semibold text-navy">Search Complete</h3>
@@ -230,12 +245,20 @@
                     <input type="text" id="export-filename" class="input text-sm" placeholder="search_results">
                 </div>
                 <div class="flex gap-3">
-                    <button id="btn-export-xlsx" onclick="exportResults('xlsx')" class="btn-secondary flex-1 py-2.5" disabled>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <button id="btn-export-xlsx" onclick="exportResults('xlsx')" class="btn-secondary flex-1 py-2.5"
+                        disabled>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                         Export Excel
                     </button>
-                    <button id="btn-export-docx" onclick="exportResults('docx')" class="btn-secondary flex-1 py-2.5" disabled>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    <button id="btn-export-docx" onclick="exportResults('docx')" class="btn-secondary flex-1 py-2.5"
+                        disabled>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
                         Export Word
                     </button>
                 </div>
@@ -243,7 +266,8 @@
         </div>
 
         <div class="text-center mt-4">
-            <button onclick="closeSearchCompleteModal()" class="text-xs text-gray-400 hover:text-navy transition-colors">Dismiss</button>
+            <button onclick="closeSearchCompleteModal()"
+                class="text-xs text-gray-400 hover:text-navy transition-colors">Dismiss</button>
         </div>
     </div>
 </div>
@@ -255,15 +279,18 @@
         <div class="text-center mb-4">
             <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-yellow-50 mb-3">
                 <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
             </div>
             <h3 class="font-display text-lg font-semibold text-navy">Start New Search?</h3>
-            <p class="text-sm text-gray-500 mt-2">Previous search results will be cleared. This action cannot be undone.</p>
+            <p class="text-sm text-gray-500 mt-2">Previous search results will be cleared. This action cannot be undone.
+            </p>
         </div>
         <div class="flex gap-3">
             <button onclick="closeConfirmSearchModal()" class="btn-secondary flex-1 py-2.5">Cancel</button>
-            <button onclick="confirmNewSearch()" class="btn-primary flex-1 py-2.5 bg-yellow-500 hover:bg-yellow-600">Continue</button>
+            <button onclick="confirmNewSearch()"
+                class="btn-primary flex-1 py-2.5 bg-yellow-500 hover:bg-yellow-600">Continue</button>
         </div>
     </div>
 </div>

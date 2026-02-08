@@ -174,32 +174,93 @@ def create_app() -> tuple:
     
     @app.route('/api/native_browse', methods=['POST'])
     def native_browse():
-        """Open native OS folder picker dialog via tkinter."""
+        """Open native OS folder picker dialog - cross-platform."""
         import platform as _platform
-        result = {'path': ''}
-
-        def pick_folder():
-            try:
-                import tkinter as tk
-                from tkinter import filedialog
-                root = tk.Tk()
-                root.withdraw()
-                if _platform.system() == 'Windows':
-                    root.wm_attributes('-topmost', 1)
-                folder = filedialog.askdirectory(title="Select PDF Directory")
-                root.destroy()
-                result['path'] = folder or ''
-            except Exception as e:
-                logging.error(f"Native browse error: {e}")
-                result['path'] = ''
-
-        t = threading.Thread(target=pick_folder)
-        t.start()
-        t.join(timeout=120)
-
+        import subprocess
+        import shutil
+        
+        result = {'path': '', 'error': '', 'cancelled': False, 'needs_fallback': False}
+        system = _platform.system()
+        
+        try:
+            if system == 'Darwin':  # macOS
+                # AppleScript with native Finder dialog
+                proc = subprocess.run([
+                    'osascript', '-e',
+                    'POSIX path of (choose folder with prompt "Select PDF Directory")'
+                ], capture_output=True, text=True, timeout=120)
+                if proc.returncode == 0:
+                    result['path'] = proc.stdout.strip()
+                else:
+                    result['cancelled'] = True  # User cancelled
+                    
+            elif system == 'Linux':
+                # zenity (GNOME) or kdialog (KDE)
+                if shutil.which('zenity'):
+                    proc = subprocess.run([
+                        'zenity', '--file-selection', '--directory',
+                        '--title=Select PDF Directory'
+                    ], capture_output=True, text=True, timeout=120)
+                    if proc.returncode == 0:
+                        result['path'] = proc.stdout.strip()
+                    else:
+                        result['cancelled'] = True
+                elif shutil.which('kdialog'):
+                    proc = subprocess.run([
+                        'kdialog', '--getexistingdirectory', '.',
+                        '--title', 'Select PDF Directory'
+                    ], capture_output=True, text=True, timeout=120)
+                    if proc.returncode == 0:
+                        result['path'] = proc.stdout.strip()
+                    else:
+                        result['cancelled'] = True
+                else:
+                    result['error'] = 'No dialog tool found (install zenity or kdialog)'
+                    result['needs_fallback'] = True  # Real error - offer fallback
+                    
+            else:  # Windows
+                def pick_folder():
+                    try:
+                        import tkinter as tk
+                        from tkinter import filedialog
+                        root = tk.Tk()
+                        root.withdraw()
+                        root.wm_attributes('-topmost', 1)
+                        folder = filedialog.askdirectory(title="Select PDF Directory")
+                        root.destroy()
+                        if folder:
+                            result['path'] = folder
+                        else:
+                            result['cancelled'] = True
+                    except Exception as e:
+                        result['error'] = str(e)
+                        result['needs_fallback'] = True
+                
+                t = threading.Thread(target=pick_folder)
+                t.start()
+                t.join(timeout=120)
+                
+        except subprocess.TimeoutExpired:
+            result['error'] = 'Dialog timed out'
+            result['needs_fallback'] = True
+        except Exception as e:
+            logging.error(f"Native browse error: {e}")
+            result['error'] = str(e)
+            result['needs_fallback'] = True
+        
         if result['path']:
             return jsonify({'success': True, 'path': result['path']})
-        return jsonify({'success': False, 'message': 'No folder selected'})
+        
+        # User cancelled - no fallback, just close
+        if result['cancelled']:
+            return jsonify({'success': False, 'cancelled': True})
+        
+        # Real error - offer fallback to manual browser
+        return jsonify({
+            'success': False, 
+            'message': result['error'] or 'No folder selected',
+            'fallback': result['needs_fallback']
+        })
 
     @app.route('/api/quick_paths')
     def quick_paths():
