@@ -23,67 +23,31 @@
 
 <div align="center">
 
-[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.softx.2025.102198-blue?style=for-the-badge&logo=doi&logoColor=white)](https://doi.org/10.1016/j.softx.2025.102198)
-[![Journal](https://img.shields.io/badge/SoftwareX-Elsevier-orange?style=for-the-badge&logo=elsevier&logoColor=white)](https://www.sciencedirect.com/journal/softwarex)
-[![Indexed](https://img.shields.io/badge/Indexed-SCI--E-green?style=for-the-badge)](https://mjl.clarivate.com/)
+[![DOI](https://img.shields.io/badge/DOI-10.1016/j.softx.2025.102198-blue?style=flat-square&logo=doi&logoColor=white)](https://doi.org/10.1016/j.softx.2025.102198)
+[![SoftwareX](https://img.shields.io/badge/SoftwareX-Elsevier-orange?style=flat-square)](https://www.sciencedirect.com/journal/softwarex)
+[![SCI-E](https://img.shields.io/badge/Indexed-SCI--E-success?style=flat-square)](https://mjl.clarivate.com/)
 
 </div>
 
-<br>
-
-If you use **LitOrganizer** in your research, please cite our paper:
-
-<table>
-<tr>
-<td>
-
-### 📄 APA 7th Edition
+If you use **LitOrganizer** in your research, please cite:
 
 > Şahin, A., Kara, B. C., & Dirsehan, T. (2025). LitOrganizer: Automating the process of data extraction and organization for scientific literature reviews. *SoftwareX*, *30*, 102198. https://doi.org/10.1016/j.softx.2025.102198
 
-</td>
-</tr>
-</table>
-
 <details>
-<summary><b>📋 BibTeX</b> (click to expand)</summary>
+<summary><strong>BibTeX</strong></summary>
 
 ```bibtex
 @article{sahin2025litorganizer,
-  title     = {LitOrganizer: Automating the process of data extraction and 
-               organization for scientific literature reviews},
+  title     = {LitOrganizer: Automating the process of data extraction and organization for scientific literature reviews},
   author    = {Şahin, Alperen and Kara, Burak Can and Dirsehan, Taşkın},
   journal   = {SoftwareX},
   volume    = {30},
   pages     = {102198},
   year      = {2025},
   publisher = {Elsevier},
-  doi       = {10.1016/j.softx.2025.102198},
-  url       = {https://doi.org/10.1016/j.softx.2025.102198}
+  doi       = {10.1016/j.softx.2025.102198}
 }
 ```
-
-</details>
-
-<details>
-<summary><b>📋 RIS</b> (click to expand)</summary>
-
-```ris
-TY  - JOUR
-T1  - LitOrganizer: Automating the process of data extraction and organization for scientific literature reviews
-AU  - Şahin, Alperen
-AU  - Kara, Burak Can
-AU  - Dirsehan, Taşkın
-JO  - SoftwareX
-VL  - 30
-SP  - 102198
-PY  - 2025
-PB  - Elsevier
-DO  - 10.1016/j.softx.2025.102198
-UR  - https://doi.org/10.1016/j.softx.2025.102198
-ER  - 
-```
-
 </details>
 
 ---
@@ -147,6 +111,20 @@ your_pdf_folder/
   Unnamed Article/        # No naming method succeeded
   backups/                # Original file backups (if enabled)
 ```
+
+---
+
+## 📖 Documentation
+
+For detailed usage instructions, see the **[User Guide](documents/GUIDE.md)** which covers:
+
+- Naming pipeline and confidence levels
+- Gemini AI setup and configuration
+- Keyword search with regex examples
+- Output folder structure
+- API reference and configuration
+
+> 💡 **In-App Guide**: After launching LitOrganizer, click **Guide** in the navigation menu for an interactive documentation page.
 
 ---
 
