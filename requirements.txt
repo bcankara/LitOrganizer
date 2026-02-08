@@ -1,8 +1,9 @@
 # LitOrganizer Dependencies
 # Core requirements for PDF processing and metadata extraction
 
-# GUI
-PyQt5         # For the graphical user interface
+# Web UI
+Flask                 # Web framework for the local web interface
+flask-socketio        # WebSocket support for real-time progress updates
 
 # PDF Processing
 PyMuPDF==1.23.9       # Fast PDF text extraction (fitz)

@@ -45,7 +45,8 @@ def load_api_config() -> Dict[str, Any]:
         "europepmc": {"enabled": True},
         "scopus": {"api_key": "", "enabled": False},
         "semantic_scholar": {"api_key": "", "enabled": True},
-        "unpaywall": {"email": "", "enabled": False}
+        "unpaywall": {"email": "", "enabled": False},
+        "gemini": {"api_key": "", "enabled": False}
     }
     
     if config_path.exists():
@@ -178,6 +179,254 @@ def extract_doi_with_ocr(pdf_path: Union[str, Path], doi_patterns: List[str]) ->
     
     except Exception as e:
         logger.error(f"Error performing OCR: {e}")
+        return None
+
+
+def extract_metadata_with_gemini(pdf_path: Union[str, Path], api_key: str) -> Optional[Dict[str, Any]]:
+    """
+    Extract metadata from a PDF using Google Gemini Flash API.
+    Sends the text of the first 2 pages to Gemini and asks for structured
+    title, authors, and year extraction.
+
+    Args:
+        pdf_path (Union[str, Path]): Path to the PDF file
+        api_key (str): Google Gemini API key
+
+    Returns:
+        Optional[Dict[str, Any]]: Metadata dict or None on failure
+    """
+    import time
+
+    logger = logging.getLogger('litorganizer.parsers')
+
+    if not api_key:
+        logger.debug("[GEMINI] No API key provided, skipping.")
+        return None
+
+    logger.info(f"[GEMINI] Extracting metadata from {Path(pdf_path).name}...")
+
+    # Step 1: Extract text from first 2 pages
+    text = ""
+    try:
+        with pdfplumber.open(str(pdf_path)) as pdf:
+            for i, page in enumerate(pdf.pages[:2]):
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + "\n"
+    except Exception as e:
+        logger.error(f"[GEMINI] Error reading PDF {pdf_path}: {e}")
+        return None
+
+    if not text or len(text.strip()) < 50:
+        logger.info(f"[GEMINI] Insufficient text extracted from {Path(pdf_path).name}")
+        return None
+
+    # Truncate to avoid token limits (first ~4000 chars is enough for metadata)
+    text = text[:4000]
+
+    # Step 2: Call Gemini API
+    prompt = (
+        "You are an academic metadata extraction assistant. "
+        "Extract the following information from this scientific paper text and return ONLY a JSON object:\n"
+        "- title: the full title of the paper\n"
+        "- authors: an array of author last names (family names only)\n"
+        "- year: the publication year as a string\n\n"
+        "Return ONLY valid JSON, no explanation, no markdown. Example:\n"
+        '{"title": "Example Title", "authors": ["Smith", "Jones"], "year": "2024"}\n\n'
+        "Paper text:\n" + text
+    )
+
+    try:
+        time.sleep(0.3)  # Rate limiting
+
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+        payload = {
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "temperature": 0.1,
+                "maxOutputTokens": 512,
+            }
+        }
+        headers = {"Content-Type": "application/json"}
+
+        response = requests.post(url, json=payload, headers=headers, timeout=30)
+
+        if response.status_code != 200:
+            logger.warning(f"[GEMINI] API returned status {response.status_code}: {response.text[:200]}")
+            return None
+
+        data = response.json()
+
+        # Parse Gemini response
+        candidates = data.get("candidates", [])
+        if not candidates:
+            logger.warning("[GEMINI] No candidates in response.")
+            return None
+
+        response_text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+
+        if not response_text:
+            logger.warning("[GEMINI] Empty response text.")
+            return None
+
+        # Clean response text (remove markdown code fences if present)
+        cleaned = response_text.strip()
+        if cleaned.startswith("```"):
+            # Remove ```json ... ``` wrapper
+            lines = cleaned.split("\n")
+            lines = [l for l in lines if not l.strip().startswith("```")]
+            cleaned = "\n".join(lines).strip()
+
+        # Parse JSON
+        result = json.loads(cleaned)
+
+        title = result.get("title", "")
+        authors = result.get("authors", [])
+        year = result.get("year", "")
+
+        if not title:
+            logger.info("[GEMINI] No title in Gemini response.")
+            return None
+
+        # Build standard metadata dict
+        metadata = {
+            "title": title,
+            "authors": authors if isinstance(authors, list) else [],
+            "year": str(year) if year else "",
+            "journal": "",
+            "category": "",
+            "source": "gemini_ai",
+        }
+
+        logger.info(f"[GEMINI] Extracted: title='{title[:60]}...', authors={authors}, year={year}")
+        return metadata
+
+    except json.JSONDecodeError as e:
+        logger.warning(f"[GEMINI] Failed to parse JSON response: {e}")
+        return None
+    except requests.exceptions.RequestException as e:
+        logger.error(f"[GEMINI] API request error: {e}")
+        return None
+    except Exception as e:
+        logger.error(f"[GEMINI] Unexpected error: {e}", exc_info=True)
+        return None
+
+
+def search_crossref_by_title(title: str, authors: Optional[List[str]] = None, year: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """
+    Search Crossref API by title (query.bibliographic) and validate result
+    using string similarity. Used as a DOI fallback when direct DOI extraction fails.
+
+    Args:
+        title (str): Title extracted from PDF content
+        authors (Optional[List[str]]): Author names for additional filtering
+        year (Optional[str]): Publication year for additional filtering
+
+    Returns:
+        Optional[Dict[str, Any]]: Metadata dict with source='crossref_title_search' or None
+    """
+    import time
+    from difflib import SequenceMatcher
+
+    logger = logging.getLogger('litorganizer.parsers')
+
+    if not title or len(title.strip()) < 10:
+        logger.debug("Title too short for Crossref title search, skipping.")
+        return None
+
+    logger.info(f"[DOI FALLBACK] Searching Crossref by title: {title[:80]}...")
+
+    try:
+        # Rate limiting
+        time.sleep(0.5)
+
+        # Build query
+        query = title.strip()
+        if authors:
+            query += " " + " ".join(authors[:2])
+
+        url = "https://api.crossref.org/works"
+        params = {
+            "query.bibliographic": query,
+            "rows": 3,
+        }
+        headers = {
+            "User-Agent": "LitOrganizer/1.0 (mailto:user@example.com)",
+            "Accept": "application/json"
+        }
+
+        response = requests.get(url, headers=headers, params=params, timeout=15)
+        if response.status_code != 200:
+            logger.warning(f"Crossref title search failed, status: {response.status_code}")
+            return None
+
+        data = response.json()
+        items = data.get("message", {}).get("items", [])
+        if not items:
+            logger.info("[DOI FALLBACK] No results from Crossref title search.")
+            return None
+
+        # Compare titles for best match
+        best_match = None
+        best_ratio = 0.0
+        title_lower = title.strip().lower()
+
+        for item in items:
+            item_titles = item.get("title", [])
+            if not item_titles:
+                continue
+            item_title = item_titles[0].lower()
+            ratio = SequenceMatcher(None, title_lower, item_title).ratio()
+
+            if ratio > best_ratio:
+                best_ratio = ratio
+                best_match = item
+
+        if best_ratio < 0.80 or not best_match:
+            logger.info(f"[DOI FALLBACK] Best match similarity {best_ratio:.2f} < 0.80, rejecting.")
+            return None
+
+        logger.info(f"[DOI FALLBACK] Crossref title match found! Similarity: {best_ratio:.2f}")
+
+        # Build metadata from best match
+        metadata = {
+            "doi": best_match.get("DOI", ""),
+            "title": best_match.get("title", [""])[0],
+            "authors": [],
+            "year": "",
+            "journal": "",
+            "category": "",
+            "source": "crossref_title_search",
+            "match_similarity": round(best_ratio, 3),
+        }
+
+        # Authors
+        if "author" in best_match:
+            for author in best_match["author"]:
+                if "family" in author:
+                    metadata["authors"].append(author["family"])
+
+        # Year
+        date_fields = ["published-print", "published-online", "created"]
+        for field in date_fields:
+            if field in best_match and "date-parts" in best_match[field]:
+                date_parts = best_match[field]["date-parts"]
+                if date_parts and date_parts[0] and date_parts[0][0]:
+                    metadata["year"] = str(date_parts[0][0])
+                    break
+
+        # Journal
+        if "container-title" in best_match and best_match["container-title"]:
+            metadata["journal"] = best_match["container-title"][0]
+
+        # Category
+        if "subject" in best_match and best_match["subject"]:
+            metadata["category"] = best_match["subject"][0]
+
+        return metadata
+
+    except Exception as e:
+        logger.error(f"[DOI FALLBACK] Crossref title search error: {e}")
         return None
 
 
@@ -458,7 +707,7 @@ def get_metadata_from_datacite(doi: str) -> Optional[Dict[str, Any]]:
             if "titles" in attributes and attributes["titles"] and "title" in attributes["titles"][0]:
                 metadata["title"] = attributes["titles"][0]["title"]
             
-            # Authors - sadece soyadları alıyoruz
+            # Authors - extract last names only
             if "creators" in attributes:
                 authors = []
                 for creator in attributes["creators"]:
@@ -545,7 +794,7 @@ def get_metadata_from_europepmc(doi: str) -> Optional[Dict[str, Any]]:
             if "title" in result:
                 metadata["title"] = result["title"]
             
-            # Authors - sadece soyadları alıyoruz
+            # Authors - extract last names only
             if "authorList" in result and "author" in result["authorList"]:
                 authors = []
                 for author in result["authorList"]["author"]:
@@ -646,7 +895,7 @@ def get_metadata_from_scopus(doi: str) -> Optional[Dict[str, Any]]:
             if "coredata" in abstract_data and "dc:title" in abstract_data["coredata"]:
                 metadata["title"] = abstract_data["coredata"]["dc:title"]
             
-            # Authors - sadece soyadları alıyoruz
+            # Authors - extract last names only
             if "authors" in abstract_data and "author" in abstract_data["authors"]:
                 authors = []
                 for author in abstract_data["authors"]["author"]:
@@ -750,12 +999,12 @@ def get_metadata_from_semantic_scholar(doi: str) -> Optional[Dict[str, Any]]:
             if "title" in data:
                 metadata["title"] = data["title"]
             
-            # Authors - sadece soyadları alıyoruz
+            # Authors - extract last names only
             if "authors" in data:
                 authors = []
                 for author in data["authors"]:
                     if "name" in author:
-                        # Soyadını çıkarmak için son kelimeyi al
+                        # Get last word as family name
                         author_name = author["name"]
                         last_name = author_name.split()[-1]
                         authors.append(last_name)
@@ -886,13 +1135,13 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
     # Try each API in sequence based on configuration
     config = load_api_config()
     
-    # ÖNCELİK: OpenAlex (en zengin kategori bilgisi için)
+    # PRIORITY: OpenAlex (richest category data)
     if config.get("openalex", {}).get("enabled", True):
         metadata = get_metadata_from_openalex(doi)
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from OpenAlex for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"OpenAlex metadata: journal='{metadata.get('journal')}', "
                          f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -904,13 +1153,13 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
                 logger.warning("No category information found in OpenAlex metadata")
                 return metadata
     
-    # Diğer API'ler
+    # Other APIs
     if config.get("crossref", {}).get("enabled", True):
         metadata = get_metadata_from_crossref(doi)
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from Crossref for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"Crossref metadata: journal='{metadata.get('journal')}', "
                          f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             return metadata
@@ -920,7 +1169,7 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from DataCite for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"DataCite metadata: journal='{metadata.get('journal')}', "
                           f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -931,7 +1180,7 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from Europe PMC for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"Europe PMC metadata: journal='{metadata.get('journal')}', "
                           f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -943,7 +1192,7 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from Semantic Scholar for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"Semantic Scholar metadata: journal='{metadata.get('journal')}', "
                           f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -954,7 +1203,7 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from Scopus for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"Scopus metadata: journal='{metadata.get('journal')}', "
                           f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -965,7 +1214,7 @@ def get_metadata_from_multiple_sources(doi: str) -> Optional[Dict[str, Any]]:
         if metadata and metadata.get("title"):
             logger.info(f"Retrieved metadata from Unpaywall for DOI: {doi}")
             
-            # Verileri detaylı logla
+            # Log data in detail
             logger.debug(f"Unpaywall metadata: journal='{metadata.get('journal')}', "
                           f"category='{metadata.get('category')}', year='{metadata.get('year')}'")
             
@@ -1982,12 +2231,12 @@ def has_sufficient_metadata(metadata: Dict[str, Any]) -> bool:
     if not metadata:
         return False
     
-    # Gerekli alanları kontrol et
+    # Check required fields
     has_title = bool(metadata.get('title'))
     has_authors = metadata.get('authors') and len(metadata['authors']) > 0
     has_year = bool(metadata.get('year'))
     
-    # En azından başlık ve ya yazarlar ya da yıl olmalı
+    # At minimum, title and either authors or year must exist
     if has_title and (has_authors or has_year):
         return True
     

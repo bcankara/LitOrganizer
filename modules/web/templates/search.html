@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+{% block title %}LitOrganizer — Keyword Search{% endblock %}
+
+{% block content %}
+<div class="space-y-8 animate-stagger">
+
+    <!-- Page Header -->
+    <header class="stagger-item flex items-center justify-between">
+        <div>
+            <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">Keyword Search</h1>
+            <p class="text-gray-500 mt-1">Search for keywords across your PDF collection with context and export capabilities.</p>
+        </div>
+        <a href="/guide#search" class="text-xs text-accent hover:text-accent-hover flex items-center gap-1 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Usage Guide
+        </a>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Left Column: Search Settings -->
+        <div class="lg:col-span-1 space-y-6">
+
+            <!-- Directory & Keyword -->
+            <div class="card stagger-item">
+                <h2 class="card-title">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Search Parameters
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="label">PDF Directory</label>
+                        <!-- Select Folder Button (primary - native OS picker) -->
+                        <button onclick="nativeBrowse('search-dir-input')" class="folder-select-btn w-full">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                            </svg>
+                            Select PDF Folder
+                        </button>
+                        <!-- Alternative: manual browse -->
+                        <div class="text-center mt-1">
+                            <button onclick="browseDirectory('search-dir-input')" class="text-xs text-gray-400 hover:text-accent transition-colors">
+                                or browse manually
+                            </button>
+                        </div>
+                        <!-- Selected path display -->
+                        <div id="search-selected-path-display" class="selected-path-display hidden mt-2">
+                            <svg class="w-3.5 h-3.5 text-success flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span id="search-selected-path-text" class="text-xs font-mono text-navy truncate flex-1"></span>
+                            <button onclick="clearSelectedPath('search-dir-input')" class="text-gray-400 hover:text-danger ml-auto flex-shrink-0">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+                        <input type="hidden" id="search-dir-input" value="">
+                    </div>
+                    <div>
+                        <label class="label">Keyword</label>
+                        <input type="text" id="search-keyword" class="input" placeholder="Enter keyword to search...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Options -->
+            <div class="card stagger-item">
+                <h2 class="card-title">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    Search Options
+                </h2>
+                <div class="space-y-3">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="search-exact" class="checkbox">
+                        <span>Exact Match</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="search-case" class="checkbox">
+                        <span>Case Sensitive</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="search-regex" class="checkbox">
+                        <span>Regular Expression</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="stagger-item flex gap-3">
+                <button id="btn-search-start" onclick="startSearch()"
+                    class="btn-primary flex-1 py-3 text-base bg-success hover:bg-success-hover">
+                    Start Search
+                </button>
+                <button id="btn-search-stop" onclick="stopSearch()" class="btn-danger flex-1 py-3 text-base" disabled>
+                    Stop
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Results -->
+        <div class="lg:col-span-2 space-y-6">
+
+            <!-- Search Progress -->
+            <div class="card stagger-item">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-3">
+                        <h2 class="card-title mb-0">Search Progress</h2>
+                        <!-- Spinner (hidden by default) -->
+                        <div id="search-spinner" class="hidden">
+                            <svg class="animate-spin w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </div>
+                        <!-- Elapsed Time -->
+                        <span id="search-elapsed" class="text-xs font-mono text-gray-400 hidden"></span>
+                    </div>
+                    <span id="search-progress-text" class="text-sm font-mono text-gray-400">0%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div id="search-progress-bar" class="progress-bar-fill bg-success" style="width: 0%"></div>
+                </div>
+                <div id="search-summary" class="mt-3 text-sm text-gray-500 hidden">
+                    <span>Found: <strong id="search-found" class="text-success">0</strong> matches in <strong
+                            id="search-processed" class="text-navy">0</strong> files</span>
+                </div>
+            </div>
+
+            <!-- Results Table (simplified) -->
+            <div class="card stagger-item">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="card-title mb-0">Results</h2>
+                    <button onclick="clearSearchResults()"
+                        class="text-xs text-gray-400 hover:text-navy transition-colors">Clear</button>
+                </div>
+                <div class="overflow-x-auto max-h-[450px] overflow-y-auto border border-gray-100 rounded-lg">
+                    <table id="search-results-table" class="results-table w-full">
+                        <thead class="sticky top-0 bg-white z-10">
+                            <tr>
+                                <th>PDF File</th>
+                                <th class="w-12 text-center">Pg</th>
+                                <th>Matched Context</th>
+                            </tr>
+                        </thead>
+                        <tbody id="search-results-body">
+                            <tr id="search-empty-row">
+                                <td colspan="3" class="text-center text-gray-400 py-8">No results yet. Start a search to find matches.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Directory Browser Modal (reuse same structure) -->
+<div id="dir-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeDirModal()"></div>
+    <div class="modal-content">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="font-display text-lg font-semibold text-navy">Browse Directory</h3>
+            <button onclick="closeDirModal()" class="text-gray-400 hover:text-navy">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <!-- Quick Access Shortcuts -->
+        <div id="quick-access-bar" class="quick-access-bar mb-3"></div>
+        <div class="flex gap-2 mb-3">
+            <input type="text" id="modal-path-input" class="input flex-1 text-sm" placeholder="Enter path...">
+            <button onclick="navigateToPath()" class="btn-secondary text-sm px-3">Go</button>
+            <button onclick="navigateUp()" class="btn-secondary text-sm px-3">Up</button>
+        </div>
+        <div id="dir-listing" class="max-h-80 overflow-y-auto border border-gray-200 rounded-lg">
+            <div class="text-gray-400 text-center py-8 text-sm">Loading...</div>
+        </div>
+        <div class="flex justify-end gap-2 mt-4">
+            <button onclick="closeDirModal()" class="btn-secondary">Cancel</button>
+            <button onclick="selectDirectory()" class="btn-primary">Select This Directory</button>
+        </div>
+    </div>
+</div>
+<!-- Search Complete & Export Modal -->
+<div id="search-complete-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeSearchCompleteModal()"></div>
+    <div class="modal-content max-w-lg">
+        <div class="text-center mb-5">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-50 mb-3">
+                <svg class="w-7 h-7 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-navy">Search Complete</h3>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="bg-green-50 rounded-lg p-3 text-center">
+                <div id="scm-matches" class="text-2xl font-display font-bold text-green-700">0</div>
+                <div class="text-xs text-green-500 font-medium mt-0.5">Matches</div>
+            </div>
+            <div class="bg-blue-50 rounded-lg p-3 text-center">
+                <div id="scm-files" class="text-2xl font-display font-bold text-blue-700">0</div>
+                <div class="text-xs text-blue-500 font-medium mt-0.5">Files Searched</div>
+            </div>
+            <div class="bg-purple-50 rounded-lg p-3 text-center">
+                <div id="scm-time" class="text-lg font-display font-bold text-purple-700">0s</div>
+                <div class="text-xs text-purple-500 font-medium mt-0.5">Duration</div>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="border-t border-gray-100 pt-4">
+            <p class="text-sm text-gray-500 mb-3 text-center">Export results to save them</p>
+            <div class="space-y-3">
+                <div>
+                    <label class="label">Filename</label>
+                    <input type="text" id="export-filename" class="input text-sm" placeholder="search_results">
+                </div>
+                <div class="flex gap-3">
+                    <button id="btn-export-xlsx" onclick="exportResults('xlsx')" class="btn-secondary flex-1 py-2.5" disabled>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        Export Excel
+                    </button>
+                    <button id="btn-export-docx" onclick="exportResults('docx')" class="btn-secondary flex-1 py-2.5" disabled>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        Export Word
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button onclick="closeSearchCompleteModal()" class="text-xs text-gray-400 hover:text-navy transition-colors">Dismiss</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm New Search Modal -->
+<div id="confirm-search-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeConfirmSearchModal()"></div>
+    <div class="modal-content max-w-sm">
+        <div class="text-center mb-4">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-yellow-50 mb-3">
+                <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Start New Search?</h3>
+            <p class="text-sm text-gray-500 mt-2">Previous search results will be cleared. This action cannot be undone.</p>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="closeConfirmSearchModal()" class="btn-secondary flex-1 py-2.5">Cancel</button>
+            <button onclick="confirmNewSearch()" class="btn-primary flex-1 py-2.5 bg-yellow-500 hover:bg-yellow-600">Continue</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        initSearchPage();
+    });
+</script>
+{% endblock %}

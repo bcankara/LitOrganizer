@@ -3,98 +3,57 @@ chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
 :: ============================================================================
-:: LitOrganizer - Windows Launcher Script
-:: This script sets up and runs LitOrganizer on Windows
+:: LitOrganizer v2.0 - Windows Launcher
 :: ============================================================================
 
-title LitOrganizer Launcher
-color 0A
+title LitOrganizer
 
 echo.
-echo  ╔═══════════════════════════════════════════════════════════════════╗
-echo  ║                                                                   ║
-echo  ║   ██╗     ██╗████████╗ ██████╗ ██████╗  ██████╗  █████╗ ███╗   ██╗ ║
-echo  ║   ██║     ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔════╝ ██╔══██╗████╗  ██║ ║
-echo  ║   ██║     ██║   ██║   ██║   ██║██████╔╝██║  ███╗███████║██╔██╗ ██║ ║
-echo  ║   ██║     ██║   ██║   ██║   ██║██╔══██╗██║   ██║██╔══██║██║╚██╗██║ ║
-echo  ║   ███████╗██║   ██║   ╚██████╔╝██║  ██║╚██████╔╝██║  ██║██║ ╚████║ ║
-echo  ║   ╚══════╝╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ║
-echo  ║                                                                   ║
-echo  ║              Academic Literature Organizer                        ║
-echo  ╚═══════════════════════════════════════════════════════════════════╝
+echo   LitOrganizer v2.0
+echo   Academic Literature Organizer
+echo   ─────────────────────────────
 echo.
 
 :: Get script directory
 set "SCRIPT_DIR=%~dp0"
 cd /d "%SCRIPT_DIR%"
 
-echo [INFO] Working directory: %SCRIPT_DIR%
-echo.
-
 :: ============================================================================
-:: STEP 1: Check for Python 3.11
+:: STEP 1: Check for Python
 :: ============================================================================
-echo [STEP 1/4] Checking Python installation...
+echo [1/4] Checking Python...
 
 set "PYTHON_CMD="
-set "PYTHON_VERSION="
 
-:: Check py launcher first (most reliable on Windows)
+:: Check py launcher first
 where py >nul 2>&1
 if %errorlevel% equ 0 (
-    for /f "tokens=*" %%i in ('py -3.11 --version 2^>nul') do set "PYTHON_VERSION=%%i"
-    if defined PYTHON_VERSION (
-        set "PYTHON_CMD=py -3.11"
-        echo [OK] Found !PYTHON_VERSION! via py launcher
+    for /f "tokens=2 delims= " %%i in ('py -3 --version 2^>nul') do set "PY_VER=%%i"
+    if defined PY_VER (
+        set "PYTHON_CMD=py -3"
+        echo   [OK] Python !PY_VER!
         goto :python_found
     )
 )
 
-:: Check python3.11 directly
-where python3.11 >nul 2>&1
-if %errorlevel% equ 0 (
-    for /f "tokens=*" %%i in ('python3.11 --version 2^>nul') do set "PYTHON_VERSION=%%i"
-    if defined PYTHON_VERSION (
-        set "PYTHON_CMD=python3.11"
-        echo [OK] Found !PYTHON_VERSION!
-        goto :python_found
-    )
-)
-
-:: Check python command and verify version
+:: Check python command
 where python >nul 2>&1
 if %errorlevel% equ 0 (
     for /f "tokens=2 delims= " %%i in ('python --version 2^>nul') do set "PY_VER=%%i"
-    echo !PY_VER! | findstr /B "3.11" >nul
-    if !errorlevel! equ 0 (
+    if defined PY_VER (
         set "PYTHON_CMD=python"
-        set "PYTHON_VERSION=Python !PY_VER!"
-        echo [OK] Found Python !PY_VER!
+        echo   [OK] Python !PY_VER!
         goto :python_found
     )
-    echo [WARNING] Found Python !PY_VER! but version 3.11.x is recommended
 )
 
-:: Python 3.11 not found
 echo.
-echo [ERROR] Python 3.11 is not installed!
+echo   [ERROR] Python is not installed!
 echo.
-echo Please install Python 3.11 from one of these sources:
+echo   Install Python 3.10+ from:
+echo     https://www.python.org/downloads/
 echo.
-echo   1. Official Python website:
-echo      https://www.python.org/downloads/release/python-31110/
-echo.
-echo   2. Microsoft Store:
-echo      https://apps.microsoft.com/detail/9nrwmjp3717k
-echo.
-echo   3. Using winget (Windows Package Manager):
-echo      winget install Python.Python.3.11
-echo.
-echo IMPORTANT: During installation, make sure to check:
-echo   [x] "Add Python to PATH"
-echo   [x] "Install py launcher"
-echo.
-echo After installing Python, please run this script again.
+echo   Make sure to check "Add Python to PATH" during installation.
 echo.
 pause
 exit /b 1
@@ -103,65 +62,57 @@ exit /b 1
 echo.
 
 :: ============================================================================
-:: STEP 2: Create Virtual Environment
+:: STEP 2: Virtual Environment
 :: ============================================================================
-echo [STEP 2/4] Setting up virtual environment...
+echo [2/4] Setting up environment...
 
 if exist ".venv\Scripts\activate.bat" (
-    echo [OK] Virtual environment already exists
+    echo   [OK] Virtual environment exists
 ) else (
-    echo [INFO] Creating virtual environment...
+    echo   Creating virtual environment...
     %PYTHON_CMD% -m venv .venv
     if %errorlevel% neq 0 (
-        echo [ERROR] Failed to create virtual environment!
+        echo   [ERROR] Failed to create virtual environment!
         pause
         exit /b 1
     )
-    echo [OK] Virtual environment created
+    echo   [OK] Created
 )
 
-:: Activate virtual environment
 call .venv\Scripts\activate.bat
 echo.
 
 :: ============================================================================
 :: STEP 3: Install Dependencies
 :: ============================================================================
-echo [STEP 3/4] Checking and installing dependencies...
+echo [3/4] Checking dependencies...
 
-:: Upgrade pip first
-echo [INFO] Upgrading pip...
-python -m pip install --upgrade pip --quiet
+python -m pip install --upgrade pip --quiet 2>nul
 
-:: Check if requirements are installed
-python -c "import PyQt5; import fitz; import pdfplumber" 2>nul
+python -c "import flask; import fitz; import pdfplumber" 2>nul
 if %errorlevel% neq 0 (
-    echo [INFO] Installing required packages...
-    echo [INFO] This may take a few minutes on first run...
-    pip install -r requirements.txt
+    echo   Installing packages (first run may take a minute)...
+    pip install -r requirements.txt --quiet
     if %errorlevel% neq 0 (
-        echo [ERROR] Failed to install dependencies!
-        echo [INFO] Trying alternative installation...
-        pip install PyQt5 PyMuPDF pdfplumber pdf2image pytesseract Pillow python-docx pandas openpyxl requests python-dateutil tqdm
+        echo   Retrying with explicit packages...
+        pip install Flask flask-socketio PyMuPDF pdfplumber pdf2image pytesseract Pillow python-docx pandas openpyxl requests python-dateutil tqdm
     )
 ) else (
-    echo [OK] All dependencies are already installed
+    echo   [OK] All dependencies installed
 )
 echo.
 
 :: ============================================================================
-:: STEP 4: Launch LitOrganizer
+:: STEP 4: Launch
 :: ============================================================================
-echo [STEP 4/4] Launching LitOrganizer...
-echo.
-echo ═══════════════════════════════════════════════════════════════════════════
+echo [4/4] Starting LitOrganizer...
+echo   ─────────────────────────────
 echo.
 
 python litorganizer.py
 
-:: Deactivate on exit
 call .venv\Scripts\deactivate.bat 2>nul
 
 echo.
-echo [INFO] LitOrganizer has closed.
+echo   LitOrganizer closed.
 pause

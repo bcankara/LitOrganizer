@@ -3,7 +3,7 @@
         "enabled": true
     },
     "openalex": {
-        "email": "mail@university.edu.tr",
+        "email": "your@email.com",
         "enabled": true
     },
     "datacite": {
@@ -13,15 +13,19 @@
         "enabled": true
     },
     "scopus": {
-        "api_key": "",
+        "api_key": "YOUR_SCOPUS_API_KEY",
         "enabled": false
     },
     "semantic_scholar": {
-        "api_key": "",
+        "api_key": "YOUR_SEMANTIC_SCHOLAR_API_KEY",
         "enabled": true
     },
     "unpaywall": {
-        "email": "mail@university.edu.tr",
-        "enabled": true
+        "email": "your@email.com",
+        "enabled": false
+    },
+    "gemini": {
+        "api_key": "YOUR_GEMINI_API_KEY",
+        "enabled": false
     }
 }
