@@ -22,6 +22,8 @@ from modules.utils.pdf_metadata_extractor import (
     get_metadata_from_multiple_sources,
     extract_metadata_from_content,
     has_sufficient_metadata,
+    search_crossref_by_title,
+    extract_metadata_with_gemini,
 )
 from modules.utils.reference_formatter import create_apa7_citation, create_apa7_reference
 
@@ -42,7 +44,9 @@ class PDFProcessor:
         auto_analyze: bool = False,
         categorize_options: Optional[Dict[str, bool]] = None,
         max_workers: int = 4,
-        logger: Optional[logging.Logger] = None
+        logger: Optional[logging.Logger] = None,
+        api_config: Optional[Dict[str, Any]] = None,
+        separate_ai_folder: bool = False
     ):
         """
         Initialize a new PDFProcessor instance.
@@ -58,6 +62,8 @@ class PDFProcessor:
             categorize_options (Optional[Dict[str, bool]]): Options for categorizing files by metadata
             max_workers (int): Maximum number of worker threads
             logger (Optional[logging.Logger]): Logger instance
+            api_config (Optional[Dict[str, Any]]): API configuration dict (from config/api_keys.json)
+            separate_ai_folder (bool): Whether to place AI-named files in a separate folder
         """
         # Convert to Path objects
         self.directory = Path(directory)
@@ -73,14 +79,25 @@ class PDFProcessor:
         # Fix backup directory settings - use only a single backup folder
         self.backup_dir = self.directory / "backups" if create_backups else None
         
+        # Debug: Log backup configuration
+        if logger:
+            logger.info(f"[BACKUP CONFIG] create_backups={create_backups}, backup_dir={self.backup_dir}")
+        
         # Set up Categorized Article directory
         self.categorized_dir = self.directory / "Categorized Article"
         
         # Set up Named Article directory
         self.named_article_dir = self.directory / "Named Article"
         
+        # Set up DOI Fallback directories
+        self.api_matched_dir = self.directory / "API Matched Article"
+        self.ai_named_dir = self.directory / "AI Named Content"
+        self.separate_ai_folder = separate_ai_folder
+        
         self.create_backups = create_backups
         self.max_workers = max_workers
+        self.api_config = api_config or {}
+        self.event_callback = None  # Optional callback for UI events (e.g. Gemini status)
         
         # Set default categorize options if none provided
         self.categorize_options = categorize_options or {}
@@ -207,7 +224,12 @@ class PDFProcessor:
                 return False
             
             if not doi:
-                logger.warning(f"No DOI found in {filename}. Moving to Unnamed.")
+                logger.warning(f"No DOI found in {filename}. Attempting content-based fallback...")
+                fallback_result = self._process_doi_fallback(file_path)
+                if fallback_result:
+                    return True
+                # Fallback failed, move to unnamed
+                logger.warning(f"DOI fallback also failed for {filename}. Moving to Unnamed.")
                 if self.move_problematic:
                     self._move_to_problematic(file_path, "Missing_DOI")
                 return False
@@ -247,26 +269,31 @@ class PDFProcessor:
             new_filename = new_filename_base + file_path.suffix
                 
             # Step 5: Create backup if enabled
+            logger.debug(f"[BACKUP] Step 5 reached for {filename}. create_backups={self.create_backups}, backup_dir={self.backup_dir}")
             if self.create_backups and self.backup_dir:
                 try:
                     backup_path = self.backup_dir / file_path.name
                     ensure_dir(self.backup_dir)
+                    logger.debug(f"[BACKUP] Attempting copy: {file_path} -> {backup_path}")
+                    logger.debug(f"[BACKUP] Source exists: {file_path.exists()}, Source size: {file_path.stat().st_size if file_path.exists() else 'N/A'}")
                     if backup_path.exists():
                         logger.warning(f"Backup file already exists, overwriting: {backup_path}")
-                        shutil.copy2(file_path, backup_path)
-                    logger.info(f"Created backup: {backup_path}")
+                    shutil.copy2(file_path, backup_path)
+                    logger.info(f"[BACKUP OK] Created backup: {backup_path} (size: {backup_path.stat().st_size})")
                 except (OSError, IOError, PermissionError) as e_backup:
-                     logger.error(f"File System Error (backup): Failed to create backup for {file_path.name}: {e_backup}")
+                     logger.error(f"[BACKUP FAIL] File System Error: Failed to create backup for {file_path.name}: {e_backup}")
                      # Continue processing even if backup fails
                 except Exception as e_backup_generic:
-                     logger.error(f"Error creating backup for {file_path.name}: {e_backup_generic}")
+                     logger.error(f"[BACKUP FAIL] Error creating backup for {file_path.name}: {e_backup_generic}")
                      # Continue processing
+            else:
+                logger.warning(f"[BACKUP SKIP] Backup disabled for {filename}. create_backups={self.create_backups}, backup_dir={self.backup_dir}")
             
             # Step 6 & 7: Rename / Categorize / Move
-            # Önce dosyayı Named Article klasörüne taşıyalım
+            # First move file to Named Article directory
             target_dir_named = self.named_article_dir
-            output_path_named = target_dir_named / new_filename # new_filename burada tam dosya adı (uzantılı)
-            final_output_path = None # Başlangıçta None
+            output_path_named = target_dir_named / new_filename # full filename with extension
+            final_output_path = None # Initially None
 
             try:
                 ensure_dir(target_dir_named)
@@ -274,43 +301,43 @@ class PDFProcessor:
                 logger.error(f"File System Error (mkdir Named): Failed to create target directory {target_dir_named}: {e_mkdir}")
                 if self.move_problematic:
                     self._move_to_problematic(file_path, "Mkdir_Error_Named")
-                return False # Ana işlem başarısız oldu
+                return False # Main operation failed
 
             try:
-                # Dosya adı çakışmalarını kontrol et ve yönet
+                # Check and handle filename conflicts
                 counter = 1
                 temp_output_path = output_path_named
                 while temp_output_path.exists():
                     logger.warning(f"Target file exists in Named Article: {temp_output_path}. Appending counter.")
-                    # new_filename_base: format_filename'den dönen uzantısız isim
+                    # new_filename_base: name without extension from format_filename
                     temp_output_path = target_dir_named / f"{new_filename_base}_{counter}{file_path.suffix}"
                     counter += 1
-                output_path_named = temp_output_path # Çakışma yoksa orijinal isim, varsa sayaçlı isim
+                output_path_named = temp_output_path # Original name if no conflict, numbered if conflict
 
-                # Orijinal dosyayı Named Article klasörüne taşı (yeniden adlandırarak)
+                # Move original file to Named Article directory (with renaming)
                 shutil.move(str(file_path), str(output_path_named))
                 logger.info(f"Successfully moved original file to Named Article: {output_path_named}")
-                final_output_path = output_path_named # Başarılı taşıma sonrası yolu kaydet
+                final_output_path = output_path_named # Store path after successful move
 
             except (OSError, IOError, PermissionError) as e_rename:
                 logger.error(f"File System Error (move to Named): Failed to move {file_path.name} to {output_path_named}: {e_rename}")
                 if self.move_problematic:
-                     # Orijinal dosya hala yerinde olmalı, onu problematic'e taşı
+                     # Original file should still be in place, move to problematic
                      self._move_to_problematic(file_path, "Move_Named_Error")
-                return False # Ana işlem başarısız oldu
+                return False # Main operation failed
             except Exception as e_rename_generic:
                  logger.error(f"Error moving file {file_path.name} to {output_path_named}: {e_rename_generic}", exc_info=True)
                  if self.move_problematic:
                       self._move_to_problematic(file_path, "Move_Named_Generic_Error")
-                 return False # Ana işlem başarısız oldu
+                 return False # Main operation failed
 
 
-            # Step 7.5: Kategorizasyon (Dosya Named Article'a taşındıktan SONRA)
+            # Step 7.5: Categorization (AFTER file has been moved to Named Article)
             if final_output_path and any(self.categorize_options.values()):
                 logger.debug(f"Attempting categorization for {final_output_path.name}...")
-                # categorize_file'a Named Article'daki dosyanın yolunu ve hedef dosya adını ver
-                # new_filename_base: format_filename'dan dönen uzantısız isim
-                # final_output_path.name: Named Article'daki tam dosya adı (uzantılı)
+                # Pass the file path in Named Article and target filename to categorize_file
+                # new_filename_base: name without extension from format_filename
+                # final_output_path.name: full filename in Named Article (with extension)
                 categorization_successful = self.categorize_file(final_output_path, metadata, final_output_path.name)
                 if categorization_successful:
                     logger.info(f"Categorization process completed for {final_output_path.name} (at least one category created).")
@@ -320,7 +347,7 @@ class PDFProcessor:
 
             # Step 8: Add reference if needed (only if move to Named Article was successful)
             if final_output_path and self.create_references:
-                # Referans ekleme kodu - Named Article'daki yolu ve ismi kullanacak şekilde güncellendi
+                # Reference addition code - updated to use path and name from Named Article
                 try:
                     reference_entry = create_apa7_reference(metadata)
                     self.references.append({
@@ -497,10 +524,10 @@ class PDFProcessor:
                 data = []
                 for ref_item in references:
                     data.append({
-                        'DOI': ref_item['doi'],  # DOI sütunu eklendi
+                        'DOI': ref_item['doi'],
                         'Author': ref_item['author'],  # "Yazar" -> "Author"
-                        'Filename': ref_item['filename'],  # "Dosya Adı" -> "Filename"
-                        'Bibliography (APA7)': ref_item['reference']  # "Kaynakça (APA7)" -> "Bibliography (APA7)"
+                        'Filename': ref_item['filename'],
+                        'Bibliography (APA7)': ref_item['reference']
                     })
                 
                 df = pd.DataFrame(data)
@@ -519,8 +546,8 @@ class PDFProcessor:
                 for ref_item in references:
                     f.write(f"DOI: {ref_item['doi']}\n")  # DOI eklendi
                     f.write(f"Author: {ref_item['author']}\n")  # "Yazar" -> "Author"
-                    f.write(f"Filename: {ref_item['filename']}\n")  # "Dosya Adı" -> "Filename"
-                    f.write(f"Bibliography (APA7): {ref_item['reference']}\n")  # "Kaynakça (APA7)" -> "Bibliography (APA7)"
+                    f.write(f"Filename: {ref_item['filename']}\n")
+                    f.write(f"Bibliography (APA7): {ref_item['reference']}\n")
                     f.write("\n---\n\n")
             
             self.logger.info(f"References saved to text file: {text_path}")
@@ -620,6 +647,170 @@ class PDFProcessor:
              
         return at_least_one_category_created
     
+    def _process_doi_fallback(self, file_path: Path) -> bool:
+        """
+        DOI fallback: extract metadata from PDF content, then try Crossref title search.
+        
+        Flow:
+          1. Extract title/authors from PDF content
+          2. Search Crossref by title (query.bibliographic)
+          3. If match >= 80% similarity -> move to 'API Matched Article'
+          4. If no match but sufficient Gemini metadata -> move to 'Named Article' or 'AI Named Content' (if separate folder enabled)
+          5. Otherwise return False (caller handles Unnamed)
+        
+        Args:
+            file_path (Path): Path to the PDF file
+            
+        Returns:
+            bool: True if file was successfully named and moved
+        """
+        logger = self.logger
+        filename = file_path.name
+        
+        try:
+            # Step 1: Extract metadata - try Gemini AI first if enabled, then heuristic fallback
+            content_metadata = None
+            gemini_config = self.api_config.get('gemini', {})
+            gemini_enabled = gemini_config.get('enabled', False)
+            gemini_key = gemini_config.get('api_key', '')
+
+            if not (gemini_enabled and gemini_key):
+                logger.info(f"[DOI FALLBACK] Gemini AI disabled or no API key. Skipping fallback: {filename}")
+                return False
+
+            logger.info(f"[DOI FALLBACK] Trying Gemini AI extraction for {filename}...")
+            # Notify UI: Gemini connecting
+            if self.event_callback:
+                self.event_callback('gemini_status', {
+                    'status': 'connecting',
+                    'filename': filename,
+                    'message': f'Connecting to Gemini AI: {filename}'
+                })
+            
+            content_metadata = extract_metadata_with_gemini(file_path, gemini_key)
+            
+            if content_metadata:
+                logger.info(f"[DOI FALLBACK] Gemini AI extraction successful for {filename}")
+                # Notify UI: Gemini success with results
+                if self.event_callback:
+                    self.event_callback('gemini_status', {
+                        'status': 'success',
+                        'filename': filename,
+                        'message': f'Gemini AI success: {filename}',
+                        'title': content_metadata.get('title', ''),
+                        'authors': content_metadata.get('authors', []),
+                        'year': content_metadata.get('year', ''),
+                    })
+            else:
+                logger.info(f"[DOI FALLBACK] Gemini AI found no results: {filename}")
+                # Notify UI: Gemini failed
+                if self.event_callback:
+                    self.event_callback('gemini_status', {
+                        'status': 'failed',
+                        'filename': filename,
+                        'message': f'Gemini AI found no results: {filename}'
+                    })
+                return False
+            
+            extracted_title = content_metadata.get('title', '')
+            extracted_authors = content_metadata.get('authors', [])
+            extracted_year = content_metadata.get('year', '')
+            
+            if not extracted_title or len(extracted_title.strip()) < 10:
+                logger.info(f"[DOI FALLBACK] Title too short or empty for {filename}: '{extracted_title}'")
+                return False
+            
+            logger.info(f"[DOI FALLBACK] Extracted title: {extracted_title[:80]}...")
+            
+            # Step 2: Search Crossref by title
+            logger.info(f"[DOI FALLBACK] Searching Crossref by title for {filename}...")
+            crossref_metadata = search_crossref_by_title(
+                title=extracted_title,
+                authors=[a if isinstance(a, str) else a.get('family', '') for a in extracted_authors] if extracted_authors else None,
+                year=extracted_year
+            )
+            
+            if crossref_metadata:
+                # Step 3: Crossref match found - use API metadata
+                logger.info(f"[DOI FALLBACK] Crossref title match for {filename}! "
+                           f"Similarity: {crossref_metadata.get('match_similarity', 'N/A')}")
+                
+                citation = self.format_citation(crossref_metadata)
+                title = crossref_metadata.get('title', 'Untitled')
+                new_filename_base = self.format_filename(citation, title)
+                new_filename = new_filename_base + file_path.suffix
+                
+                return self._move_to_fallback_dir(file_path, new_filename, new_filename_base, self.named_article_dir, "Named Article (API Matched)")
+            
+            # Step 4: No Crossref match - use Gemini metadata
+            if has_sufficient_metadata(content_metadata):
+                citation = self.format_citation(content_metadata)
+                title = content_metadata.get('title', 'Untitled')
+                new_filename_base = self.format_filename(citation, title)
+                new_filename = new_filename_base + file_path.suffix
+                
+                if self.separate_ai_folder:
+                    logger.info(f"[DOI FALLBACK] Using Gemini AI metadata for {filename} -> AI Named Content")
+                    return self._move_to_fallback_dir(file_path, new_filename, new_filename_base, self.ai_named_dir, "AI Named Content")
+                else:
+                    logger.info(f"[DOI FALLBACK] Using Gemini AI metadata for {filename} -> Named Article")
+                    return self._move_to_fallback_dir(file_path, new_filename, new_filename_base, self.named_article_dir, "Named Article (AI)")
+            
+            logger.info(f"[DOI FALLBACK] Insufficient Gemini metadata for {filename}, fallback failed.")
+            return False
+            
+        except Exception as e:
+            logger.error(f"[DOI FALLBACK] Error during fallback processing for {filename}: {e}", exc_info=True)
+            return False
+    
+    def _move_to_fallback_dir(self, file_path: Path, new_filename: str, new_filename_base: str, target_dir: Path, dir_label: str) -> bool:
+        """
+        Move a file to a fallback directory (Named Article or AI Named Content)
+        with backup support.
+        
+        Args:
+            file_path (Path): Original file path
+            new_filename (str): New filename with extension
+            new_filename_base (str): New filename without extension
+            target_dir (Path): Target directory
+            dir_label (str): Label for logging
+            
+        Returns:
+            bool: True if move was successful
+        """
+        logger = self.logger
+        
+        try:
+            ensure_dir(target_dir)
+            
+            # Create backup before moving
+            if self.create_backups and self.backup_dir:
+                try:
+                    ensure_dir(self.backup_dir)
+                    backup_path = self.backup_dir / file_path.name
+                    if backup_path.exists():
+                        logger.warning(f"Backup file already exists, overwriting: {backup_path}")
+                    shutil.copy2(file_path, backup_path)
+                    logger.info(f"[BACKUP OK] Created backup: {backup_path}")
+                except Exception as e_backup:
+                    logger.error(f"[BACKUP FAIL] Error creating backup for {file_path.name}: {e_backup}")
+            
+            # Handle filename conflicts
+            output_path = target_dir / new_filename
+            counter = 1
+            while output_path.exists():
+                output_path = target_dir / f"{new_filename_base}_{counter}{file_path.suffix}"
+                counter += 1
+            
+            # Move file
+            shutil.move(str(file_path), str(output_path))
+            logger.info(f"[DOI FALLBACK] Moved to {dir_label}: {output_path}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"[DOI FALLBACK] Error moving file to {dir_label}: {e}", exc_info=True)
+            return False
+
     def _move_to_problematic(self, file_path: Path, reason_tag: str) -> None:
          """ Helper function to move a file to the problematic directory. """
          if not self.move_problematic or not self.problematic_dir:

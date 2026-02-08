@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}LitOrganizer — Statistics{% endblock %}
+
+{% block content %}
+<div class="space-y-8 animate-stagger">
+
+    <!-- Page Header -->
+    <header class="stagger-item">
+        <h1 class="font-display text-3xl font-semibold text-navy tracking-tight">Statistics</h1>
+        <p class="text-gray-500 mt-1">Processing performance, accuracy metrics, and publication analytics.</p>
+    </header>
+
+    {% if not stats %}
+    <!-- No data placeholder -->
+    <div class="card stagger-item text-center py-16">
+        <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        <h3 class="font-display text-xl text-gray-400 mb-2">No Statistics Yet</h3>
+        <p class="text-gray-400">Process some PDF files first to see statistics here.</p>
+        <a href="/" class="btn-primary inline-block mt-4">Go to Processing</a>
+    </div>
+    {% else %}
+
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 stagger-item">
+        <div class="stat-card">
+            <div class="stat-value text-navy">{{ stats.processed }}</div>
+            <div class="stat-label">Total Processed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value text-success">{{ stats.renamed }}</div>
+            <div class="stat-label">Successfully Renamed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value text-danger">{{ stats.problematic }}</div>
+            <div class="stat-label">Not Renamed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value text-accent">{{ stats.success_rate }}%</div>
+            <div class="stat-label">Success Rate</div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Performance Metrics -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Performance
+            </h2>
+            <div class="space-y-4">
+                <div class="metric-row">
+                    <span class="metric-label">Total Processing Time</span>
+                    <span class="metric-value">{{ stats.total_time }}s</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Average Per File</span>
+                    <span class="metric-value">{{ stats.time_per_file }}s</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Processing Speed</span>
+                    <span class="metric-value">{{ stats.speed }} files/s</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Est. Memory Usage</span>
+                    <span class="metric-value">{{ stats.estimated_memory }} MB</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Est. Time Saved</span>
+                    <span class="metric-value text-success font-semibold">{{ stats.time_saved }} min</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accuracy Metrics -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Accuracy
+            </h2>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>DOI Detection Rate</span>
+                        <span class="font-mono">{{ stats.doi_detection }}%</span>
+                    </div>
+                    <div class="progress-bar-track h-2">
+                        <div class="progress-bar-fill" style="width: {{ stats.doi_detection }}%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Metadata Quality</span>
+                        <span class="font-mono">{{ stats.metadata_quality }}%</span>
+                    </div>
+                    <div class="progress-bar-track h-2">
+                        <div class="progress-bar-fill" style="width: {{ stats.metadata_quality }}%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Categorization Quality</span>
+                        <span class="font-mono">{{ stats.categorization_quality }}%</span>
+                    </div>
+                    <div class="progress-bar-track h-2">
+                        <div class="progress-bar-fill" style="width: {{ stats.categorization_quality }}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Sources -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+                API Sources
+            </h2>
+            {% if stats.api_sources %}
+            <div class="space-y-2">
+                {% for api, count in stats.api_sources.items() %}
+                <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                    <span class="font-medium">{{ api }}</span>
+                    <span class="text-sm font-mono text-gray-500">
+                        {{ count }} files
+                        ({{ ((count / stats.renamed) * 100) | round(1) if stats.renamed > 0 else 0 }}%)
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-gray-400 text-sm">No API source information available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Error Breakdown -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                Error Breakdown
+            </h2>
+            {% if stats.errors %}
+            <div class="space-y-2">
+                {% for label, count in stats.errors.items() %}
+                <div class="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                    <span class="text-sm">{{ label }}</span>
+                    <span class="text-sm font-mono text-danger">
+                        {{ count }}
+                        ({{ ((count / stats.problematic) * 100) | round(1) if stats.problematic > 0 else 0 }}%)
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-success text-sm flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                No errors encountered during processing.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Publication Statistics -->
+    <h2 class="font-display text-2xl font-semibold text-navy mt-8 stagger-item">Publication Analytics</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Year Distribution -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                Year Distribution
+            </h2>
+            {% set year_stats = stats.category_counts.get('year', {}) %}
+            {% set total_year = stats.categorized_file_count.get('year', 0) %}
+            {% if year_stats %}
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+                {% for year, count in year_stats | dictsort(reverse=true) %}
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-mono w-12">{{ year }}</span>
+                    <div class="flex-1 progress-bar-track h-4">
+                        <div class="progress-bar-fill h-4 rounded" style="width: {{ (count / total_year * 100) if total_year > 0 else 0 }}%"></div>
+                    </div>
+                    <span class="text-xs font-mono text-gray-500 w-20 text-right">{{ count }} ({{ ((count / total_year) * 100) | round(1) if total_year > 0 else 0 }}%)</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% elif stats.categorize_options.get('by_year') %}
+            <p class="text-gray-400 text-sm">No files categorized by year.</p>
+            {% else %}
+            <p class="text-gray-400 text-sm">Year categorization was disabled.</p>
+            {% endif %}
+        </div>
+
+        <!-- Top Authors -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                Top Authors
+            </h2>
+            {% set author_stats = stats.category_counts.get('author', {}) %}
+            {% set total_author = stats.categorized_file_count.get('author', 0) %}
+            {% if author_stats %}
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+                {% for author, count in author_stats | dictsort(by='value', reverse=true) %}
+                <div class="flex items-center justify-between py-1 border-b border-gray-100 last:border-0">
+                    <span class="text-sm truncate mr-2" title="{{ author }}">{{ author }}</span>
+                    <span class="text-xs font-mono text-gray-500 whitespace-nowrap">{{ count }} ({{ ((count / total_author) * 100) | round(1) if total_author > 0 else 0 }}%)</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% elif stats.categorize_options.get('by_author') %}
+            <p class="text-gray-400 text-sm">No author data available.</p>
+            {% else %}
+            <p class="text-gray-400 text-sm">Author categorization was disabled.</p>
+            {% endif %}
+        </div>
+
+        <!-- Top Journals -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                Top Journals
+            </h2>
+            {% set journal_stats = stats.category_counts.get('journal', {}) %}
+            {% set total_journal = stats.categorized_file_count.get('journal', 0) %}
+            {% if journal_stats %}
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+                {% for journal, count in journal_stats | dictsort(by='value', reverse=true) %}
+                <div class="flex items-center justify-between py-1 border-b border-gray-100 last:border-0">
+                    <span class="text-sm truncate mr-2" title="{{ journal }}">{{ journal }}</span>
+                    <span class="text-xs font-mono text-gray-500 whitespace-nowrap">{{ count }} ({{ ((count / total_journal) * 100) | round(1) if total_journal > 0 else 0 }}%)</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% elif stats.categorize_options.get('by_journal') %}
+            <p class="text-gray-400 text-sm">No journal data available.</p>
+            {% else %}
+            <p class="text-gray-400 text-sm">Journal categorization was disabled.</p>
+            {% endif %}
+        </div>
+
+        <!-- Subjects -->
+        <div class="card stagger-item">
+            <h2 class="card-title">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+                Subjects
+            </h2>
+            {% set subject_stats = stats.category_counts.get('subject', {}) %}
+            {% set total_subject = stats.categorized_file_count.get('subject', 0) %}
+            {% if subject_stats %}
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+                {% for subject, count in subject_stats | dictsort(by='value', reverse=true) %}
+                <div class="flex items-center justify-between py-1 border-b border-gray-100 last:border-0">
+                    <span class="text-sm truncate mr-2" title="{{ subject }}">{{ subject }}</span>
+                    <span class="text-xs font-mono text-gray-500 whitespace-nowrap">{{ count }} ({{ ((count / total_subject) * 100) | round(1) if total_subject > 0 else 0 }}%)</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% elif stats.categorize_options.get('by_subject') %}
+            <p class="text-gray-400 text-sm">No subject data available.</p>
+            {% else %}
+            <p class="text-gray-400 text-sm">Subject categorization was disabled.</p>
+            {% endif %}
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

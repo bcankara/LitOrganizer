@@ -80,6 +80,12 @@ config/api_config.json
 Unclassified_Articles/
 backups/
 references.xlsx
+exports/
+
+# Archives
+*.rar
+*.zip
+*.tar.gz
 
 # User data (but keep the config folder structure)
 !config/.gitkeep

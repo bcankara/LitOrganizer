@@ -13,7 +13,6 @@ from pathlib import Path
 
 from modules.core.pdf_renamer import PDFProcessor
 from modules.utils.logging_config import setup_logger
-from modules.gui.app import launch_gui
 
 __version__ = '1.0.0'
 
@@ -27,7 +26,7 @@ def process_command_line():
     """
     parser = argparse.ArgumentParser(
         description='LitOrganizer: Organize academic PDFs by extracting citation information',
-        epilog='Note: When run without arguments, the program starts in GUI mode by default.'
+        epilog='Note: When run without arguments, the program starts the web interface by default.'
     )
     
     parser.add_argument(
@@ -55,9 +54,16 @@ def process_command_line():
     )
     
     parser.add_argument(
-        '-g', '--gui',
+        '-w', '--web',
         action='store_true',
-        help='Launch graphical user interface (this is the default mode)'
+        help='Launch web interface in browser (this is the default mode)'
+    )
+    
+    parser.add_argument(
+        '-p', '--port',
+        type=int,
+        default=5000,
+        help='Port for the web interface (default: 5000)'
     )
     
     parser.add_argument(
@@ -87,10 +93,11 @@ def main():
     
     logger.debug(f"LitOrganizer v{__version__} starting...")
     
-    # Default to GUI mode unless explicitly requested to run in command line mode
-    if len(sys.argv) <= 1 or args.gui:
-        # Launch GUI
-        launch_gui(logger)
+    # Determine mode
+    if len(sys.argv) <= 1 or args.web:
+        # Default: Web interface mode
+        from modules.web.app import launch_web
+        launch_web(logger, port=args.port)
     else:
         # Command line mode
         try:
@@ -119,4 +126,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()
