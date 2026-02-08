@@ -2,26 +2,22 @@
 # Core requirements for PDF processing and metadata extraction
 
 # Web UI
-Flask                 # Web framework for the local web interface
-flask-socketio        # WebSocket support for real-time progress updates
+Flask==3.0.3           # Web framework for the local web interface
+flask-socketio==5.3.7  # WebSocket support for real-time progress updates
 
 # PDF Processing
-PyMuPDF==1.23.9       # Fast PDF text extraction (fitz)
-pdfplumber==0.10.3    # Advanced PDF text extraction with layout awareness
-pdf2image==1.16.3     # Convert PDF pages to images (for OCR)
+PyMuPDF==1.24.14       # Fast PDF text extraction (fitz)
+pdfplumber==0.11.4     # Advanced PDF text extraction with layout awareness
 
-# OCR Support (Optional)
-pytesseract==0.3.10   # Optical Character Recognition interface to Tesseract
-Pillow==10.2.0        # Python Imaging Library for image processing
+# OCR Support (Optional - requires Tesseract OCR installed on system)
+pytesseract==0.3.13    # Optical Character Recognition interface to Tesseract
+pdf2image==1.17.0      # Convert PDF pages to images (for OCR)
+Pillow==10.4.0         # Python Imaging Library for image processing
 
 # Document Generation
-python-docx==1.0.1    # Creating Word documents for search results
-pandas==2.2.0         # Data handling and Excel file generation
-openpyxl==3.1.2       # Excel file writer (used by pandas)
+python-docx==1.1.2     # Creating Word documents for search results
+pandas==2.2.3          # Data handling and Excel file generation
+openpyxl==3.1.5        # Excel file writer (used by pandas)
 
 # HTTP and API
-requests==2.31.0      # HTTP requests for DOI metadata retrieval
-
-# Utilities
-python-dateutil==2.9.0 # Date parsing for citation formatting
-tqdm==4.66.2          # Progress bars for command-line operations 
+requests==2.32.3       # HTTP requests for DOI/Gemini AI metadata retrieval
