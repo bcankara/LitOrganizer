@@ -203,10 +203,10 @@ function nativeBrowse(inputId) {
             if (data.success && data.path) {
                 setSelectedPath(inputId, data.path);
             } else if (data.cancelled) {
-                // User cancelled - do nothing, just close silently
                 console.log('Folder selection cancelled by user');
             } else if (data.fallback) {
                 // Real error (tool not found, etc.) - switch to manual modal
+                console.warn('Native browse failed, falling back:', data.message);
                 appendLog(data.message || 'Opening manual folder browser...');
                 browseDirectory(inputId);
             }
@@ -248,7 +248,7 @@ function clearSelectedPath(inputId) {
 
     if (displayEl) displayEl.classList.add('hidden');
 
-    const dirInfo = document.getElementById('dir-info');
+    const dirInfo = document.getElementById(isSearch ? 'search-dir-info' : 'dir-info');
     if (dirInfo) dirInfo.textContent = '';
 }
 
@@ -379,7 +379,8 @@ function validateDir(inputId) {
     })
         .then(r => r.json())
         .then(data => {
-            const info = document.getElementById('dir-info');
+            const isSearch = inputId === 'search-dir-input';
+            const info = document.getElementById(isSearch ? 'search-dir-info' : 'dir-info');
             if (info) {
                 info.textContent = data.message;
                 info.className = data.valid && data.pdf_count > 0
@@ -756,7 +757,8 @@ function initSearchPage() {
         document.getElementById('btn-search-start').disabled = true;
         document.getElementById('btn-search-stop').disabled = false;
         document.getElementById('btn-search-start').textContent = 'Searching... 0%';
-        document.getElementById('search-summary').classList.remove('hidden');
+        const progressContainer = document.getElementById('search-progress-container');
+        if (progressContainer) progressContainer.classList.remove('hidden');
 
         // Show spinner and start elapsed timer
         document.getElementById('search-spinner').classList.remove('hidden');
@@ -769,6 +771,7 @@ function initSearchPage() {
         // Update found count in real-time
         searchMatchCount++;
         document.getElementById('search-found').textContent = searchMatchCount;
+        appendLog(`Match found: ${data.filename} (Page ${data.page})`);
     });
 
     socket.on('search_progress', (data) => {
@@ -779,6 +782,7 @@ function initSearchPage() {
         // Update processed file count in real-time
         searchFileCount++;
         document.getElementById('search-processed').textContent = searchFileCount;
+        appendLog(`Processed: ${data.filename}`);
     });
 
     socket.on('search_complete', (data) => {
@@ -799,6 +803,10 @@ function initSearchPage() {
             const btnDocx = document.getElementById('btn-export-docx');
             if (btnXlsx) btnXlsx.disabled = false;
             if (btnDocx) btnDocx.disabled = false;
+
+            // Show page actions
+            const searchActions = document.getElementById('search-actions');
+            if (searchActions) searchActions.classList.remove('hidden');
         }
 
         // Show search complete modal
@@ -866,9 +874,16 @@ function loadExistingResults() {
 
                 // Update UI
                 document.getElementById('search-found').textContent = data.count;
-                document.getElementById('search-summary').classList.remove('hidden');
+                const progressContainer = document.getElementById('search-progress-container');
+                if (progressContainer) progressContainer.classList.remove('hidden');
+
                 document.getElementById('btn-export-xlsx').disabled = false;
                 document.getElementById('btn-export-docx').disabled = false;
+
+                // Show page actions
+                const searchActions = document.getElementById('search-actions');
+                if (searchActions) searchActions.classList.remove('hidden');
+
                 updateSearchProgress(100);
 
                 appendLog(`Loaded ${data.count} previous search results.`);
@@ -969,16 +984,37 @@ function addSearchResult(data) {
 function clearSearchResults() {
     const tbody = document.getElementById('search-results-body');
     if (tbody) {
-        tbody.innerHTML = '<tr id="search-empty-row"><td colspan="3" class="text-center text-gray-400 py-8">No results yet. Start a search to find matches.</td></tr>';
+        tbody.innerHTML = '<tr id="search-empty-row"><td colspan="3" class="text-center py-16"><div class="flex flex-col items-center justify-center text-gray-300"><svg class="w-12 h-12 mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg><span class="text-sm">Enter a keyword and select a directory to start searching</span></div></td></tr>';
     }
+
+    // Reset progress UI
     const bar = document.getElementById('search-progress-bar');
     const text = document.getElementById('search-progress-text');
+    const container = document.getElementById('search-progress-container');
+
     if (bar) bar.style.width = '0%';
     if (text) text.textContent = '0%';
+    if (container) container.classList.add('hidden');
+
+    // Reset counters
+    const found = document.getElementById('search-found');
+    const processed = document.getElementById('search-processed');
+    if (found) found.textContent = '0';
+    if (processed) processed.textContent = '0';
+
+    // Reset internal counters
+    searchMatchCount = 0;
+    searchFileCount = 0;
+
+    // Disable exports
     const btnXlsx = document.getElementById('btn-export-xlsx');
     const btnDocx = document.getElementById('btn-export-docx');
     if (btnXlsx) btnXlsx.disabled = true;
     if (btnDocx) btnDocx.disabled = true;
+
+    // Hide page actions
+    const searchActions = document.getElementById('search-actions');
+    if (searchActions) searchActions.classList.add('hidden');
 }
 
 // ─── Search Complete Modal ───────────────────────────────────────────────────
@@ -1327,3 +1363,107 @@ socket.on('gemini_status', function (data) {
         addGeminiResult(data);
     }
 });
+
+// ─── Log Widget Functions ───────────────────────────────────────────────────
+
+function toggleLogWidget() {
+    const btn = document.getElementById('log-toggle-btn');
+    const panel = document.getElementById('log-panel');
+    const notification = document.getElementById('log-notification');
+
+    if (panel.classList.contains('hidden')) {
+        // Expand
+        panel.classList.remove('hidden');
+        btn.classList.add('hidden');
+        if (notification) notification.classList.add('hidden');
+
+        // Scroll to bottom
+        const logArea = document.getElementById('log-area');
+        if (logArea) logArea.scrollTop = logArea.scrollHeight;
+    } else {
+        // Minimize
+        panel.classList.add('hidden');
+        btn.classList.remove('hidden');
+    }
+}
+
+// Auto-expand widget when a task starts
+socket.on('processing_started', () => {
+    const panel = document.getElementById('log-panel');
+    const btn = document.getElementById('log-toggle-btn');
+    if (panel && panel.classList.contains('hidden')) {
+        // Expand automatically to show progress
+        panel.classList.remove('hidden');
+        if (btn) btn.classList.add('hidden');
+    }
+});
+
+socket.on('search_started', () => {
+    const panel = document.getElementById('log-panel');
+    const btn = document.getElementById('log-toggle-btn');
+    if (panel && panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        if (btn) btn.classList.add('hidden');
+    }
+});
+
+// Update active-tasks container visibility check
+function checkActiveTasksVisibility() {
+    const container = document.getElementById('active-tasks');
+    const processing = document.getElementById('task-processing');
+    const searching = document.getElementById('task-searching');
+
+    if (!container) return;
+
+    const isProcessing = processing && !processing.classList.contains('hidden');
+    const isSearching = searching && !searching.classList.contains('hidden');
+
+    if (isProcessing || isSearching) {
+        container.classList.remove('hidden');
+        // Ensure parent widget is visible if tasks are active
+        const panel = document.getElementById('log-panel');
+        const btn = document.getElementById('log-toggle-btn');
+        if (panel && panel.classList.contains('hidden')) {
+            document.getElementById('log-notification').classList.remove('hidden');
+        }
+    } else {
+        container.classList.add('hidden');
+    }
+}
+
+// Hook into existing events to check visibility
+const originalSocketOn = socket.on;
+socket.on = function (event, callback) {
+    if (event === 'processing_complete' || event === 'search_complete') {
+        const originalCallback = callback;
+        callback = function (data) {
+            originalCallback(data);
+            setTimeout(checkActiveTasksVisibility, 3100); // Check after the hide timeout
+        };
+    }
+    originalSocketOn.apply(socket, [event, callback]);
+};
+// ─── Search Folder Open ──────────────────────────────────────────────────────
+
+function openSearchFolder() {
+    const dir = document.getElementById('search-dir-input').value;
+    if (!dir) {
+        appendLog('No directory selected to open.');
+        return;
+    }
+
+    fetch('/api/open_folder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: dir })
+    })
+        .then(r => r.json())
+        .then(data => {
+            if (!data.success) {
+                appendLog('Could not open folder: ' + (data.message || 'Unknown error'));
+            }
+        })
+        .catch(err => {
+            console.error('openSearchFolder error:', err);
+        });
+}
