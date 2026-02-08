@@ -1,7 +1,7 @@
 <div align="center">
   <img src="resources/logo_v2.svg" alt="LitOrganizer Logo" width="200">
   <br>
-  <h3>Automated Academic PDF Organization with AI</h3>
+  <h3>V2 - Automated Academic PDF Organization with AI</h3>
   
   [![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)]()
   [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org)
