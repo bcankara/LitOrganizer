@@ -894,16 +894,74 @@ function loadExistingResults() {
         });
 }
 
+function clearValidationErrors() {
+    document.querySelectorAll('.validation-msg').forEach(el => {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+    });
+    // Remove red borders
+    ['search-keyword', 'search-dir-input'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+    });
+}
+
+function showValidationError(elementId, message) {
+    clearValidationErrors();
+
+    const el = document.getElementById(elementId);
+    if (el) {
+        // Add red border and shake animation
+        el.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+        el.style.animation = 'shake 0.4s ease-in-out';
+        setTimeout(() => {
+            el.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+            el.style.animation = '';
+        }, 4000);
+        // Focus the element if it's a visible input
+        if (el.tagName === 'INPUT' && el.type !== 'hidden') el.focus();
+    }
+
+    // Show inline message below the relevant field
+    const errorId = elementId + '-error';
+    const errorEl = document.getElementById(errorId);
+    if (errorEl) {
+        errorEl.innerHTML = `
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <span>${message}</span>
+        `;
+        errorEl.classList.remove('hidden');
+        // Re-trigger animation
+        errorEl.style.animation = 'none';
+        errorEl.offsetHeight; // force reflow
+        errorEl.style.animation = 'slideDown 0.25s ease-out';
+
+        // Auto-dismiss after 4 seconds
+        setTimeout(() => {
+            errorEl.classList.add('hidden');
+            errorEl.innerHTML = '';
+        }, 4000);
+    }
+
+    appendLog(message);
+}
+
 function startSearch() {
     const directory = document.getElementById('search-dir-input').value;
     const keyword = document.getElementById('search-keyword').value.trim();
 
+    if (!directory && !keyword) {
+        showValidationError('search-keyword', 'Please select a directory and enter a search term.');
+        return;
+    }
     if (!directory) {
-        appendLog('Please select a directory first.');
+        showValidationError('search-dir-input', 'Please select a directory first.');
         return;
     }
     if (!keyword) {
-        appendLog('Please enter a keyword to search for.');
+        showValidationError('search-keyword', 'Please enter a search term.');
         return;
     }
 
