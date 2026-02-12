@@ -668,7 +668,7 @@ class PDFProcessor:
         filename = file_path.name
         
         try:
-            # Step 1: Extract metadata - try Gemini AI first if enabled, then heuristic fallback
+            # Step 1: Extract metadata - try Gemini AI if enabled (no heuristic fallback in v2.0)
             content_metadata = None
             gemini_config = self.api_config.get('gemini', {})
             gemini_enabled = gemini_config.get('enabled', False)
