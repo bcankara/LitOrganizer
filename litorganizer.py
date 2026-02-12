@@ -3,7 +3,7 @@
 LitOrganizer: Organize your academic literature quickly and efficiently
 
 This tool helps rename academic PDF files using citation information from DOI metadata.
-It extracts DOI from PDFs, queries Crossref API, and renames files using APA7 citation format.
+It extracts DOI from PDFs, queries multiple academic APIs (OpenAlex, Crossref, DataCite, Europe PMC, Semantic Scholar, Scopus, Unpaywall), and renames files using APA7 citation format. When DOI extraction fails, Google Gemini Flash 2.0 is used as an AI-powered fallback.
 """
 
 import argparse
