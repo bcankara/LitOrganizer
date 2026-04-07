@@ -1,0 +1,13 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+.env
+logs/
+processed/
+exports/
+Empirical_Validation_Results/
+*.pdf

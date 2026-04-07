@@ -1,60 +1,73 @@
-# LitOrganizer
+# LitOrganizer v2
 
-Organize your academic literature efficiently with a graphical user interface.
+Automated Academic PDF Organization & Search — Powered by AI
 
-## Features
+## What's New in v2
 
-- **Smart Metadata Extraction**: Automatically extracts DOIs and retrieves complete metadata from academic APIs
-- **Citation-based Renaming**: Renames PDF files using APA7 format
-- **Intelligent Categorization**: Organizes PDFs into folders by journal, author, year, or subject
-- **Full-text Search**: Search across your entire PDF collection
-- **OCR Support**: Extract text from scanned documents
+- **Web Interface**: No more X11/GUI forwarding — access via browser at `http://localhost:5000`
+- **AI Fallback**: Google Gemini Flash 2.0 for PDFs without DOI
+- **Full-text Search**: Keyword search across your entire PDF collection with context
+- **Export Results**: Download search results as Excel or Word
+- **More APIs**: OpenAlex, Crossref, DataCite, Europe PMC, Semantic Scholar, Scopus, Unpaywall
 
-## Usage
-
-This Docker image includes a graphical user interface which requires X11 forwarding.
-
-### For Windows:
-
-1. Install and run an X server like [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [Xming](https://sourceforge.net/projects/xming/)
-2. Run XLaunch with these settings:
-   - Display settings: Multiple windows
-   - Client startup: Start no client
-   - Extra settings: ✓ Disable access control
-3. Run the container:
+## Quick Start
 
 ```bash
-docker run -it --rm -e DISPLAY=host.docker.internal:0 -v %cd%/pdfs:/app/pdf bcankara/litorganizer
+docker run -d -p 5000:5000 -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer:v2
 ```
 
-### For Linux:
+Then open your browser at **http://localhost:5000**
 
-```bash
-docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+## Docker Compose
+
+```yaml
+services:
+  litorganizer:
+    image: bcankara/litorganizer:v2
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./pdfs:/app/pdf
+      - ./processed:/app/processed
+      - ./logs:/app/logs
+      - ./config:/app/config
+    restart: unless-stopped
 ```
 
-### For macOS:
-
-1. Install and run [XQuartz](https://www.xquartz.org/)
-2. Run these commands:
+Save as `docker-compose.yml` and run:
 
 ```bash
-xhost + 127.0.0.1
-docker run -it --rm -e DISPLAY=host.docker.internal:0 -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer
+docker compose up -d
 ```
 
 ## Volumes
 
-- `/app/pdf`: Directory for PDF files to be processed
-- `/app/processed`: Directory for processed/renamed files
-- `/app/logs`: Log files directory
-- `/app/config`: Configuration files directory
+| Path | Description |
+|------|-------------|
+| `/app/pdf` | Input directory — place your PDF files here |
+| `/app/processed` | Output directory for renamed/organized files |
+| `/app/logs` | Log files |
+| `/app/config` | `api_keys.json` — persist your API key settings |
+
+## API Keys (Optional)
+
+To enable AI fallback and additional metadata sources, mount a `config/api_keys.json`:
+
+```json
+{
+    "gemini": { "api_key": "YOUR_GEMINI_API_KEY", "enabled": true },
+    "scopus": { "api_key": "YOUR_SCOPUS_API_KEY", "enabled": false }
+}
+```
+
+Or configure keys directly from the **Settings** page in the web UI.
 
 ## Environment Variables
 
-- `DISPLAY`: Required for GUI forwarding
-- `LANG` and `LC_ALL`: Set to tr_TR.UTF-8 by default for Turkish language support
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `LITORGANIZER_HOST` | `0.0.0.0` | Bind address |
 
 ## Source Code
 
-[GitHub Repository](https://github.com/bcankara/LitOrganizer) 
+[GitHub Repository](https://github.com/bcankara/LitOrganizer)

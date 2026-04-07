@@ -12,6 +12,7 @@
   [![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
   [![License: MIT](https://img.shields.io/badge/License-MIT-97ca00?style=for-the-badge)](https://opensource.org/licenses/MIT)
   [![Platform](https://img.shields.io/badge/Platform-Win%20%7C%20Mac%20%7C%20Linux-555?style=for-the-badge)]()
+  [![Docker](https://img.shields.io/badge/Docker-bcankara%2Flitorganizer-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/bcankara/litorganizer)
 
   <br>
 
@@ -250,6 +251,34 @@ python litorganizer.py
 </details>
 
 <details>
+<summary><b>🐳 Docker</b></summary>
+
+```bash
+# Quick start — mount your PDF folder and open http://localhost:5000
+docker run -d -p 5000:5000 -v $(pwd)/pdfs:/app/pdf bcankara/litorganizer:v2
+```
+
+Or with Docker Compose:
+
+```bash
+# docker-compose.yml is included in the repo
+docker compose up -d
+```
+
+Open your browser at **http://localhost:5000**
+
+To persist your API key settings, also mount the config volume:
+
+```bash
+docker run -d -p 5000:5000 \
+  -v $(pwd)/pdfs:/app/pdf \
+  -v $(pwd)/config:/app/config \
+  bcankara/litorganizer:v2
+```
+
+</details>
+
+<details>
 <summary><b>⌨️ Command Line Mode</b></summary>
 
 ```bash
@@ -325,7 +354,7 @@ For detailed usage instructions, see the **[User Guide](documents/GUIDE.md)** wh
 - [x] Built-in usage guide
 - [x] Full-text search with Word/Excel export
 - [ ] Batch export in BibTeX / RIS format
-- [ ] Docker support
+- [x] Docker support
 - [ ] Dark mode
 
 ---

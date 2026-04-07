@@ -911,4 +911,5 @@ def launch_web(logger: Optional[logging.Logger] = None, port: int = 5000):
     print(f'  Running at: http://localhost:{port}')
     print(f'  Press Ctrl+C to stop\n')
     
-    socketio.run(app, host='127.0.0.1', port=port, debug=False, allow_unsafe_werkzeug=True)
+    host = os.environ.get('LITORGANIZER_HOST', '127.0.0.1')
+    socketio.run(app, host=host, port=port, debug=False, allow_unsafe_werkzeug=True)
