@@ -1,4 +1,9 @@
 .git
+.github
+.gitignore
+.gitattributes
+.venv
+venv
 __pycache__
 *.pyc
 *.pyo
@@ -6,8 +11,13 @@ __pycache__
 .Python
 *.egg-info
 .env
+.env.*
 logs/
 processed/
 exports/
 Empirical_Validation_Results/
 *.pdf
+documents/
+resources/screenshots/
+*.md
+!README.md

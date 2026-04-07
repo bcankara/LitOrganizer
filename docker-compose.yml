@@ -1,6 +1,7 @@
 services:
   litorganizer:
     image: bcankara/litorganizer:v2
+    container_name: litorganizer
     ports:
       - "5000:5000"
     volumes:
@@ -8,6 +9,4 @@ services:
       - ./processed:/app/processed
       - ./logs:/app/logs
       - ./config:/app/config
-    environment:
-      - LITORGANIZER_HOST=0.0.0.0
     restart: unless-stopped

@@ -1,0 +1,10 @@
+# Ensure shell scripts and Docker files always use LF line endings
+# so images built on Windows work identically to Linux/macOS.
+*.sh              text eol=lf
+docker-entrypoint.sh text eol=lf
+Dockerfile        text eol=lf
+.dockerignore     text eol=lf
+docker-compose.yml text eol=lf
+
+# Python files
+*.py              text eol=lf
