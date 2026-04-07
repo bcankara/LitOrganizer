@@ -1,0 +1,957 @@
+Found 65 PDF files to process
+Starting PDF processing in directory: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test
+Found 65 PDF files to process
+Processing file: 361254.361265 (1).pdf
+Processing file: 361254.361265 (10).pdf
+Processing file: 361254.361265 (11).pdf
+Processing file: 361254.361265 (12).pdf
+Found DOI: 10.1016/j.jksuci.2020.04.005
+No DOI found in 361254.361265 (12).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (12).pdf
+Removed original file 361254.361265 (12).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (13).pdf
+File counted as problematic (could not be renamed)
+Found DOI: doi.org/10.1080/19475705.2024.2446588
+Sufficient metadata found for 361254.361265 (11).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (11).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf
+Attempting categorization for (Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf...
+No DOI found in 361254.361265 (10).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of King Saud University - Computer and Information Sciences\(Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of King Saud University - Computer and Information Sciences: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (10).pdf
+Removed original file 361254.361265 (10).pdf after moving due to Missing_DOI.
+Found DOI: doi.org/10.1016/j.isprsjprs.2021.08.015
+Processing file: 361254.361265 (14).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Appiah\(Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Appiah: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020\(Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020: string indices must be integers, not 'str'
+Found DOI: 10.1016/j.neucom.2022.01.089
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Median filter\(Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Median filter: string indices must be integers, not 'str'
+Categorization process completed for (Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf (at least one category created).
+Categorization process completed for (Appiah, 2020) - Improved approximated median filter algorithm for real-time computer vision appl....pdf (at least one category created).
+Processing file: 361254.361265 (15).pdf
+Sufficient metadata found for 361254.361265 (14).pdf via openalex
+Sufficient metadata found for 361254.361265 (13).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (14).pdf
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (13).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf
+Sufficient metadata found for 361254.361265 (1).pdf via openalex
+Attempting categorization for (Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf...
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (1).pdf
+Attempting categorization for (Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf...
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf
+Found DOI: doi.org/10.1016/j.knosys.2022.109125
+Attempting categorization for (YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Neurocomputing\(Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Neurocomputing: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Geomatics Natural Hazards and Risk\(YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Geomatics Natural Hazards and Risk: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cheng\(Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cheng: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\YAŞAR\(YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\YAŞAR: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\(Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025\(YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing\(Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\(Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis: string indices must be integers, not 'str'
+Categorization process completed for (Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf (at least one category created).
+Categorization process completed for (Cheng, 2022) - Adaptive grid-based forest-like clustering algorithm.pdf (at least one category created).
+Processing file: 361254.361265 (16).pdf
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications\(YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications: string indices must be integers, not 'str'
+Categorization process completed for (YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf (at least one category created).
+Categorization process completed for (YAŞAR, 2025) - Determination of Anatolian Plate’s tectonic block boundaries with clustering ana....pdf (at least one category created).
+Processing file: 361254.361265 (17).pdf
+Found DOI: 10.1016/j.ecoinf.2022.101672
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen\(Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen: string indices must be integers, not 'str'
+Found DOI: doi.org/10.3390/engproc2021005042
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021\(Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index\(Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index: string indices must be integers, not 'str'
+Categorization process completed for (Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf (at least one category created).
+Categorization process completed for (Chen, 2021) - A practical approach to reconstruct high-quality Landsat NDVI time-series data b....pdf (at least one category created).
+Processing file: 361254.361265 (18).pdf
+Found DOI: 10.1038/s41598-020-77767-8
+Sufficient metadata found for 361254.361265 (15).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (15).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf
+Attempting categorization for (He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Knowledge-Based Systems\(He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Knowledge-Based Systems: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He\(He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\(He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Remainder\(He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Remainder: string indices must be integers, not 'str'
+Categorization process completed for (He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf (at least one category created).
+Categorization process completed for (He, 2022) - Modeling and predicting rainfall time series using seasonal-trend decomposition ....pdf (at least one category created).
+Processing file: 361254.361265 (19).pdf
+Found DOI: 10.1016/j.measurement.2022.111695
+Sufficient metadata found for 361254.361265 (16).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (16).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf
+Attempting categorization for (Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Ecological Informatics\(Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Ecological Informatics: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Jamshidi\(Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Jamshidi: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\(Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\(Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier: string indices must be integers, not 'str'
+Categorization process completed for (Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf (at least one category created).
+Categorization process completed for (Jamshidi, 2022) - Detecting outliers in a univariate time series dataset using unsupervised combin....pdf (at least one category created).
+Processing file: 361254.361265 (2).pdf
+Found DOI: 10.1016/j.isprsjprs.2023.09.015
+Sufficient metadata found for 361254.361265 (17).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (17).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf
+Attempting categorization for (Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ouyang\(Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ouyang: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021\(Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average\(Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average: string indices must be integers, not 'str'
+Categorization process completed for (Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf (at least one category created).
+Categorization process completed for (Ouyang, 2021) - STL Decomposition of Time Series Can Benefit Forecasting Done by Statistical Met....pdf (at least one category created).
+Processing file: 361254.361265 (20).pdf
+Found DOI: 10.1016/j.scitotenv.2022.158582
+Sufficient metadata found for 361254.361265 (19).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (19).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf
+Attempting categorization for (Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement\(Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xie\(Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xie: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\(Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications\(Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications: string indices must be integers, not 'str'
+Categorization process completed for (Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf (at least one category created).
+Categorization process completed for (Xie, 2022) - A quality control method based on improved IQR for estimating multi-GNSS real-ti....pdf (at least one category created).
+Processing file: 361254.361265 (21).pdf
+Sufficient metadata found for 361254.361265 (18).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (18).pdf
+Sufficient metadata found for 361254.361265 (2).pdf via openalex
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf
+Attempting categorization for (Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf...
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (2).pdf
+Found DOI: doi.org/10.1145/2949689.2949696
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf
+Attempting categorization for (Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports\(Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Polanco-Martínez\(Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Polanco-Martínez: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020\(Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing\(Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Multivariate statistics\(Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Multivariate statistics: string indices must be integers, not 'str'
+Categorization process completed for (Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf (at least one category created).
+Categorization process completed for (Polanco-Martínez, 2020) - Dynamic wavelet correlation analysis for multivariate climate time series.pdf (at least one category created).
+Processing file: 361254.361265 (22).pdf
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen\(Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\(Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023: string indices must be integers, not 'str'
+Sufficient metadata found for 361254.361265 (20).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (20).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf
+Attempting categorization for (Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf...
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science\(Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science: string indices must be integers, not 'str'
+Categorization process completed for (Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf (at least one category created).
+Categorization process completed for (Chen, 2023) - SFA-guided mosaic transformer for tracking small objects in snapshot spectral im....pdf (at least one category created).
+Processing file: 361254.361265 (23).pdf
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\The Science of The Total Environment\(Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\The Science of The Total Environment: string indices must be integers, not 'str'
+Found DOI: 10.1016/j.rse.2018.08.022
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xu\(Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xu: string indices must be integers, not 'str'
+No DOI found in 361254.361265 (22).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\(Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (22).pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022: string indices must be integers, not 'str'
+Removed original file 361254.361265 (22).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (24).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Series (stratigraphy)\(Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Series (stratigraphy): string indices must be integers, not 'str'
+Categorization process completed for (Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf (at least one category created).
+Categorization process completed for (Xu, 2022) - Is the z-score standardized RSEI suitable for time-series ecological change dete....pdf (at least one category created).
+Processing file: 361254.361265 (25).pdf
+Found DOI: 10.1016/j.ssci.2019.04.047
+Found DOI: 10.1007/s10618-016-0471-0
+Sufficient metadata found for 361254.361265 (21).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (21).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf
+Attempting categorization for (Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Badiozamany\(Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Badiozamany: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016\(Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\(Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis: string indices must be integers, not 'str'
+Categorization process completed for (Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf (at least one category created).
+Categorization process completed for (Badiozamany, 2016) - Framework for real-time clustering over sliding windows.pdf (at least one category created).
+Processing file: 361254.361265 (26).pdf
+Found DOI: doi:10.3390/s17092013
+Sufficient metadata found for 361254.361265 (25).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (25).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf
+Attempting categorization for (Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Safety Science\(Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Safety Science: string indices must be integers, not 'str'
+Sufficient metadata found for 361254.361265 (24).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (24).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf
+Attempting categorization for (Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ling\(Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ling: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Data Mining and Knowledge Discovery\(Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019\(Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Data Mining and Knowledge Discovery: string indices must be integers, not 'str'
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Data stream clustering\(Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Data stream clustering: string indices must be integers, not 'str'
+Categorization process completed for (Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf (at least one category created).
+Categorization process completed for (Ling, 2019) - Anomaly detection method for sensor network data streams based on sliding window....pdf (at least one category created).
+Processing file: 361254.361265 (27).pdf
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ernst\(Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ernst: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016\(Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\(Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier: string indices must be integers, not 'str'
+Categorization process completed for (Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf (at least one category created).
+Categorization process completed for (Ernst, 2016) - Comparison of local outlier detection techniques in spatial multivariate data.pdf (at least one category created).
+Processing file: 361254.361265 (28).pdf
+Found DOI: 10.1016/j.sigpro.2012.09.002
+Sufficient metadata found for 361254.361265 (23).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (23).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf
+Attempting categorization for (Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf...
+Found DOI: 10.1109/MSP.2011.941097
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Remote Sensing of Environment\(Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Remote Sensing of Environment: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cao\(Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cao: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018\(Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index\(Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index: string indices must be integers, not 'str'
+Categorization process completed for (Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf (at least one category created).
+Categorization process completed for (Cao, 2018) - A simple method to improve the quality of NDVI time-series data by integrating s....pdf (at least one category created).
+Processing file: 361254.361265 (29).pdf
+Sufficient metadata found for 361254.361265 (26).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (26).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf
+Attempting categorization for (Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Sensors\(Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Sensors: string indices must be integers, not 'str'
+Sufficient metadata found for 361254.361265 (27).pdf via openalex
+No DOI found in 361254.361265 (29).pdf. Moving to Unnamed.
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (27).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf
+Attempting categorization for (Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Mao\(Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Mao: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (29).pdf
+Removed original file 361254.361265 (29).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (3).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Signal Processing\(Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Signal Processing: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2017\(Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Särkkä\(Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2017: string indices must be integers, not 'str'
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Särkkä: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2012\(Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2012: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\(Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Smoothing\(Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf
+Categorization process completed for (Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf (at least one category created).
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Smoothing: string indices must be integers, not 'str'
+Categorization process completed for (Mao, 2017) - An Adaptive Trajectory Clustering Method Based on Grid and Density in Mobile Pat....pdf (at least one category created).
+Categorization process completed for (Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf (at least one category created).
+Processing file: 361254.361265 (30).pdf
+Categorization process completed for (Särkkä, 2012) - Gaussian filtering and smoothing for continuous-discrete dynamic systems.pdf (at least one category created).
+Processing file: 361254.361265 (31).pdf
+Found DOI: 10.1016/j.measurement.2018.11.041
+Sufficient metadata found for 361254.361265 (28).pdf via openalex
+Found DOI: doi: 10.25288/tjb.1342834
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (28).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf
+Attempting categorization for (Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf...
+Found DOI: doi:10.1093/mnras/stw2262
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\IEEE Signal Processing Magazine\(Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf
+Sufficient metadata found for 361254.361265 (30).pdf via openalex
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\IEEE Signal Processing Magazine: string indices must be integers, not 'str'
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (30).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf
+Attempting categorization for (Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schafer\(Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schafer: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement\(Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2011\(Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2011: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reddy\(Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reddy: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Binary Golay code\(Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Binary Golay code: string indices must be integers, not 'str'
+Categorization process completed for (Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf (at least one category created).
+Categorization process completed for (Schafer, 2011) - What Is a Savitzky-Golay Filter_ [Lecture Notes].pdf (at least one category created).
+Processing file: 361254.361265 (32).pdf
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018\(Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\DBSCAN\(Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\DBSCAN: string indices must be integers, not 'str'
+Categorization process completed for (Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf (at least one category created).
+Categorization process completed for (Reddy, 2018) - StreamSW_ A density-based approach for clustering data streams over sliding wind....pdf (at least one category created).
+Processing file: 361254.361265 (33).pdf
+Sufficient metadata found for 361254.361265 (3).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (3).pdf
+No DOI found in 361254.361265 (33).pdf. Moving to Unnamed.
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf
+Attempting categorization for (Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf...
+Sufficient metadata found for 361254.361265 (31).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (31).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf
+Attempting categorization for (Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf...
+No DOI found in 361254.361265 (32).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (33).pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (32).pdf
+Removed original file 361254.361265 (33).pdf after moving due to Missing_DOI.
+Removed original file 361254.361265 (32).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (34).pdf
+File counted as problematic (could not be renamed)
+Processing file: 361254.361265 (35).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Türkiye Jeoloji Bülteni _ Geological Bulletin of Turkey\(Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Türkiye Jeoloji Bülteni _ Geological Bulletin of Turkey: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Monthly Notices of the Royal Astronomical Society\(Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Monthly Notices of the Royal Astronomical Society: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Sokolovsky\(Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Sokolovsky: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Eski\(Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Eski: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016\(Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\(Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier: string indices must be integers, not 'str'
+Categorization process completed for (Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf (at least one category created).
+Categorization process completed for (Sokolovsky, 2016) - Comparative performance of selected variability detection techniques in photomet....pdf (at least one category created).
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\(Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023: string indices must be integers, not 'str'
+Processing file: 361254.361265 (36).pdf
+No DOI found in 361254.361265 (34).pdf. Moving to Unnamed.
+No DOI found in 361254.361265 (35).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Graben\(Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Graben: string indices must be integers, not 'str'
+Categorization process completed for (Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf (at least one category created).
+Categorization process completed for (Eski, 2023) - Gediz (Alaşehir) Grabeni’nde Gelişen A-Sismik Yüzey Deformasyonların Kökeni.pdf (at least one category created).
+Processing file: 361254.361265 (37).pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (34).pdf
+Removed original file 361254.361265 (34).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (38).pdf
+File counted as problematic (could not be renamed)
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (35).pdf
+Removed original file 361254.361265 (35).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (39).pdf
+File counted as problematic (could not be renamed)
+Found DOI: doi.org/10.1057/palgrave.jors.2600823
+No DOI found in 361254.361265 (37).pdf. Moving to Unnamed.
+Found DOI: /10.1111/j.1553-2712.1998.tb02493.x
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (37).pdf
+Removed original file 361254.361265 (37).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (4).pdf
+File counted as problematic (could not be renamed)
+Found DOI: 10.1016/j.inffus.2023.101945
+Found DOI: 10.1137/060658242
+Sufficient metadata found for 361254.361265 (36).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (36).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf
+Attempting categorization for (Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the Operational Research Society\(Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the Operational Research Society: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Johnston\(Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Johnston: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1999\(Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1999: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\EWMA chart\(Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\EWMA chart: string indices must be integers, not 'str'
+Categorization process completed for (Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf (at least one category created).
+Categorization process completed for (Johnston, 1999) - Some properties of a simple moving average when applied to forecasting a time se....pdf (at least one category created).
+Processing file: 361254.361265 (40).pdf
+Sufficient metadata found for 361254.361265 (38).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (38).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf
+Attempting categorization for (Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf...
+No DOI found in 361254.361265 (40).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Academic Emergency Medicine\(Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Academic Emergency Medicine: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (40).pdf
+Removed original file 361254.361265 (40).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (41).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Nelson\(Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Nelson: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1998\(Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1998: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average\(Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average: string indices must be integers, not 'str'
+Categorization process completed for (Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf (at least one category created).
+Categorization process completed for (Nelson, 1998) - Time Series Analysis Using Autoregressive Integrated Moving Average (ARIMA) Mode....pdf (at least one category created).
+Processing file: 361254.361265 (42).pdf
+Sufficient metadata found for 361254.361265 (39).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (39).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Oberst, 2007) - The Fast Fourier Transform.pdf
+Attempting categorization for (Oberst, 2007) - The Fast Fourier Transform.pdf...
+Found DOI: DOI:10.1007/s10661-005-5838-4
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\SIAM Journal on Control and Optimization\(Oberst, 2007) - The Fast Fourier Transform.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\SIAM Journal on Control and Optimization: string indices must be integers, not 'str'
+Found DOI: doi:10.1016/j.patcog.2010.09.013
+Sufficient metadata found for 361254.361265 (4).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (4).pdf
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Oberst\(Oberst, 2007) - The Fast Fourier Transform.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Oberst: string indices must be integers, not 'str'
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf
+Attempting categorization for (Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf...
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2007\(Oberst, 2007) - The Fast Fourier Transform.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2007: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Fast Fourier transform\(Oberst, 2007) - The Fast Fourier Transform.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Fast Fourier transform: string indices must be integers, not 'str'
+Categorization process completed for (Oberst, 2007) - The Fast Fourier Transform.pdf (at least one category created).
+Categorization process completed for (Oberst, 2007) - The Fast Fourier Transform.pdf (at least one category created).
+Processing file: 361254.361265 (43).pdf
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Information Fusion\(Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Information Fusion: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Górriz\(Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Górriz: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\(Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence\(Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence: string indices must be integers, not 'str'
+Categorization process completed for (Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf (at least one category created).
+Categorization process completed for (Górriz, 2023) - Computational approaches to Explainable Artificial Intelligence_ Advances in the....pdf (at least one category created).
+Processing file: 361254.361265 (44).pdf
+No DOI found in 361254.361265 (43).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (43).pdf
+Removed original file 361254.361265 (43).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (45).pdf
+File counted as problematic (could not be renamed)
+Sufficient metadata found for 361254.361265 (42).pdf via openalex
+Sufficient metadata found for 361254.361265 (41).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (42).pdf
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (41).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf
+Attempting categorization for (Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf...
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf
+Attempting categorization for (Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf...
+Found DOI: doi:10.1016/j.patcog.2003.08.014
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Environmental Monitoring and Assessment\(Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf
+No DOI found in 361254.361265 (44).pdf. Moving to Unnamed.
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Environmental Monitoring and Assessment: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition\(Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (44).pdf
+Removed original file 361254.361265 (44).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (46).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reghunath\(Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reghunath: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Petitjean\(Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Petitjean: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2005\(Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2005: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2010\(Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2010: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Groundwater recharge\(Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Groundwater recharge: string indices must be integers, not 'str'
+Categorization process completed for (Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf (at least one category created).
+Categorization process completed for (Reghunath, 2005) - Time Series Analysis to Monitor and Assess Water Resources_ A Moving Average App....pdf (at least one category created).
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Dynamic time warping\(Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Dynamic time warping: string indices must be integers, not 'str'
+Processing file: 361254.361265 (47).pdf
+Categorization process completed for (Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf (at least one category created).
+Categorization process completed for (Petitjean, 2010) - A global averaging method for dynamic time warping, with applications to cluster....pdf (at least one category created).
+Processing file: 361254.361265 (48).pdf
+No DOI found in 361254.361265 (46).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (46).pdf
+Removed original file 361254.361265 (46).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (49).pdf
+File counted as problematic (could not be renamed)
+Sufficient metadata found for 361254.361265 (45).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (45).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(W.M., 2003) - A new shifting grid clustering algorithm.pdf
+Attempting categorization for (W.M., 2003) - A new shifting grid clustering algorithm.pdf...
+No DOI found in 361254.361265 (47).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition\(W.M., 2003) - A new shifting grid clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\W.M.\(W.M., 2003) - A new shifting grid clustering algorithm.pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (47).pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\W.M.: string indices must be integers, not 'str'
+Removed original file 361254.361265 (47).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (5).pdf
+File counted as problematic (could not be renamed)
+Found DOI: doi.org/10.1080/02664763.2019.1701637
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2003\(W.M., 2003) - A new shifting grid clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2003: string indices must be integers, not 'str'
+Found DOI: 10.1038/s41598-025-00532-2
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\(W.M., 2003) - A new shifting grid clustering algorithm.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis: string indices must be integers, not 'str'
+Categorization process completed for (W.M., 2003) - A new shifting grid clustering algorithm.pdf (at least one category created).
+Categorization process completed for (W.M., 2003) - A new shifting grid clustering algorithm.pdf (at least one category created).
+Processing file: 361254.361265 (50).pdf
+No DOI found in 361254.361265 (48).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (48).pdf
+Removed original file 361254.361265 (48).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (51).pdf
+File counted as problematic (could not be renamed)
+No DOI found in 361254.361265 (50).pdf. Moving to Unnamed.
+Sufficient metadata found for 361254.361265 (49).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (49).pdf
+Sufficient metadata found for 361254.361265 (5).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (5).pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (50).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf
+Removed original file 361254.361265 (50).pdf after moving due to Missing_DOI.
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf
+Attempting categorization for (Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf...
+Processing file: 361254.361265 (52).pdf
+Attempting categorization for (He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf...
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Applied Statistics\(Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Applied Statistics: string indices must be integers, not 'str'
+No DOI found in 361254.361265 (51).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports\(He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schlüter\(Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (51).pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schlüter: string indices must be integers, not 'str'
+Removed original file 361254.361265 (51).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (53).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019\(Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019: string indices must be integers, not 'str'
+No DOI found in 361254.361265 (52).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He\(He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\(Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier: string indices must be integers, not 'str'
+Categorization process completed for (Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf (at least one category created).
+Categorization process completed for (Schlüter, 2019) - Two preprocessing algorithms for climate time series.pdf (at least one category created).
+Processing file: 361254.361265 (54).pdf
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (52).pdf
+Removed original file 361254.361265 (52).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (55).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025\(He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Adjacency list\(He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Adjacency list: string indices must be integers, not 'str'
+Categorization process completed for (He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf (at least one category created).
+Categorization process completed for (He, 2025) - A clustering algorithm based on grids for core data and adjacency relationships ....pdf (at least one category created).
+Processing file: 361254.361265 (56).pdf
+No DOI found in 361254.361265 (55).pdf. Moving to Unnamed.
+No DOI found in 361254.361265 (54).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (55).pdf
+Removed original file 361254.361265 (55).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (57).pdf
+File counted as problematic (could not be renamed)
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (54).pdf
+Removed original file 361254.361265 (54).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (58).pdf
+File counted as problematic (could not be renamed)
+Found DOI: /10.1002/j.2161-4296.1972.tb01702.x
+No DOI found in 361254.361265 (56).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (56).pdf
+No DOI found in 361254.361265 (58).pdf. Moving to Unnamed.
+Removed original file 361254.361265 (56).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (59).pdf
+File counted as problematic (could not be renamed)
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (58).pdf
+Removed original file 361254.361265 (58).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (6).pdf
+File counted as problematic (could not be renamed)
+No DOI found in 361254.361265 (57).pdf. Moving to Unnamed.
+Sufficient metadata found for 361254.361265 (53).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (53).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf
+Attempting categorization for (Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf...
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (57).pdf
+Removed original file 361254.361265 (57).pdf after moving due to Missing_DOI.
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\NAVIGATION Journal of the Institute of Navigation\(Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf
+Processing file: 361254.361265 (60).pdf
+File counted as problematic (could not be renamed)
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\NAVIGATION Journal of the Institute of Navigation: string indices must be integers, not 'str'
+Found DOI: doi:10.2166/ws.2024.204
+No DOI found in 361254.361265 (59).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Gaffney\(Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Gaffney: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (59).pdf
+Removed original file 361254.361265 (59).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (61).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1972\(Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1972: string indices must be integers, not 'str'
+No DOI found in 361254.361265 (61).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Space (punctuation)\(Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf
+Found DOI: doi.org/10.1145/321784.321791
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (61).pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Space (punctuation): string indices must be integers, not 'str'
+Categorization process completed for (Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf (at least one category created).
+Categorization process completed for (Gaffney, 1972) - Navigation in Space, the Future, and Artificial Intelligence.pdf (at least one category created).
+Removed original file 361254.361265 (61).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (62).pdf
+Processing file: 361254.361265 (63).pdf
+File counted as problematic (could not be renamed)
+No DOI found in 361254.361265 (62).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (62).pdf
+Sufficient metadata found for 361254.361265 (6).pdf via openalex
+Removed original file 361254.361265 (62).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (64).pdf
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (6).pdf
+File counted as problematic (could not be renamed)
+Found DOI: doi.org/10.1145/321738.321748
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf
+Attempting categorization for (Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf...
+Sufficient metadata found for 361254.361265 (60).pdf via openalex
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Water Science & Technology Water Supply\(Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (60).pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Water Science & Technology Water Supply: string indices must be integers, not 'str'
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf
+Attempting categorization for (Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf...
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Liu\(Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Liu: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM\(Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf
+Found DOI: doi.org/10.1145/321738.321744
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2024\(Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2024: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Hueckel\(Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Hueckel: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Beijing\(Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Beijing: string indices must be integers, not 'str'
+Categorization process completed for (Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf (at least one category created).
+Categorization process completed for (Liu, 2024) - Analysis of spatiotemporal characteristics of precipitation at different levels ....pdf (at least one category created).
+Processing file: 361254.361265 (65).pdf
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973\(Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Citation\(Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Citation: string indices must be integers, not 'str'
+Categorization process completed for (Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf (at least one category created).
+Categorization process completed for (Hueckel, 1973) - A Local Visual Operator Which Recognizes Edges and Lines.pdf (at least one category created).
+Processing file: 361254.361265 (7).pdf
+Sufficient metadata found for 361254.361265 (63).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (63).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf
+Attempting categorization for (Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf...
+No DOI found in 361254.361265 (65).pdf. Moving to Unnamed.
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (65).pdf
+Removed original file 361254.361265 (65).pdf after moving due to Missing_DOI.
+Processing file: 361254.361265 (8).pdf
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM\(Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Dixon\(Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Dixon: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973\(Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973: string indices must be integers, not 'str'
+Sufficient metadata found for 361254.361265 (64).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (64).pdf
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Axiom\(Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Axiom: string indices must be integers, not 'str'
+Categorization process completed for (Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf (at least one category created).
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf
+Categorization process completed for (Dixon, 1973) - Z-Resolution_ Theorem-Proving with Compiled Axioms.pdf (at least one category created).
+Attempting categorization for (Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf...
+Processing file: 361254.361265 (9).pdf
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM\(Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM: string indices must be integers, not 'str'
+Found DOI: doi.org/10.1080/14498596.2023.2274998
+No DOI found in 361254.361265 (8).pdf. Moving to Unnamed.
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Griffith\(Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Griffith: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973\(Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973: string indices must be integers, not 'str'
+Moved file with Missing_DOI to Unnamed Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Unnamed Article\ERROR_Missing_DOI_361254.361265 (8).pdf
+Removed original file 361254.361265 (8).pdf after moving due to Missing_DOI.
+File counted as problematic (could not be renamed)
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science\(Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science: string indices must be integers, not 'str'
+Categorization process completed for (Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf (at least one category created).
+Categorization process completed for (Griffith, 1973) - Mathematical Models for Automatic Line Detection.pdf (at least one category created).
+Found DOI: doi.org/10.3390/app13063900
+Sufficient metadata found for 361254.361265 (9).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (9).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf
+Attempting categorization for (Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf...
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Applied Sciences\(Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Applied Sciences: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Yaro\(Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Yaro: string indices must be integers, not 'str'
+Sufficient metadata found for 361254.361265 (7).pdf via openalex
+Created backup: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\backups\361254.361265 (7).pdf
+Successfully moved original file to Named Article: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Named Article\(Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf
+Attempting categorization for (Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf...
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\(Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\RSS\(Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\RSS: string indices must be integers, not 'str'
+Categorization process completed for (Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf (at least one category created).
+Categorization process completed for (Yaro, 2023) - Outlier Detection in Time-Series Receive Signal Strength Observation Using Z-Sco....pdf (at least one category created).
+Successfully categorized (copied) to 'by_journal': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Spatial Science\(Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Spatial Science: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_author': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Paul\(Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Paul: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_year': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\(Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023: string indices must be integers, not 'str'
+Successfully categorized (copied) to 'by_subject': C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence\(Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf
+Error creating reference files in C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence: string indices must be integers, not 'str'
+Categorization process completed for (Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf (at least one category created).
+Categorization process completed for (Paul, 2023) - A Gaussian filter-based window for efficient SAR image matching.pdf (at least one category created).
+----------------------------------------
+Processing complete. Files processed: 65
+Files successfully renamed: 37
+Problematic files (not renamed): 28
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Median filter\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Median filter\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Cluster analysis\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\GNSS applications\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Normalized Difference Vegetation Index\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Remainder\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Remainder\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Outlier\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Autoregressive integrated moving average\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Multivariate statistics\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Multivariate statistics\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Computer science\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Series (stratigraphy)\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Series (stratigraphy)\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Data stream clustering\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Data stream clustering\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Smoothing\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Smoothing\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Binary Golay code\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Binary Golay code\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\DBSCAN\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\DBSCAN\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Graben\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Graben\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\EWMA chart\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\EWMA chart\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Fast Fourier transform\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Fast Fourier transform\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Artificial intelligence\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Groundwater recharge\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Groundwater recharge\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Dynamic time warping\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Dynamic time warping\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Adjacency list\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Adjacency list\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Space (punctuation)\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Space (punctuation)\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Beijing\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Beijing\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Citation\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Citation\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Axiom\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\Axiom\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\RSS\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_subject\RSS\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of King Saud University - Computer and Information Sciences\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of King Saud University - Computer and Information Sciences\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Neurocomputing\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Neurocomputing\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Geomatics Natural Hazards and Risk\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Geomatics Natural Hazards and Risk\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\ISPRS Journal of Photogrammetry and Remote Sensing\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Knowledge-Based Systems\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Knowledge-Based Systems\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Ecological Informatics\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Ecological Informatics\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Measurement\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Scientific Reports\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\The Science of The Total Environment\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\The Science of The Total Environment\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Safety Science\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Safety Science\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Data Mining and Knowledge Discovery\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Data Mining and Knowledge Discovery\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Remote Sensing of Environment\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Remote Sensing of Environment\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Sensors\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Sensors\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Signal Processing\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Signal Processing\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\IEEE Signal Processing Magazine\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\IEEE Signal Processing Magazine\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Monthly Notices of the Royal Astronomical Society\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Monthly Notices of the Royal Astronomical Society\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Türkiye Jeoloji Bülteni _ Geological Bulletin of Turkey\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Türkiye Jeoloji Bülteni _ Geological Bulletin of Turkey\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the Operational Research Society\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the Operational Research Society\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Academic Emergency Medicine\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Academic Emergency Medicine\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\SIAM Journal on Control and Optimization\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\SIAM Journal on Control and Optimization\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Information Fusion\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Information Fusion\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Environmental Monitoring and Assessment\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Environmental Monitoring and Assessment\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Pattern Recognition\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Applied Statistics\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Applied Statistics\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\NAVIGATION Journal of the Institute of Navigation\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\NAVIGATION Journal of the Institute of Navigation\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Water Science & Technology Water Supply\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Water Science & Technology Water Supply\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of the ACM\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Applied Sciences\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Applied Sciences\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Spatial Science\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_journal\Journal of Spatial Science\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Appiah\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Appiah\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cheng\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cheng\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\YAŞAR\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\YAŞAR\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Chen\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\He\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Jamshidi\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Jamshidi\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ouyang\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ouyang\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xie\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xie\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Polanco-Martínez\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Polanco-Martínez\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xu\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Xu\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Badiozamany\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Badiozamany\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ling\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ling\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ernst\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Ernst\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cao\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Cao\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Mao\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Mao\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Särkkä\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Särkkä\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schafer\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schafer\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reddy\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reddy\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Sokolovsky\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Sokolovsky\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Eski\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Eski\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Johnston\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Johnston\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Nelson\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Nelson\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Oberst\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Oberst\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Górriz\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Górriz\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reghunath\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Reghunath\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Petitjean\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Petitjean\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\W.M.\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\W.M.\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schlüter\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Schlüter\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Gaffney\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Gaffney\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Liu\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Liu\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Hueckel\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Hueckel\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Dixon\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Dixon\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Griffith\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Griffith\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Yaro\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Yaro\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Paul\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_author\Paul\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2020\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2022\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2025\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2021\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2023\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2016\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2019\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2018\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2017\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2017\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2012\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2012\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2011\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2011\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1999\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1999\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1998\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1998\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2007\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2007\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2005\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2005\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2010\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2010\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2003\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2003\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1972\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1972\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2024\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\2024\references.txt
+References saved to Excel: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973\references.xlsx
+References saved to text file: C:\Users\bcankara\Desktop\Litreview\LitOrganizer_v1.0.2\Test\Categorized Article\by_year\1973\references.txt

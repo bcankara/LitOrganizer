@@ -1,0 +1,70 @@
+=== LitOrganizer Results ===
+
+Found 65 PDF files to process
+361254.361265 (12).pdf - ❌ Not Renamed (Problem)
+361254.361265 (10).pdf - ❌ Not Renamed (Problem)
+361254.361265 (11).pdf - ✅ Successfully Renamed
+361254.361265 (14).pdf - ✅ Successfully Renamed
+361254.361265 (1).pdf - ✅ Successfully Renamed
+361254.361265 (13).pdf - ✅ Successfully Renamed
+361254.361265 (15).pdf - ✅ Successfully Renamed
+361254.361265 (16).pdf - ✅ Successfully Renamed
+361254.361265 (17).pdf - ✅ Successfully Renamed
+361254.361265 (19).pdf - ✅ Successfully Renamed
+361254.361265 (18).pdf - ✅ Successfully Renamed
+361254.361265 (2).pdf - ✅ Successfully Renamed
+361254.361265 (22).pdf - ❌ Not Renamed (Problem)
+361254.361265 (20).pdf - ✅ Successfully Renamed
+361254.361265 (21).pdf - ✅ Successfully Renamed
+361254.361265 (25).pdf - ✅ Successfully Renamed
+361254.361265 (24).pdf - ✅ Successfully Renamed
+361254.361265 (23).pdf - ✅ Successfully Renamed
+361254.361265 (29).pdf - ❌ Not Renamed (Problem)
+361254.361265 (26).pdf - ✅ Successfully Renamed
+361254.361265 (27).pdf - ✅ Successfully Renamed
+361254.361265 (28).pdf - ✅ Successfully Renamed
+361254.361265 (30).pdf - ✅ Successfully Renamed
+361254.361265 (33).pdf - ❌ Not Renamed (Problem)
+361254.361265 (32).pdf - ❌ Not Renamed (Problem)
+361254.361265 (31).pdf - ✅ Successfully Renamed
+361254.361265 (3).pdf - ✅ Successfully Renamed
+361254.361265 (34).pdf - ❌ Not Renamed (Problem)
+361254.361265 (35).pdf - ❌ Not Renamed (Problem)
+361254.361265 (37).pdf - ❌ Not Renamed (Problem)
+361254.361265 (36).pdf - ✅ Successfully Renamed
+361254.361265 (40).pdf - ❌ Not Renamed (Problem)
+361254.361265 (38).pdf - ✅ Successfully Renamed
+361254.361265 (39).pdf - ✅ Successfully Renamed
+361254.361265 (4).pdf - ✅ Successfully Renamed
+361254.361265 (43).pdf - ❌ Not Renamed (Problem)
+361254.361265 (44).pdf - ❌ Not Renamed (Problem)
+361254.361265 (42).pdf - ✅ Successfully Renamed
+361254.361265 (41).pdf - ✅ Successfully Renamed
+361254.361265 (46).pdf - ❌ Not Renamed (Problem)
+361254.361265 (47).pdf - ❌ Not Renamed (Problem)
+361254.361265 (45).pdf - ✅ Successfully Renamed
+361254.361265 (48).pdf - ❌ Not Renamed (Problem)
+361254.361265 (50).pdf - ❌ Not Renamed (Problem)
+361254.361265 (51).pdf - ❌ Not Renamed (Problem)
+361254.361265 (49).pdf - ✅ Successfully Renamed
+361254.361265 (52).pdf - ❌ Not Renamed (Problem)
+361254.361265 (5).pdf - ✅ Successfully Renamed
+361254.361265 (55).pdf - ❌ Not Renamed (Problem)
+361254.361265 (54).pdf - ❌ Not Renamed (Problem)
+361254.361265 (56).pdf - ❌ Not Renamed (Problem)
+361254.361265 (58).pdf - ❌ Not Renamed (Problem)
+361254.361265 (57).pdf - ❌ Not Renamed (Problem)
+361254.361265 (59).pdf - ❌ Not Renamed (Problem)
+361254.361265 (53).pdf - ✅ Successfully Renamed
+361254.361265 (61).pdf - ❌ Not Renamed (Problem)
+361254.361265 (62).pdf - ❌ Not Renamed (Problem)
+361254.361265 (6).pdf - ✅ Successfully Renamed
+361254.361265 (60).pdf - ✅ Successfully Renamed
+361254.361265 (65).pdf - ❌ Not Renamed (Problem)
+361254.361265 (63).pdf - ✅ Successfully Renamed
+361254.361265 (8).pdf - ❌ Not Renamed (Problem)
+361254.361265 (64).pdf - ✅ Successfully Renamed
+361254.361265 (9).pdf - ✅ Successfully Renamed
+361254.361265 (7).pdf - ✅ Successfully Renamed
+✅ Processing completed!
+Total Processed: 65 | Successfully Renamed: 37 | Not Renamed: 28
